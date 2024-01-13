@@ -167,13 +167,20 @@ namespace NsfwMiniJam.Rhythm
             _hitText.color = data.Color;
             _timerDisplayText = 1f;
 
+            if (_info.SuddenDeath == SuddenDeathType.PerfectOnly && data.Score != _info.HitInfo.Last().Score)
+            {
+                data = _info.MissInfo;
+                _isAlive = false;
+            }
+            else if (_info.SuddenDeath == SuddenDeathType.Normal && data.DoesBreakCombo)
+            {
+                data = _info.MissInfo;
+                _isAlive = false;
+            }
+
             if (data.DoesBreakCombo)
             {
                 _combo = 0;
-                if (_info.SuddenDeath)
-                {
-                    _isAlive = false;
-                }
             }
             else
             {

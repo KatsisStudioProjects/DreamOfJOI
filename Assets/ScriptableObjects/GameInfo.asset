@@ -46,8 +46,8 @@ MonoBehaviour:
     DoesBreakCombo: 1
     Score: -100
   SuddenDeath: 0
-  Hidden: 2
+  Hidden: 0
   Reversed: 0
   Mines: 0
-  GhostDistance: 250
+  HiddenDistance: 0
   MineChancePercent: 15

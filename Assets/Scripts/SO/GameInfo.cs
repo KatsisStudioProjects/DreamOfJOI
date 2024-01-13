@@ -11,7 +11,7 @@ namespace NsfwMiniJam.SO
         public HitInfo WrongInfo;
 
         [Header("Active modifiers (debug)")]
-        public bool SuddenDeath;
+        public SuddenDeathType SuddenDeath;
         public HiddenType Hidden;
         public bool Reversed;
         public bool Mines;
@@ -25,6 +25,13 @@ namespace NsfwMiniJam.SO
         None,
         Normal,
         Reversed
+    }
+
+    public enum SuddenDeathType
+    {
+        None,
+        Normal,
+        PerfectOnly
     }
 
     [System.Serializable]
