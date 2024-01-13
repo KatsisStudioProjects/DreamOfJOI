@@ -17,6 +17,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
     Bpm: 60
     NoteCount: 10
+    NoFailOverrides: 1
   HitInfo:
   - DisplayText: Bad
     Distance: 100
@@ -50,6 +51,8 @@ MonoBehaviour:
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
     Score: -100
+  DecreaseOnHit: 0.01
+  IncreaseOnMiss: 0.1
   RankInfo:
   - Notation: SSS
     Color: {r: 1, g: 1, b: 0, a: 1}

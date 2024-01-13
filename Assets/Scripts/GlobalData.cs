@@ -11,9 +11,14 @@ namespace NsfwMiniJam
         public static bool Reversed;
         public static bool Mines;
 
+        // TODO: Unlock it only after level played
+        public static bool NoFail;
+
         public static float CalculateMultiplier()
         {
             float mult = 1f;
+
+            if (NoFail) mult = .1f;
 
             if (SuddenDeath == SuddenDeathType.Normal) mult += .05f;
             else if (SuddenDeath == SuddenDeathType.PerfectOnly) mult += .1f;

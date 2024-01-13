@@ -45,6 +45,13 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _startCountdown;
 
+        [SerializeField]
+        private RectTransform _cumFill;
+
+        private MusicInfo _music;
+
+        private float _cumLevel;
+
         private int _combo;
 
         // Speed data
@@ -81,14 +88,14 @@ namespace NsfwMiniJam.Rhythm
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
-            var music = _info.Music[GlobalData.LevelIndex];
+            _music = _info.Music[GlobalData.LevelIndex];
 
-            _leftToSpawn = music.NoteCount;
-            _leftToTape = music.NoteCount;
-            _bpm = music.Bpm;
-            _bgm.clip = music.Music;
+            _leftToSpawn = _music.NoteCount;
+            _leftToTape = _music.NoteCount;
+            _bpm = _music.Bpm;
+            _bgm.clip = _music.Music;
 
-            _maxPossibleScore = music.NoteCount * _info.HitInfo.Last().Score;
+            _maxPossibleScore = _music.NoteCount * _info.HitInfo.Last().Score;
 
             if (GlobalData.Reversed)
             {
@@ -237,21 +244,36 @@ namespace NsfwMiniJam.Rhythm
             {
                 data = _info.MissInfo;
                 _isAlive = false;
+                _combo = 0;
+                _cumLevel = 1f;
             }
             else if (GlobalData.SuddenDeath == SuddenDeathType.Normal && data.DoesBreakCombo)
             {
                 data = _info.MissInfo;
                 _isAlive = false;
-            }
-
-            if (data.DoesBreakCombo)
-            {
                 _combo = 0;
+                _cumLevel = 1f;
             }
             else
             {
-                _combo++;
+                if (data.DoesBreakCombo)
+                {
+                    _combo = 0;
+                    _cumLevel += _info.IncreaseOnMiss;
+                }
+                else
+                {
+                    _combo++;
+                    _cumLevel -= _info.DecreaseOnHit;
+                }
             }
+            _cumLevel = Mathf.Clamp01(_cumLevel);
+            if (_cumLevel == 1f && !GlobalData.NoFail && !_music.NoFailOverrides)
+            {
+                _isAlive = false;
+            }
+            UpdateCumBar();
+
             _comboText.gameObject.SetActive(_combo >= 5);
             _comboText.text = $"Combo x{_combo}";
 
@@ -261,6 +283,11 @@ namespace NsfwMiniJam.Rhythm
             _notes.RemoveAt(0);
 
             _leftToTape--;
+        }
+
+        private void UpdateCumBar()
+        {
+            _cumFill.localScale = new(1f, _cumLevel, 1f);
         }
 
         private IEnumerator HitEffect()

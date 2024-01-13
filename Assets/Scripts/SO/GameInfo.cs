@@ -13,6 +13,9 @@ namespace NsfwMiniJam.SO
         public HitInfo MissInfo;
         public HitInfo WrongInfo;
 
+        [Range(0f, 1f)]
+        public float DecreaseOnHit, IncreaseOnMiss;
+
         [Header("Rank info")]
         public RankInfo[] RankInfo;
 
@@ -29,6 +32,9 @@ namespace NsfwMiniJam.SO
         public AudioClip Music;
         public float Bpm;
         public int NoteCount;
+
+        [Header("Overrides")]
+        public bool NoFailOverrides;
     }
 
     [System.Serializable]
