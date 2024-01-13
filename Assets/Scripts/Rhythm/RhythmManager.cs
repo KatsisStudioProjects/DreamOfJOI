@@ -77,7 +77,7 @@ namespace NsfwMiniJam.Rhythm
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
-            var music = _info.Music[0];
+            var music = _info.Music[GlobalData.LevelIndex];
 
             _leftToSpawn = music.NoteCount;
             _leftToTape = music.NoteCount;
