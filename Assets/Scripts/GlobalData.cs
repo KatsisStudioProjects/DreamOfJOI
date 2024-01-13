@@ -10,6 +10,22 @@ namespace NsfwMiniJam
         public static HiddenType Hidden;
         public static bool Reversed;
         public static bool Mines;
+
+        public static float CalculateMultiplier()
+        {
+            float mult = 1f;
+
+            if (SuddenDeath == SuddenDeathType.Normal) mult += .05f;
+            else if (SuddenDeath == SuddenDeathType.PerfectOnly) mult += .1f;
+
+            if (Hidden != HiddenType.None) mult += .25f;
+
+            if (Reversed) mult += .1f;
+
+            if (Mines) mult += .15f;
+
+            return mult;
+        }
     }
     public enum HiddenType
     {

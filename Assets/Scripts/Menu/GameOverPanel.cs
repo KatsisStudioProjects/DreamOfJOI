@@ -15,7 +15,7 @@ namespace NsfwMiniJam.Menu
 
         public void Init(int score, int scoreMax, GameInfo info)
         {
-            var finalScore = score * 1_000_000f / scoreMax;
+            var finalScore = (score * 1_000_000f / scoreMax) * GlobalData.CalculateMultiplier();
             _scoreText.text = finalScore.ToString("0 000 000");
 
             var s = score / (float)scoreMax;

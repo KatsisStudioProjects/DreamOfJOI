@@ -10,6 +10,9 @@ namespace NsfwMiniJam.LevelSelect
         [SerializeField]
         private TMP_Text _txtSuddenDeath, _txtHidden, _txtReversed, _txtMines;
 
+        [SerializeField]
+        private TMP_Text _multText;
+
         public void UpdateSuddenDeath()
         {
             GlobalData.SuddenDeath++;
@@ -62,6 +65,8 @@ namespace NsfwMiniJam.LevelSelect
             };
             _txtReversed.text = GlobalData.Reversed ? "Enabled" : "Disabled";
             _txtMines.text = GlobalData.Mines ? "Enabled" : "Disabled";
+
+            _multText.text = $"x{GlobalData.CalculateMultiplier():0.00}";
         }
 
         private void OnEnable()
