@@ -280,12 +280,23 @@ namespace NsfwMiniJam.Rhythm
             {
                 if (data.DoesBreakCombo)
                 {
+                    if (_combo > 0)
+                    {
+                        _anim.SetTrigger("FailCombo");
+                    }
+
                     _combo = 0;
                     _cumLevel += _info.IncreaseOnMiss;
                 }
                 else
                 {
                     _combo++;
+
+                    if (_combo % 5 == 0)
+                    {
+                        _anim.SetTrigger("SuccessCombo");
+                    }
+
                     _cumLevel -= _info.DecreaseOnHit;
                 }
             }
