@@ -70,16 +70,12 @@ MonoBehaviour:
     ScoreRequirement: 0.8
   - Notation: C
     Color: {r: 1, g: 0.5059125, b: 0, a: 1}
-    ScoreRequirement: 0.7
+    ScoreRequirement: 0.75
   - Notation: D
     Color: {r: 1, g: 0.24595541, b: 0, a: 1}
-    ScoreRequirement: 0.6
+    ScoreRequirement: 0.5
   - Notation: F
     Color: {r: 1, g: 0, b: 0, a: 1}
-    ScoreRequirement: 0.5
-  SuddenDeath: 0
-  Hidden: 0
-  Reversed: 0
-  Mines: 0
+    ScoreRequirement: 0
   HiddenDistance: 250
   MineChancePercent: 15

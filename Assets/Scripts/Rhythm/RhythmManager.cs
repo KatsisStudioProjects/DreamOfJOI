@@ -124,8 +124,7 @@ namespace NsfwMiniJam.Rhythm
                 _volumeTimer -= Time.deltaTime;
                 if (_volumeTimer < 0f)
                 {
-                    _victory.gameObject.SetActive(true);
-                    _victory.Init(_score, _maxPossibleScore, _info);
+                    ShowGameOver();
                     _isAlive = false;
                 }
             }
@@ -137,6 +136,7 @@ namespace NsfwMiniJam.Rhythm
                 if (_deadSpeedTimer < 0f)
                 {
                     _deadSpeedTimer = 0f;
+                    ShowGameOver();
                 }
             }
 
@@ -171,6 +171,12 @@ namespace NsfwMiniJam.Rhythm
             }
 
             SpawnNotes();
+        }
+
+        private void ShowGameOver()
+        {
+            _victory.gameObject.SetActive(true);
+            _victory.Init(_score, _maxPossibleScore, _info);
         }
 
         private void SpawnNotes()
