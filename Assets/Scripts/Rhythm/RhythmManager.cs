@@ -179,7 +179,8 @@ namespace NsfwMiniJam.Rhythm
             _victory.gameObject.SetActive(true);
             _victory.Init(_score, _maxPossibleScore, _info);
 
-            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / _maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier() });
+            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier() });
+            PersistencyManager.Instance.Save();
         }
 
         private void SpawnNotes()

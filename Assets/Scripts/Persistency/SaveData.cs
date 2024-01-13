@@ -25,6 +25,9 @@ namespace NsfwMiniJam.Persistency
             }
         }
 
+        public ScoreData GetScore(int level)
+            => Scores.ContainsKey(level) ? Scores[level] : null;
+
         public bool IsUnlocked(AchievementID id)
             => UnlockedAchievements.Contains(id);
 

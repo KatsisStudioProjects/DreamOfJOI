@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: GameInfo
   m_EditorClassIdentifier: 
   Music:
-  - Music: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
+  - Name: Tutorial
+    Music: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
     Bpm: 60
     NoteCount: 10
   HitInfo:
