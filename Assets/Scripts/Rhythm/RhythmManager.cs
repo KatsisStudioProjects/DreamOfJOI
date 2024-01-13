@@ -45,7 +45,7 @@ namespace NsfwMiniJam.Rhythm
         private const float _height = 2000f; // TODO: ewh
 
         // List of all notes
-        private readonly List<(RectTransform RT, Image Image)> _notes = new();
+        private readonly List<NoteInfo> _notes = new();
 
         // Position where we are hitting notes
         private float _hitYPos;
@@ -133,12 +133,32 @@ namespace NsfwMiniJam.Rhythm
                 rTransform.anchorMax = new(.5f, 0f);
                 rTransform.anchoredPosition = Vector2.up * i;
 
-                _notes.Add((rTransform, n.GetComponent<Image>()));
+                var image = n.GetComponent<Image>();
+
+                bool isTrap = _info.Mines ? Random.Range(0, 100f) < _info.MineChancePercent : false;
+                if (isTrap)
+                {
+                    image.color = Color.red;
+                }
+
+                _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap });
             }
         }
 
         private void HitNote(HitInfo data)
         {
+            if (_notes[0].IsTrap)
+            {
+                if (data.Score > 0)
+                {
+                    data = _info.WrongInfo;
+                }
+                else
+                {
+                    data = _info.HitInfo.Last();
+                }
+            }
+
             _hitText.gameObject.SetActive(true);
             _hitText.text = data.DisplayText;
             _hitText.color = data.Color;
@@ -185,6 +205,13 @@ namespace NsfwMiniJam.Rhythm
                 }
                 StartCoroutine(HitEffect());
             }
+        }
+
+        public class NoteInfo
+        {
+            public RectTransform RT;
+            public Image Image;
+            public bool IsTrap;
         }
     }
 }
