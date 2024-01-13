@@ -1,4 +1,5 @@
 using NsfwMiniJam.Menu;
+using NsfwMiniJam.Persistency;
 using NsfwMiniJam.SO;
 using System.Collections;
 using System.Collections.Generic;
@@ -177,6 +178,8 @@ namespace NsfwMiniJam.Rhythm
         {
             _victory.gameObject.SetActive(true);
             _victory.Init(_score, _maxPossibleScore, _info);
+
+            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / _maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier() })
         }
 
         private void SpawnNotes()
