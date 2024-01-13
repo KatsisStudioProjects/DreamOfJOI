@@ -221,11 +221,11 @@ RectTransform:
   - {fileID: 1982990595}
   - {fileID: 813278602}
   - {fileID: 2094938096}
-  - {fileID: 1375410867}
   - {fileID: 2073191416}
   - {fileID: 801355832}
   - {fileID: 2108336273}
   - {fileID: 850355814}
+  - {fileID: 1375410867}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -498,7 +498,7 @@ MonoBehaviour:
   _startCountdown: {fileID: 2073191417}
   _cumFill: {fileID: 2075088275}
   _anim: {fileID: 209662405}
-  _cumText: {fileID: 850355813}
+  _cumText: {fileID: 850355815}
 --- !u!82 &500333088
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1541,7 +1541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &850355814
 RectTransform:
   m_ObjectHideFlags: 0

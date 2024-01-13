@@ -53,7 +53,7 @@ namespace NsfwMiniJam.Rhythm
         private Animator _anim;
 
         [SerializeField]
-        private GameObject _cumText;
+        private TMP_Text _cumText;
 
         private MusicInfo _music;
 
@@ -152,6 +152,7 @@ namespace NsfwMiniJam.Rhythm
                 if (_volumeTimer < 0f)
                 {
                     _cumRequirementStoke = _info.CumStrokeCountRequirement;
+                    _cumText.gameObject.SetActive(true);
                     _isAlive = false;
                 }
             }
@@ -202,6 +203,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void ShowGameOver()
         {
+            _cumText.gameObject.SetActive(false);
             _victory.gameObject.SetActive(true);
             _victory.Init(_score, _maxPossibleScore, _info);
 
@@ -371,6 +373,13 @@ namespace NsfwMiniJam.Rhythm
         {
             yield return new WaitForSeconds(2f);
             ShowGameOver();
+        }
+
+        private IEnumerator CumHit()
+        {
+            _cumText.color = new(0f, 0f, 0f, 0f);
+            yield return new WaitForSeconds(.1f);
+            _cumText.color = Color.black;
         }
 
         public void OnHit(InputAction.CallbackContext value)
