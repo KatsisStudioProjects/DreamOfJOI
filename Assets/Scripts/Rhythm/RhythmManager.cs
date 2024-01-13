@@ -32,16 +32,24 @@ namespace NsfwMiniJam.Rhythm
 
         private int _combo;
 
+        // Speed data
         private float _bpm = 750f;
         private float _baseDist = .25f;
 
         private const float _height = 2000f; // TODO: ewh
 
+        // List of all notes
         private readonly List<RectTransform> _notes = new();
 
+        // Position where we are hitting notes
         private float _hitYPos;
 
+        // Time to display the "Great", "Good" etc text
         private float _timerDisplayText;
+
+        private bool _isAlive;
+        // When dead, slowly decrease the speed of all notes until we reach 0
+        private float _deadSpeedTimer = 1f;
 
         private void Awake()
         {
@@ -53,6 +61,15 @@ namespace NsfwMiniJam.Rhythm
 
         private void Update()
         {
+            if (!_isAlive && _deadSpeedTimer > 0f)
+            {
+                _deadSpeedTimer -= Time.deltaTime;
+                if (_deadSpeedTimer < 0f)
+                {
+                    _deadSpeedTimer = 0f;
+                }
+            }
+
             if (_timerDisplayText > 0f)
             {
                 _timerDisplayText -= Time.deltaTime;
@@ -64,7 +81,7 @@ namespace NsfwMiniJam.Rhythm
 
             foreach (var n in _notes)
             {
-                n.transform.Translate(Vector2.down * _bpm * Time.deltaTime);
+                n.transform.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer);
             }
 
             if (_notes[0].anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
@@ -123,7 +140,7 @@ namespace NsfwMiniJam.Rhythm
 
         public void OnHit(InputAction.CallbackContext value)
         {
-            if (value.performed)
+            if (value.performed && _isAlive)
             {
                 for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                 {
