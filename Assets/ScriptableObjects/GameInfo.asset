@@ -49,5 +49,5 @@ MonoBehaviour:
   Hidden: 0
   Reversed: 0
   Mines: 0
-  HiddenDistance: 0
+  HiddenDistance: 250
   MineChancePercent: 15
