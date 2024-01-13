@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace NsfwMiniJam.Rhythm
@@ -63,6 +64,8 @@ namespace NsfwMiniJam.Rhythm
 
         private void Awake()
         {
+            SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
+
             if (_info.Reversed)
             {
                 _baseContainer.localScale = new(1f, -1f, 1f);
