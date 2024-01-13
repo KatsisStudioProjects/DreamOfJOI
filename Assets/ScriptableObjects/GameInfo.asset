@@ -90,3 +90,5 @@ MonoBehaviour:
     ScoreRequirement: 0
   HiddenDistance: 250
   MineChancePercent: 15
+  HypnotismChance: 10
+  HypnotismHitCount: 10
