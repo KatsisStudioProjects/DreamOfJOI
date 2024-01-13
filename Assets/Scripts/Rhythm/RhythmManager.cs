@@ -1,3 +1,4 @@
+using NsfwMiniJam.Menu;
 using NsfwMiniJam.SO;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace NsfwMiniJam.Rhythm
         private AudioSource _bgm;
 
         [SerializeField]
-        private GameObject _victory;
+        private GameOverPanel _victory;
 
         [SerializeField]
         private RectTransform _baseContainer;
@@ -69,12 +70,17 @@ namespace NsfwMiniJam.Rhythm
         private int _leftToSpawn, _leftToTape;
         private float _volumeTimer;
 
+        private int _maxPossibleScore;
+        private int _score;
+
         private void Awake()
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
             _leftToSpawn = _info.NoteCount;
             _leftToTape = _info.NoteCount;
+
+            _maxPossibleScore = _info.NoteCount * _info.HitInfo.Last().Score;
 
             if (_info.Reversed)
             {
@@ -102,6 +108,7 @@ namespace NsfwMiniJam.Rhythm
                 if (_volumeTimer < 0f)
                 {
                     _victory.gameObject.SetActive(true);
+                    _victory.Init(_score, _maxPossibleScore, _info);
                     _isAlive = false;
                 }
             }
@@ -177,6 +184,8 @@ namespace NsfwMiniJam.Rhythm
 
         private void HitNote(HitInfo data)
         {
+            if (!_isAlive) return;
+
             if (_notes[0].IsTrap)
             {
                 if (data.Score > 0)
@@ -215,6 +224,8 @@ namespace NsfwMiniJam.Rhythm
             }
             _comboText.gameObject.SetActive(_combo >= 5);
             _comboText.text = $"Combo x{_combo}";
+
+            _score += data.Score;
 
             Destroy(_notes[0].RT.gameObject);
             _notes.RemoveAt(0);
