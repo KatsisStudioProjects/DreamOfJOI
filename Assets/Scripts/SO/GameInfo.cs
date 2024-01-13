@@ -5,6 +5,15 @@ namespace NsfwMiniJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/GameInfo", fileName = "GameInfo")]
     public class GameInfo : ScriptableObject
     {
-        public float GreatDistance, GoodDistance, BadDistance;
+        public HitInfo[] HitInfo;
+        public HitInfo MissInfo;
+    }
+
+    [System.Serializable]
+    public class HitInfo
+    {
+        public string DisplayText;
+        public float Distance;
+        public Color Color;
     }
 }

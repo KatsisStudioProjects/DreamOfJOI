@@ -1,8 +1,11 @@
 using NsfwMiniJam.SO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace NsfwMiniJam.Rhythm
 {
@@ -17,10 +20,14 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private GameObject _note;
 
-        private const float _offsetBeforeStart = 3f;
+        [SerializeField]
+        private RectTransform _hitArea;
+        private Image _hitAreaImage;
 
-        private int _spawnIndex;
-        private float _startTime;
+        [SerializeField]
+        private TMP_Text _hitText;
+
+        private const float _offsetBeforeStart = 3f;
 
         private float _bpm = 300f;
 
@@ -28,24 +35,37 @@ namespace NsfwMiniJam.Rhythm
 
         private readonly List<RectTransform> _notes = new();
 
+        private float _hitYPos;
+
+        private float _timerDisplayText;
+
         private void Awake()
         {
-            _startTime = Time.unscaledTime;
+            _hitAreaImage = _hitArea.GetComponent<Image>();
+            _hitYPos = _hitArea.anchoredPosition.y;
+
             SpawnNotes();
         }
 
         private void Update()
         {
+            if (_timerDisplayText > 0f)
+            {
+                _timerDisplayText -= Time.deltaTime;
+                if (_timerDisplayText <= 0f)
+                {
+                    _hitText.gameObject.SetActive(false);
+                }
+            }
+
             foreach (var n in _notes)
             {
                 n.transform.Translate(Vector2.down * _bpm * Time.deltaTime);
             }
 
-            if (_notes[0].anchoredPosition.y < -_info.BadDistance)
+            if (_notes[0].anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
             {
-                Destroy(_notes[0].gameObject);
-                _notes.RemoveAt(0);
-                // TODO: Display "miss"
+                HitNote(_info.MissInfo);
             }
 
             SpawnNotes();
@@ -53,7 +73,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? _notes.Last().anchoredPosition.y : 0f;
+            var lastYPos = _notes.Any() ? _notes.Last().anchoredPosition.y : _hitYPos;
 
             for (float i = lastYPos + _bpm; i < _height; i += _bpm)
             {
@@ -68,11 +88,38 @@ namespace NsfwMiniJam.Rhythm
             }
         }
 
+        private void HitNote(HitInfo data)
+        {
+            _hitText.gameObject.SetActive(true);
+            _hitText.text = data.DisplayText;
+            _hitText.color = data.Color;
+            _timerDisplayText = 1f;
+
+            Destroy(_notes[0].gameObject);
+            _notes.RemoveAt(0);
+        }
+
+        private IEnumerator HitEffect()
+        {
+            _hitAreaImage.color = Color.black;
+            yield return new WaitForSeconds(.1f);
+            _hitAreaImage.color = Color.white;
+        }
+
         public void OnHit(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
-
+                for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
+                {
+                    var info = _info.HitInfo[i];
+                    if (Mathf.Abs(_hitYPos - _notes[0].anchoredPosition.y) < info.Distance)
+                    {
+                        HitNote(info);
+                        break;
+                    }
+                }
+                StartCoroutine(HitEffect());
             }
         }
     }

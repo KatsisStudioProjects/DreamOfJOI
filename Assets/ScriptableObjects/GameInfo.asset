@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5678fb76fae6ff9429120ad5cd507e22, type: 3}
   m_Name: GameInfo
   m_EditorClassIdentifier: 
-  GreatDistance: 20
-  GoodDistance: 50
-  BadDistance: 100
+  HitInfo:
+  - DisplayText: Bad
+    Distance: 100
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - DisplayText: Good
+    Distance: 50
+    Color: {r: 0.7372549, g: 0.5889521, b: 0, a: 1}
+  - DisplayText: Great
+    Distance: 20
+    Color: {r: 0.123694345, g: 0.8867924, b: 0, a: 1}
+  - DisplayText: Perfect!
+    Distance: 10
+    Color: {r: 1, g: 1, b: 0, a: 1}
+  MissInfo:
+    DisplayText: Miss
+    Distance: 0
+    Color: {r: 1, g: 0, b: 0, a: 1}
