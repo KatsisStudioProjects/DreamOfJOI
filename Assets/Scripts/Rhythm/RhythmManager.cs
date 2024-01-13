@@ -146,10 +146,11 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            if (_leftToTape == 0)
+            if (_volumeTimer > 0f && _leftToTape == 0)
             {
                 _volumeTimer -= Time.deltaTime;
-                if (_volumeTimer < 0f)
+                _bgm.volume = _volumeTimer;
+                if (_volumeTimer <= 0f)
                 {
                     _cumRequirementStoke = _info.CumStrokeCountRequirement;
                     _cumText.gameObject.SetActive(true);
@@ -157,7 +158,7 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            if (!_isAlive && _deadSpeedTimer > 0f)
+            if (!_isAlive && _deadSpeedTimer > 0f && _cumRequirementStoke == 0)
             {
                 _bgm.pitch = Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f);
                 _deadSpeedTimer -= Time.deltaTime;
@@ -203,7 +204,6 @@ namespace NsfwMiniJam.Rhythm
 
         private void ShowGameOver()
         {
-            _cumText.gameObject.SetActive(false);
             _victory.gameObject.SetActive(true);
             _victory.Init(_score, _maxPossibleScore, _info);
 
@@ -333,6 +333,7 @@ namespace NsfwMiniJam.Rhythm
                 _leftToTape--;
                 if (_leftToTape == 0)
                 {
+                    _volumeTimer = 1f;
                     _anim.SetInteger("GameOver", 1);
                 }
             }
@@ -392,9 +393,11 @@ namespace NsfwMiniJam.Rhythm
                 }
                 else if (_cumRequirementStoke > 0)
                 {
+                    StartCoroutine(CumHit());
                     _cumRequirementStoke--;
                     if (_cumRequirementStoke == 0)
                     {
+                        _cumText.gameObject.SetActive(false);
                         _anim.SetTrigger("Cum");
                         StartCoroutine(WaitAndShowGameOver());
                     }
