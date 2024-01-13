@@ -33,6 +33,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private AudioSource _bgm;
 
+        [SerializeField]
+        private RectTransform _baseContainer;
+
         private int _combo;
 
         // Speed data
@@ -60,6 +63,11 @@ namespace NsfwMiniJam.Rhythm
 
         private void Awake()
         {
+            if (_info.Reversed)
+            {
+                _baseContainer.localScale = new(1f, -1f, 1f);
+            }
+
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
 

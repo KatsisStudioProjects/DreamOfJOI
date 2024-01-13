@@ -12,6 +12,7 @@ namespace NsfwMiniJam.SO
         [Header("Active modifiers (debug)")]
         public bool SuddenDeath;
         public bool Ghost;
+        public bool Reversed;
 
         public float GhostDistance;
     }
