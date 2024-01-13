@@ -27,6 +27,11 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _hitText;
 
+        [SerializeField]
+        private TMP_Text _comboText;
+
+        private int _combo;
+
         private float _bpm = 750f;
         private float _baseDist = .25f;
 
@@ -93,6 +98,17 @@ namespace NsfwMiniJam.Rhythm
             _hitText.text = data.DisplayText;
             _hitText.color = data.Color;
             _timerDisplayText = 1f;
+
+            if (data.DoesBreakCombo)
+            {
+                _combo = 0;
+            }
+            else
+            {
+                _combo++;
+            }
+            _comboText.gameObject.SetActive(_combo >= 5);
+            _comboText.text = $"Combo x{_combo}";
 
             Destroy(_notes[0].gameObject);
             _notes.RemoveAt(0);

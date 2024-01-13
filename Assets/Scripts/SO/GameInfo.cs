@@ -15,5 +15,6 @@ namespace NsfwMiniJam.SO
         public string DisplayText;
         public float Distance;
         public Color Color;
+        public bool DoesBreakCombo;
     }
 }
