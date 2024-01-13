@@ -1,6 +1,7 @@
 ﻿using NsfwMiniJam.SO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace NsfwMiniJam.Menu
 {
@@ -30,7 +31,12 @@ namespace NsfwMiniJam.Menu
 
         public void BackToLevelSelect()
         {
+            SceneManager.LoadScene("LevelSelect");
+        }
 
+        public void Retry()
+        {
+            SceneManager.LoadScene("Main");
         }
     }
 }

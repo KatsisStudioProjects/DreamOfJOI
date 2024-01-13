@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5678fb76fae6ff9429120ad5cd507e22, type: 3}
   m_Name: GameInfo
   m_EditorClassIdentifier: 
-  NoteCount: 100
+  NoteCount: 10
   HitInfo:
   - DisplayText: Bad
     Distance: 100
