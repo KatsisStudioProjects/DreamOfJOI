@@ -27,9 +27,8 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _hitText;
 
-        private const float _offsetBeforeStart = 3f;
-
-        private float _bpm = 300f;
+        private float _bpm = 750f;
+        private float _baseDist = .25f;
 
         private const float _height = 2000f; // TODO: ewh
 
@@ -75,7 +74,7 @@ namespace NsfwMiniJam.Rhythm
         {
             var lastYPos = _notes.Any() ? _notes.Last().anchoredPosition.y : _hitYPos;
 
-            for (float i = lastYPos + _bpm; i < _height; i += _bpm)
+            for (float i = lastYPos + (_bpm * _baseDist); i < _height; i += _bpm * _baseDist)
             {
                 var n = Instantiate(_note, _noteContainer);
 
