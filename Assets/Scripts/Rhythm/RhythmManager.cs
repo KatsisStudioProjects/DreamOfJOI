@@ -35,6 +35,9 @@ namespace NsfwMiniJam.Rhythm
         private AudioSource _bgm;
 
         [SerializeField]
+        private GameObject _victory;
+
+        [SerializeField]
         private RectTransform _baseContainer;
 
         private int _combo;
@@ -62,9 +65,16 @@ namespace NsfwMiniJam.Rhythm
 
         private float _basePitch = 1f;
 
+        // Manage the end of the game
+        private int _leftToSpawn, _leftToTape;
+        private float _volumeTimer;
+
         private void Awake()
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
+
+            _leftToSpawn = _info.NoteCount;
+            _leftToTape = _info.NoteCount;
 
             if (_info.Reversed)
             {
@@ -86,6 +96,16 @@ namespace NsfwMiniJam.Rhythm
 
         private void Update()
         {
+            if (_leftToTape == 0)
+            {
+                _volumeTimer -= Time.deltaTime;
+                if (_volumeTimer < 0f)
+                {
+                    _victory.gameObject.SetActive(true);
+                    _isAlive = false;
+                }
+            }
+
             if (!_isAlive && _deadSpeedTimer > 0f)
             {
                 _bgm.pitch = Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f);
@@ -128,6 +148,8 @@ namespace NsfwMiniJam.Rhythm
 
         private void SpawnNotes()
         {
+            if (_leftToSpawn == 0) return;
+
             var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
 
             for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
@@ -148,6 +170,8 @@ namespace NsfwMiniJam.Rhythm
                 }
 
                 _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap });
+
+                _leftToSpawn--;
             }
         }
 
@@ -194,6 +218,8 @@ namespace NsfwMiniJam.Rhythm
 
             Destroy(_notes[0].RT.gameObject);
             _notes.RemoveAt(0);
+
+            _leftToTape--;
         }
 
         private IEnumerator HitEffect()

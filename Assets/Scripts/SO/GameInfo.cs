@@ -5,10 +5,16 @@ namespace NsfwMiniJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/GameInfo", fileName = "GameInfo")]
     public class GameInfo : ScriptableObject
     {
+        [Header("Song info")]
+        public int NoteCount;
+
         [Header("Note info")]
         public HitInfo[] HitInfo;
         public HitInfo MissInfo;
         public HitInfo WrongInfo;
+
+        [Header("Rank info")]
+        public RankInfo[] RankInfo;
 
         [Header("Active modifiers (debug)")]
         public SuddenDeathType SuddenDeath;
@@ -43,5 +49,14 @@ namespace NsfwMiniJam.SO
         public bool DoesBreakCombo;
 
         public int Score;
+    }
+
+    [System.Serializable]
+    public class RankInfo
+    {
+        public string Notation;
+        public Color Color;
+        [Range(0f, 1f)]
+        public float ScoreRequirement;
     }
 }
