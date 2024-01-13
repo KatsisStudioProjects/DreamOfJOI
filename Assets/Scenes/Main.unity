@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ea57a6bb0858449b8f93c3fa585c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _info: {fileID: 11400000, guid: ff58ba570b8455944a416308d52d6435, type: 2}
   _noteContainer: {fileID: 2094938096}
   _note: {fileID: 5903246263955357199, guid: e1af2afbbc22c134aa92d751091561b7, type: 3}
 --- !u!1 &519420028
