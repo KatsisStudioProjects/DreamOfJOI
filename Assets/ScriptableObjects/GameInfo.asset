@@ -34,4 +34,6 @@ MonoBehaviour:
     Distance: 0
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
-  SuddenDeath: 1
+  SuddenDeath: 0
+  Ghost: 1
+  GhostDistance: 250

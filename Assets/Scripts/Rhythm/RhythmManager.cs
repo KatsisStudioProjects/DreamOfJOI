@@ -42,7 +42,7 @@ namespace NsfwMiniJam.Rhythm
         private const float _height = 2000f; // TODO: ewh
 
         // List of all notes
-        private readonly List<RectTransform> _notes = new();
+        private readonly List<(RectTransform RT, Image Image)> _notes = new();
 
         // Position where we are hitting notes
         private float _hitYPos;
@@ -96,10 +96,15 @@ namespace NsfwMiniJam.Rhythm
 
             foreach (var n in _notes)
             {
-                n.transform.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
+                n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
+                if (_info.Ghost)
+                {
+                    var c = n.Image.color;
+                    n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.GhostDistance)));
+                }
             }
 
-            if (_notes[0].anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
+            if (_notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
             {
                 HitNote(_info.MissInfo);
             }
@@ -109,7 +114,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? (_notes.Last().anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
+            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
 
             for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
             {
@@ -120,7 +125,7 @@ namespace NsfwMiniJam.Rhythm
                 rTransform.anchorMax = new(.5f, 0f);
                 rTransform.anchoredPosition = Vector2.up * i;
 
-                _notes.Add(rTransform);
+                _notes.Add((rTransform, n.GetComponent<Image>()));
             }
         }
 
@@ -146,7 +151,7 @@ namespace NsfwMiniJam.Rhythm
             _comboText.gameObject.SetActive(_combo >= 5);
             _comboText.text = $"Combo x{_combo}";
 
-            Destroy(_notes[0].gameObject);
+            Destroy(_notes[0].RT.gameObject);
             _notes.RemoveAt(0);
         }
 
@@ -164,7 +169,7 @@ namespace NsfwMiniJam.Rhythm
                 for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                 {
                     var info = _info.HitInfo[i];
-                    if (Mathf.Abs(_hitYPos - _notes[0].anchoredPosition.y) < info.Distance)
+                    if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
                     {
                         HitNote(info);
                         break;
