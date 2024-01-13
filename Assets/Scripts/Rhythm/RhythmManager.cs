@@ -41,6 +41,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private RectTransform _baseContainer;
 
+        [SerializeField]
+        private TMP_Text _startCountdown;
+
         private int _combo;
 
         // Speed data
@@ -106,6 +109,16 @@ namespace NsfwMiniJam.Rhythm
 
         private void Update()
         {
+            if (_waitBeforeStart > 0f)
+            {
+                _waitBeforeStart -= Time.deltaTime;
+                _startCountdown.text = Mathf.CeilToInt(_waitBeforeStart).ToString();
+                if (_waitBeforeStart <= 0f)
+                {
+                    _startCountdown.gameObject.SetActive(false);
+                }
+            }
+
             if (_leftToTape == 0)
             {
                 _volumeTimer -= Time.deltaTime;
