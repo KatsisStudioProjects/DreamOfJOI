@@ -30,6 +30,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _comboText;
 
+        [SerializeField]
+        private AudioSource _bgm;
+
         private int _combo;
 
         // Speed data
@@ -51,12 +54,21 @@ namespace NsfwMiniJam.Rhythm
         // When dead, slowly decrease the speed of all notes until we reach 0
         private float _deadSpeedTimer = 1f;
 
+        private float _waitBeforeStart = 3f;
+
         private void Awake()
         {
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
 
             SpawnNotes();
+            StartCoroutine(WaitAndStartBpm());
+        }
+
+        private IEnumerator WaitAndStartBpm()
+        {
+            yield return new WaitForSeconds(_waitBeforeStart);
+            _bgm.Play();
         }
 
         private void Update()
@@ -94,9 +106,9 @@ namespace NsfwMiniJam.Rhythm
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? _notes.Last().anchoredPosition.y : _hitYPos;
+            var lastYPos = _notes.Any() ? (_notes.Last().anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
 
-            for (float i = lastYPos + (_bpm * _speedMultiplier); i < _height; i += _bpm * _speedMultiplier)
+            for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
             {
                 var n = Instantiate(_note, _noteContainer);
 

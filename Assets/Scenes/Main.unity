@@ -363,6 +363,7 @@ MonoBehaviour:
   _hitArea: {fileID: 1354452636}
   _hitText: {fileID: 813278603}
   _comboText: {fileID: 1982990596}
+  _bgm: {fileID: 500333088}
 --- !u!82 &500333088
 AudioSource:
   m_ObjectHideFlags: 0
@@ -374,10 +375,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
