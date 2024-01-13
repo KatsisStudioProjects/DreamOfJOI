@@ -5,6 +5,9 @@ namespace NsfwMiniJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/GameInfo", fileName = "GameInfo")]
     public class GameInfo : ScriptableObject
     {
+        [Header("Game Info")]
+        public int CumStrokeCountRequirement;
+
         [Header("Song info")]
         public MusicInfo[] Music;
 

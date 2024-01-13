@@ -52,6 +52,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private Animator _anim;
 
+        [SerializeField]
+        private GameObject _cumText;
+
         private MusicInfo _music;
 
         private float _cumLevel;
@@ -89,6 +92,8 @@ namespace NsfwMiniJam.Rhythm
         private int _score;
 
         private int _hypnotismHits;
+
+        private int _cumRequirementStoke;
 
         private void Awake()
         {
@@ -146,7 +151,7 @@ namespace NsfwMiniJam.Rhythm
                 _volumeTimer -= Time.deltaTime;
                 if (_volumeTimer < 0f)
                 {
-                    ShowGameOver();
+                    _cumRequirementStoke = _info.CumStrokeCountRequirement;
                     _isAlive = false;
                 }
             }
@@ -362,6 +367,12 @@ namespace NsfwMiniJam.Rhythm
             _hitAreaImage.color = baseColor;
         }
 
+        private IEnumerator WaitAndShowGameOver()
+        {
+            yield return new WaitForSeconds(2f);
+            ShowGameOver();
+        }
+
         public void OnHit(InputAction.CallbackContext value)
         {
             if (value.performed)
@@ -369,6 +380,15 @@ namespace NsfwMiniJam.Rhythm
                 if (VNManager.Instance.IsPlayingStory)
                 {
                     VNManager.Instance.DisplayNextDialogue();
+                }
+                else if (_cumRequirementStoke > 0)
+                {
+                    _cumRequirementStoke--;
+                    if (_cumRequirementStoke == 0)
+                    {
+                        _anim.SetTrigger("Cum");
+                        StartCoroutine(WaitAndShowGameOver());
+                    }
                 }
                 else if (_isAlive)
                 {
