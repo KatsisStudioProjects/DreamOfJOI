@@ -13,5 +13,8 @@ namespace NsfwMiniJam.LevelSelect.Npc
             GlobalData.LevelIndex = _index;
             SceneManager.LoadScene("Main");
         }
+
+        public override void InteractionCancel()
+        { }
     }
 }

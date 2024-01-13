@@ -89,7 +89,7 @@ namespace NsfwMiniJam.Rhythm
 
             _maxPossibleScore = music.NoteCount * _info.HitInfo.Last().Score;
 
-            if (_info.Reversed)
+            if (GlobalData.Reversed)
             {
                 _baseContainer.localScale = new(1f, -1f, 1f);
             }
@@ -154,10 +154,10 @@ namespace NsfwMiniJam.Rhythm
                 foreach (var n in _notes)
                 {
                     n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
-                    if (_info.Hidden != HiddenType.None)
+                    if (GlobalData.Hidden != HiddenType.None)
                     {
                         var c = n.Image.color;
-                        var value = _info.Hidden == HiddenType.Normal
+                        var value = GlobalData.Hidden == HiddenType.Normal
                             ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
                             : ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
                         n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
@@ -190,7 +190,7 @@ namespace NsfwMiniJam.Rhythm
 
                 var image = n.GetComponent<Image>();
 
-                bool isTrap = _info.Mines ? Random.Range(0, 100f) < _info.MineChancePercent : false;
+                bool isTrap = GlobalData.Mines ? Random.Range(0, 100f) < _info.MineChancePercent : false;
                 if (isTrap)
                 {
                     image.color = Color.red;
@@ -223,12 +223,12 @@ namespace NsfwMiniJam.Rhythm
             _hitText.color = data.Color;
             _timerDisplayText = 1f;
 
-            if (_info.SuddenDeath == SuddenDeathType.PerfectOnly && data.Score != _info.HitInfo.Last().Score)
+            if (GlobalData.SuddenDeath == SuddenDeathType.PerfectOnly && data.Score != _info.HitInfo.Last().Score)
             {
                 data = _info.MissInfo;
                 _isAlive = false;
             }
-            else if (_info.SuddenDeath == SuddenDeathType.Normal && data.DoesBreakCombo)
+            else if (GlobalData.SuddenDeath == SuddenDeathType.Normal && data.DoesBreakCombo)
             {
                 data = _info.MissInfo;
                 _isAlive = false;

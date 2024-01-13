@@ -37,6 +37,7 @@ namespace NsfwMiniJam.LevelSelect.Player
         {
             if (_interactible.gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
             {
+                _interactible.InteractionCancel();
                 _interactible = null;
                 _interactionText.SetActive(false);
             }

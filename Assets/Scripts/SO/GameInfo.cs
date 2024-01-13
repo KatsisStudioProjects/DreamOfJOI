@@ -16,28 +16,10 @@ namespace NsfwMiniJam.SO
         [Header("Rank info")]
         public RankInfo[] RankInfo;
 
-        [Header("Active modifiers (debug)")]
-        public SuddenDeathType SuddenDeath;
-        public HiddenType Hidden;
-        public bool Reversed;
-        public bool Mines;
+        [Header("Modifiers")]
 
         public float HiddenDistance;
         public float MineChancePercent;
-    }
-
-    public enum HiddenType
-    {
-        None,
-        Normal,
-        Reversed
-    }
-
-    public enum SuddenDeathType
-    {
-        None,
-        Normal,
-        PerfectOnly
     }
 
     [System.Serializable]
