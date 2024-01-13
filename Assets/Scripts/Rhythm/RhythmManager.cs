@@ -115,6 +115,7 @@ namespace NsfwMiniJam.Rhythm
 
             VNManager.Instance.ShowStory(_music.Intro, () =>
             {
+                _anim.SetTrigger("Start");
                 SpawnNotes();
                 StartCoroutine(WaitAndStartBpm());
             });
