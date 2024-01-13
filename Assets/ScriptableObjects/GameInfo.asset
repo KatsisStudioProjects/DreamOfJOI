@@ -24,7 +24,7 @@ MonoBehaviour:
     HypnotisedOverrides: 0
   - Controller: {fileID: 0}
     Intro: {fileID: 0}
-    Name: Hyptonism
+    Name: Hypnotism
     Music: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
     Bpm: 60
     NoteCount: 10
