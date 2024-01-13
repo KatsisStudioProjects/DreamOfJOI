@@ -92,13 +92,5 @@ namespace NsfwMiniJam.VN
             if (value.phase == InputActionPhase.Started) ToggleSkip(true);
             else if (value.phase == InputActionPhase.Canceled) ToggleSkip(false);
         }
-
-        public void OnNextDialogue(InputAction.CallbackContext value)
-        {
-            if (value.performed)
-            {
-                DisplayNextDialogue();
-            }
-        }
     }
 }

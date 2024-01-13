@@ -29,6 +29,8 @@ namespace NsfwMiniJam.SO
     [System.Serializable]
     public class MusicInfo
     {
+        public RuntimeAnimatorController Controller;
+        public TextAsset Intro;
         public string Name;
         public AudioClip Music;
         public float Bpm;

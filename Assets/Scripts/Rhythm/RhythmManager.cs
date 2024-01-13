@@ -1,6 +1,7 @@
 using NsfwMiniJam.Menu;
 using NsfwMiniJam.Persistency;
 using NsfwMiniJam.SO;
+using NsfwMiniJam.VN;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private RectTransform _cumFill;
 
+        [SerializeField]
+        private Animator _anim;
+
         private MusicInfo _music;
 
         private float _cumLevel;
@@ -92,6 +96,8 @@ namespace NsfwMiniJam.Rhythm
 
             _music = _info.Music[GlobalData.LevelIndex];
 
+            _anim.runtimeAnimatorController = _music.Controller;
+
             _leftToSpawn = _music.NoteCount;
             _leftToTape = _music.NoteCount;
             _bpm = _music.Bpm;
@@ -107,8 +113,11 @@ namespace NsfwMiniJam.Rhythm
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
 
-            SpawnNotes();
-            StartCoroutine(WaitAndStartBpm());
+            VNManager.Instance.ShowStory(_music.Intro, () =>
+            {
+                SpawnNotes();
+                StartCoroutine(WaitAndStartBpm());
+            });
         }
 
         private IEnumerator WaitAndStartBpm()
@@ -119,6 +128,8 @@ namespace NsfwMiniJam.Rhythm
 
         private void Update()
         {
+            if (VNManager.Instance.IsPlayingStory) return;
+
             if (_waitBeforeStart > 0f)
             {
                 _waitBeforeStart -= Time.deltaTime;
@@ -315,28 +326,35 @@ namespace NsfwMiniJam.Rhythm
 
         public void OnHit(InputAction.CallbackContext value)
         {
-            if (value.performed && _isAlive)
+            if (value.performed)
             {
-                if (_hypnotismHits > 0)
+                if (VNManager.Instance.IsPlayingStory)
                 {
-                    _hypnotismHits--;
-                    if (_hypnotismHits == 0)
-                    {
-                        _hitAreaImage.color = Color.white;
-                    }
-                    return;
+                    VNManager.Instance.DisplayNextDialogue();
                 }
+                else if (_isAlive)
+                {
+                    if (_hypnotismHits > 0)
+                    {
+                        _hypnotismHits--;
+                        if (_hypnotismHits == 0)
+                        {
+                            _hitAreaImage.color = Color.white;
+                        }
+                        return;
+                    }
 
-                for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
-                {
-                    var info = _info.HitInfo[i];
-                    if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
+                    for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                     {
-                        HitNote(info);
-                        break;
+                        var info = _info.HitInfo[i];
+                        if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
+                        {
+                            HitNote(info);
+                            break;
+                        }
                     }
+                    StartCoroutine(HitEffect());
                 }
-                StartCoroutine(HitEffect());
             }
         }
 
