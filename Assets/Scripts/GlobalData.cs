@@ -13,6 +13,7 @@ namespace NsfwMiniJam
 
         // TODO: Unlock it only after level played
         public static bool NoFail;
+        public static bool Hypnotised;
 
         public static float CalculateMultiplier()
         {

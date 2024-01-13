@@ -18,6 +18,13 @@ MonoBehaviour:
     Bpm: 60
     NoteCount: 10
     NoFailOverrides: 1
+    HypnotisedOverrides: 0
+  - Name: Hyptonism
+    Music: {fileID: 8300000, guid: f12b5d8ddb7196c429d652d67670ac2e, type: 3}
+    Bpm: 60
+    NoteCount: 10
+    NoFailOverrides: 0
+    HypnotisedOverrides: 1
   HitInfo:
   - DisplayText: Bad
     Distance: 100

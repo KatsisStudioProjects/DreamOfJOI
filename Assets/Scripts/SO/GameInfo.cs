@@ -35,6 +35,7 @@ namespace NsfwMiniJam.SO
 
         [Header("Overrides")]
         public bool NoFailOverrides;
+        public bool HypnotisedOverrides;
     }
 
     [System.Serializable]
