@@ -132,22 +132,25 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            foreach (var n in _notes)
+            if (_notes.Any())
             {
-                n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
-                if (_info.Hidden != HiddenType.None)
+                foreach (var n in _notes)
                 {
-                    var c = n.Image.color;
-                    var value = _info.Hidden == HiddenType.Normal
-                        ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
-                        : ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
-                    n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
+                    n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
+                    if (_info.Hidden != HiddenType.None)
+                    {
+                        var c = n.Image.color;
+                        var value = _info.Hidden == HiddenType.Normal
+                            ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
+                            : ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
+                        n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
+                    }
                 }
-            }
 
-            if (_notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
-            {
-                HitNote(_info.MissInfo);
+                if (_notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
+                {
+                    HitNote(_info.MissInfo);
+                }
             }
 
             SpawnNotes();

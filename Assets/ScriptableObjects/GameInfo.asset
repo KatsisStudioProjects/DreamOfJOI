@@ -48,31 +48,31 @@ MonoBehaviour:
     Score: -100
   RankInfo:
   - Notation: SSS
-    Color: {r: 1, g: 1, b: 0, a: 0}
+    Color: {r: 1, g: 1, b: 0, a: 1}
     ScoreRequirement: 1
   - Notation: S
-    Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+    Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
     ScoreRequirement: 0.99
   - Notation: AAA
-    Color: {r: 0, g: 1, b: 0, a: 0}
+    Color: {r: 0, g: 1, b: 0, a: 1}
     ScoreRequirement: 0.95
   - Notation: AA
-    Color: {r: 0.66383123, g: 1, b: 0, a: 0}
+    Color: {r: 0.66383123, g: 1, b: 0, a: 1}
     ScoreRequirement: 0.925
   - Notation: A
-    Color: {r: 0.77526164, g: 1, b: 0, a: 0}
+    Color: {r: 0.77526164, g: 1, b: 0, a: 1}
     ScoreRequirement: 0.9
   - Notation: B
-    Color: {r: 0, g: 0.5726497, b: 1, a: 0}
+    Color: {r: 0, g: 0.5726497, b: 1, a: 1}
     ScoreRequirement: 0.8
   - Notation: C
-    Color: {r: 1, g: 0.5059125, b: 0, a: 0}
+    Color: {r: 1, g: 0.5059125, b: 0, a: 1}
     ScoreRequirement: 0.7
   - Notation: D
-    Color: {r: 1, g: 0.24595541, b: 0, a: 0}
+    Color: {r: 1, g: 0.24595541, b: 0, a: 1}
     ScoreRequirement: 0.6
   - Notation: F
-    Color: {r: 1, g: 0, b: 0, a: 0}
+    Color: {r: 1, g: 0, b: 0, a: 1}
     ScoreRequirement: 0.5
   SuddenDeath: 0
   Hidden: 0
