@@ -12,12 +12,19 @@ namespace NsfwMiniJam.SO
 
         [Header("Active modifiers (debug)")]
         public bool SuddenDeath;
-        public bool Ghost;
+        public HiddenType Hidden;
         public bool Reversed;
         public bool Mines;
 
-        public float GhostDistance;
+        public float HiddenDistance;
         public float MineChancePercent;
+    }
+
+    public enum HiddenType
+    {
+        None,
+        Normal,
+        Reversed
     }
 
     [System.Serializable]

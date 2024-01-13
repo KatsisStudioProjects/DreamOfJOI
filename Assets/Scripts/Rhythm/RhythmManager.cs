@@ -105,10 +105,13 @@ namespace NsfwMiniJam.Rhythm
             foreach (var n in _notes)
             {
                 n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
-                if (_info.Ghost)
+                if (_info.Hidden != HiddenType.None)
                 {
                     var c = n.Image.color;
-                    n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.GhostDistance)));
+                    var value = _info.Hidden == HiddenType.Normal
+                        ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
+                        : ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
+                    n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
                 }
             }
 
