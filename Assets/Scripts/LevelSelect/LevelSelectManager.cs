@@ -10,6 +10,8 @@ namespace NsfwMiniJam.LevelSelect
 {
     public class LevelSelectManager : MonoBehaviour
     {
+        public static LevelSelectManager Instance { private set; get; }
+
         [SerializeField]
         private GameInfo _info;
 
@@ -22,8 +24,13 @@ namespace NsfwMiniJam.LevelSelect
         [SerializeField]
         private GameObject _levelPrefab;
 
+        [SerializeField]
+        private PlayLevelPopup _playLevelPopup;
+
         private void Awake()
         {
+            Instance = this;
+
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
             for (int i = 0; i < _info.Music.Length; i++)
@@ -47,6 +54,17 @@ namespace NsfwMiniJam.LevelSelect
             {
                 _menu.SetActive(!_menu.activeInHierarchy);
             }
+        }
+
+        public void ShowPlayLevelPopUp(int index)
+        {
+            _playLevelPopup.gameObject.SetActive(true);
+            _playLevelPopup.Init(_info.Music[index]);
+        }
+
+        public void HidePlayerLevelPopUp()
+        {
+            _playLevelPopup.gameObject.SetActive(false);
         }
     }
 }

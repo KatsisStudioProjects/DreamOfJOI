@@ -35,7 +35,7 @@ namespace NsfwMiniJam.LevelSelect.Player
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (_interactible.gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
+            if (_interactible != null && _interactible.gameObject.GetInstanceID() == collision.gameObject.GetInstanceID())
             {
                 _interactible.InteractionCancel();
                 _interactible = null;

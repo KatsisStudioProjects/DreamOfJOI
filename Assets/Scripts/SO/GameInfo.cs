@@ -20,9 +20,9 @@ namespace NsfwMiniJam.SO
         public RankInfo[] RankInfo;
 
         [Header("Modifiers")]
-
         public float HiddenDistance;
         public float MineChancePercent;
+        public float HypnotismChance;
     }
 
     [System.Serializable]

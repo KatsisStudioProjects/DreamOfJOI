@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace NsfwMiniJam.LevelSelect.Npc
 {
@@ -11,10 +10,12 @@ namespace NsfwMiniJam.LevelSelect.Npc
         public override void Interact()
         {
             GlobalData.LevelIndex = _index;
-            SceneManager.LoadScene("Main");
+            LevelSelectManager.Instance.ShowPlayLevelPopUp(_index);
         }
 
         public override void InteractionCancel()
-        { }
+        {
+            LevelSelectManager.Instance.HidePlayerLevelPopUp();
+        }
     }
 }
