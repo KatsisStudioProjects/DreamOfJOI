@@ -84,6 +84,8 @@ namespace NsfwMiniJam.Rhythm
         private int _maxPossibleScore;
         private int _score;
 
+        private int _hypnotismHits;
+
         private void Awake()
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
@@ -207,13 +209,19 @@ namespace NsfwMiniJam.Rhythm
 
                 var image = n.GetComponent<Image>();
 
-                bool isTrap = GlobalData.Mines ? Random.Range(0, 100f) < _info.MineChancePercent : false;
-                if (isTrap)
+                bool isHypnotic = (GlobalData.Hypnotised || _music.HypnotisedOverrides) && Random.Range(0f, 100f) < _info.HypnotismChance;
+
+                bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
+                if (isHypnotic)
+                {
+                    image.color = new(.5f, 0f, .5f);
+                }
+                else if (isTrap)
                 {
                     image.color = Color.red;
                 }
 
-                _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap });
+                _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic });
 
                 _leftToSpawn--;
             }
@@ -223,7 +231,9 @@ namespace NsfwMiniJam.Rhythm
         {
             if (!_isAlive) return;
 
-            if (_notes[0].IsTrap)
+            var note = _notes[0];
+
+            if (note.IsTrap)
             {
                 if (data.Score > 0)
                 {
@@ -279,7 +289,12 @@ namespace NsfwMiniJam.Rhythm
 
             _score += data.Score;
 
-            Destroy(_notes[0].RT.gameObject);
+            if (note.IsHypnotic)
+            {
+                _hitAreaImage.color = new(.5f, 0f, .5f);
+            }
+
+            Destroy(note.RT.gameObject);
             _notes.RemoveAt(0);
 
             _leftToTape--;
@@ -292,15 +307,26 @@ namespace NsfwMiniJam.Rhythm
 
         private IEnumerator HitEffect()
         {
+            var baseColor = _hitAreaImage.color;
             _hitAreaImage.color = Color.black;
             yield return new WaitForSeconds(.1f);
-            _hitAreaImage.color = Color.white;
+            _hitAreaImage.color = baseColor;
         }
 
         public void OnHit(InputAction.CallbackContext value)
         {
             if (value.performed && _isAlive)
             {
+                if (_hypnotismHits > 0)
+                {
+                    _hypnotismHits--;
+                    if (_hypnotismHits == 0)
+                    {
+                        _hitAreaImage.color = Color.white;
+                    }
+                    return;
+                }
+
                 for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                 {
                     var info = _info.HitInfo[i];
@@ -319,6 +345,7 @@ namespace NsfwMiniJam.Rhythm
             public RectTransform RT;
             public Image Image;
             public bool IsTrap;
+            public bool IsHypnotic;
         }
     }
 }

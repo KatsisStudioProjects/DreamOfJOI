@@ -23,6 +23,7 @@ namespace NsfwMiniJam.SO
         public float HiddenDistance;
         public float MineChancePercent;
         public float HypnotismChance;
+        public int HypnotismHitCount;
     }
 
     [System.Serializable]
