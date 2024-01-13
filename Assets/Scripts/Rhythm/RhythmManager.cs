@@ -33,8 +33,8 @@ namespace NsfwMiniJam.Rhythm
         private int _combo;
 
         // Speed data
-        private float _bpm = 750f;
-        private float _baseDist = .25f;
+        private float _bpm = 60f;
+        private float _speedMultiplier = 10f;
 
         private const float _height = 2000f; // TODO: ewh
 
@@ -47,7 +47,7 @@ namespace NsfwMiniJam.Rhythm
         // Time to display the "Great", "Good" etc text
         private float _timerDisplayText;
 
-        private bool _isAlive;
+        private bool _isAlive = true;
         // When dead, slowly decrease the speed of all notes until we reach 0
         private float _deadSpeedTimer = 1f;
 
@@ -81,7 +81,7 @@ namespace NsfwMiniJam.Rhythm
 
             foreach (var n in _notes)
             {
-                n.transform.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer);
+                n.transform.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
             }
 
             if (_notes[0].anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
@@ -96,7 +96,7 @@ namespace NsfwMiniJam.Rhythm
         {
             var lastYPos = _notes.Any() ? _notes.Last().anchoredPosition.y : _hitYPos;
 
-            for (float i = lastYPos + (_bpm * _baseDist); i < _height; i += _bpm * _baseDist)
+            for (float i = lastYPos + (_bpm * _speedMultiplier); i < _height; i += _bpm * _speedMultiplier)
             {
                 var n = Instantiate(_note, _noteContainer);
 
