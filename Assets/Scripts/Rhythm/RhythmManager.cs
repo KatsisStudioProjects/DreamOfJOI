@@ -56,6 +56,8 @@ namespace NsfwMiniJam.Rhythm
 
         private float _waitBeforeStart = 3f;
 
+        private float _basePitch = 1f;
+
         private void Awake()
         {
             _hitAreaImage = _hitArea.GetComponent<Image>();
@@ -75,6 +77,7 @@ namespace NsfwMiniJam.Rhythm
         {
             if (!_isAlive && _deadSpeedTimer > 0f)
             {
+                _bgm.pitch = Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f);
                 _deadSpeedTimer -= Time.deltaTime;
                 if (_deadSpeedTimer < 0f)
                 {
@@ -131,6 +134,10 @@ namespace NsfwMiniJam.Rhythm
             if (data.DoesBreakCombo)
             {
                 _combo = 0;
+                if (_info.SuddenDeath)
+                {
+                    _isAlive = false;
+                }
             }
             else
             {

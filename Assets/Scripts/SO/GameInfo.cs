@@ -5,8 +5,12 @@ namespace NsfwMiniJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/GameInfo", fileName = "GameInfo")]
     public class GameInfo : ScriptableObject
     {
+        [Header("Note info")]
         public HitInfo[] HitInfo;
         public HitInfo MissInfo;
+
+        [Header("Active modifiers (debug)")]
+        public bool SuddenDeath;
     }
 
     [System.Serializable]
