@@ -44,7 +44,7 @@ namespace NsfwMiniJam.Rhythm
         private int _combo;
 
         // Speed data
-        private float _bpm = 60f;
+        private float _bpm;
         private float _speedMultiplier = 10f;
 
         private const float _height = 2000f; // TODO: ewh
@@ -77,10 +77,14 @@ namespace NsfwMiniJam.Rhythm
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
-            _leftToSpawn = _info.NoteCount;
-            _leftToTape = _info.NoteCount;
+            var music = _info.Music[0];
 
-            _maxPossibleScore = _info.NoteCount * _info.HitInfo.Last().Score;
+            _leftToSpawn = music.NoteCount;
+            _leftToTape = music.NoteCount;
+            _bpm = music.Bpm;
+            _bgm.clip = music.Music;
+
+            _maxPossibleScore = music.NoteCount * _info.HitInfo.Last().Score;
 
             if (_info.Reversed)
             {

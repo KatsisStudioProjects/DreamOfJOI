@@ -6,7 +6,7 @@ namespace NsfwMiniJam.SO
     public class GameInfo : ScriptableObject
     {
         [Header("Song info")]
-        public int NoteCount;
+        public MusicInfo[] Music;
 
         [Header("Note info")]
         public HitInfo[] HitInfo;
@@ -38,6 +38,14 @@ namespace NsfwMiniJam.SO
         None,
         Normal,
         PerfectOnly
+    }
+
+    [System.Serializable]
+    public class MusicInfo
+    {
+        public AudioClip Music;
+        public float Bpm;
+        public int NoteCount;
     }
 
     [System.Serializable]
