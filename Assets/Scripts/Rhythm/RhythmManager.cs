@@ -221,8 +221,10 @@ namespace NsfwMiniJam.Rhythm
 
                 var image = n.GetComponent<Image>();
 
-                bool isHypnotic = (GlobalData.Hypnotised || _music.HypnotisedOverrides) && Random.Range(0f, 100f) < _info.HypnotismChance;
+                // If hypnotism is enabled, we are not already hypnotised and chance check pass
+                bool isHypnotic = (GlobalData.Hypnotised || _music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
 
+                // If not hypnotised (effects don't stack), mines are enabled and chance check pass
                 bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
                 if (isHypnotic)
                 {
@@ -245,6 +247,7 @@ namespace NsfwMiniJam.Rhythm
 
             var note = _notes[0];
 
+            // Update hit if note is a trap
             if (note.IsTrap)
             {
                 if (data.Score > 0)
@@ -257,11 +260,7 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            _hitText.gameObject.SetActive(true);
-            _hitText.text = data.DisplayText;
-            _hitText.color = data.Color;
-            _timerDisplayText = 1f;
-
+            // Update combo
             if (GlobalData.SuddenDeath == SuddenDeathType.PerfectOnly && data.Score != _info.HitInfo.Last().Score)
             {
                 data = _info.MissInfo;
@@ -300,27 +299,54 @@ namespace NsfwMiniJam.Rhythm
                     _cumLevel -= _info.DecreaseOnHit;
                 }
             }
+
+            // Update hit display
+            _hitText.gameObject.SetActive(true);
+            _hitText.text = data.DisplayText;
+            _hitText.color = data.Color;
+            _timerDisplayText = 1f;
+
+            // Update cum level
             _cumLevel = Mathf.Clamp01(_cumLevel);
+            UpdateCumBar();
+
+            // We die if cum reach max level
             if (_cumLevel == 1f && !GlobalData.NoFail && !_music.NoFailOverrides)
             {
                 _isAlive = false;
             }
-            UpdateCumBar();
 
+            // Check victory condition
+            if (!_isAlive)
+            {
+                _anim.SetInteger("GameOver", 2);
+            }
+            else
+            {
+                _leftToTape--;
+                if (_leftToTape == 0)
+                {
+                    _anim.SetInteger("GameOver", 1);
+                }
+            }
+
+            // Update combo text
             _comboText.gameObject.SetActive(_combo >= 5);
             _comboText.text = $"Combo x{_combo}";
 
+            // Update score
             _score += data.Score;
 
+            // Update bar color for hypnotism mode
             if (note.IsHypnotic)
             {
                 _hitAreaImage.color = new(.5f, 0f, .5f);
             }
 
+            // Destroy note
             Destroy(note.RT.gameObject);
             _notes.RemoveAt(0);
 
-            _leftToTape--;
         }
 
         private void UpdateCumBar()
