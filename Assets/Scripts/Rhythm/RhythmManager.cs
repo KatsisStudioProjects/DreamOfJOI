@@ -147,7 +147,6 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _startCountdown.gameObject.SetActive(false);
                     BgmManager.Instance.StartBgm();
-                    Debug.Break();
                 }
             }
 
