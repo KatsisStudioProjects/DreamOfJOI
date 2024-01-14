@@ -45,9 +45,11 @@ namespace NsfwMiniJam.Achievement
 
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on" } },
             { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden and mines modifiers on" } },
-            { AchievementID.AllModifiersFC, new() { Name = "Living on the Edge", Description = "Get a full combo with all the optional modifiers on" } },
+            { AchievementID.AllModifiersFC, new() { Name = "Perious Masturbation", Description = "Get a full combo with all the optional modifiers on" } },
 
-            { AchievementID.TutorialSD, new() { Name = "Bad student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } }
+            { AchievementID.TutorialSD, new() { Name = "Bad student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
+
+            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game" } }
         };
     }
 
@@ -61,7 +63,9 @@ namespace NsfwMiniJam.Achievement
         MineHiddenFC,
         AllModifiersFC,
 
-        TutorialSD
+        TutorialSD,
+
+        WaitCum
     }
 
     public record Achievement

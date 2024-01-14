@@ -99,9 +99,8 @@ namespace NsfwMiniJam.Rhythm
         private int _cumRequirementStoke;
 
         private int _noteSpawnIndex;
-        private float _refTime;
 
-        private int _totalNoteCount;
+        private float _cumAchievementTimer = 20f;
 
         private void Awake()
         {
@@ -143,7 +142,6 @@ namespace NsfwMiniJam.Rhythm
             {
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
-                _refTime = Time.unscaledTime;
                 StartCoroutine(WaitAndStartBpm());
             });
         }
@@ -177,6 +175,15 @@ namespace NsfwMiniJam.Rhythm
                     _cumRequirementStoke = _info.CumStrokeCountRequirement;
                     _cumText.gameObject.SetActive(true);
                     _isAlive = false;
+                }
+            }
+
+            if (_cumText.gameObject.activeInHierarchy && _cumAchievementTimer > 0f)
+            {
+                _cumAchievementTimer -= Time.deltaTime;
+                if (_cumAchievementTimer <= 0f)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.WaitCum);
                 }
             }
 
