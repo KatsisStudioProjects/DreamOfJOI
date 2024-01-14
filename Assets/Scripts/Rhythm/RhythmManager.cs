@@ -471,6 +471,14 @@ namespace NsfwMiniJam.Rhythm
             }
         }
 
+        public void OnRestart(InputAction.CallbackContext value)
+        {
+            if (value.performed)
+            {
+                SceneManager.LoadScene("Main");
+            }
+        }
+
         [System.Serializable]
         public class NoteInfo
         {
