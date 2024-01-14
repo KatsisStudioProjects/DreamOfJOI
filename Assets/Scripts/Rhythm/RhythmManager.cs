@@ -100,6 +100,8 @@ namespace NsfwMiniJam.Rhythm
         private int _noteSpawnIndex;
         private float _refTime;
 
+        private int _totalNoteCount;
+
         private void Awake()
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
@@ -218,9 +220,9 @@ namespace NsfwMiniJam.Rhythm
         private void ShowGameOver()
         {
             _victory.gameObject.SetActive(true);
-            _victory.Init(_score, _maxPossibleScore, _info);
+            _victory.Init(_score, _maxPossibleScore, _info, _combo == _music.NoteCount);
 
-            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier() });
+            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == _music.NoteCount });
             PersistencyManager.Instance.Save();
         }
 

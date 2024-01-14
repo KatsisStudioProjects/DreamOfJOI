@@ -42,5 +42,6 @@ namespace NsfwMiniJam.Persistency
     {
         public float Score;
         public float Multiplier;
+        public bool IsFullCombo;
     }
 }

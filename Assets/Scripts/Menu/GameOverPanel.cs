@@ -14,12 +14,17 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private TMP_Text _scoreText;
 
-        public void Init(int score, int scoreMax, GameInfo info)
+        [SerializeField]
+        private GameObject _fullCombo;
+
+        public void Init(int score, int scoreMax, GameInfo info, bool isFullCombo)
         {
             if (score == 1f)
             {
                 AchievementManager.Instance.Unlock(AchievementID.Perfect);
             }
+
+            _fullCombo.SetActive(isFullCombo);
 
             var finalScore = (score * 1_000_000f / scoreMax) * GlobalData.CalculateMultiplier();
             _scoreText.text = finalScore.ToString("0 000 000");
