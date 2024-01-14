@@ -98,6 +98,9 @@ namespace NsfwMiniJam.Rhythm
 
         private int _cumRequirementStoke;
 
+        private int _noteSpawnIndex;
+        private float _refTime;
+
         private void Awake()
         {
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
@@ -130,6 +133,7 @@ namespace NsfwMiniJam.Rhythm
             {
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
+                _refTime = Time.unscaledTime;
                 StartCoroutine(WaitAndStartBpm());
             });
         }
@@ -219,9 +223,14 @@ namespace NsfwMiniJam.Rhythm
             PersistencyManager.Instance.Save();
         }
 
-        private void SpawnSingleNote(float y)
+        private bool SpawnSingleNote(int stepCost)
         {
-            if (_leftToSpawn == 0) return;
+            var step = _speedMultiplier * _bpm * (60f / _bpm);
+            var spentTime = Time.unscaledTime - _refTime;
+            var y = (step * spentTime) + (_noteSpawnIndex * step * stepCost) - spentTime;
+
+
+            if (y > 2000f && _leftToSpawn == 0) return false;
 
             var n = Instantiate(_note, _noteContainer);
 
@@ -249,21 +258,20 @@ namespace NsfwMiniJam.Rhythm
             _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic });
 
             _leftToSpawn--;
+            _noteSpawnIndex += stepCost;
 
             if (isHypnotic)
             {
-                SpawnSingleNote(y + (_bpm * (60f / _bpm) * _speedMultiplier * _info.HypnotismNextNoteDelay));
+                return SpawnSingleNote(_info.HypnotismNextNoteDelay);
             }
+
+            return true;
         }
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * (60f / _bpm) * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _speedMultiplier * _bpm * (60f / _bpm)));
-
-            for (float i = lastYPos; i < _height; i += _bpm * (60f / _bpm) * _speedMultiplier)
-            {
-                SpawnSingleNote(i);
-            }
+            while (SpawnSingleNote(1))
+            { }
         }
 
         private void HitNote(HitInfo data)
