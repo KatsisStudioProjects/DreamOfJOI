@@ -64,10 +64,6 @@ namespace NsfwMiniJam.Rhythm
 
         private int _combo;
 
-        // Speed data
-        private float _bpm;
-        private float _speedMultiplier = 10f;
-
         // Position where we are hitting notes
         private float _hitYPos;
 
@@ -112,7 +108,6 @@ namespace NsfwMiniJam.Rhythm
 
             _leftToSpawn = Music.NoteCount;
             _leftToTape = Music.NoteCount;
-            _bpm = Music.Bpm;
 
             _maxPossibleScore = Music.NoteCount * _info.HitInfo.Last().Score;
 
@@ -197,7 +192,86 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            //SpawnNotes();
+
+            if (Notes.Any())
+            {
+                foreach (var n in Notes)
+                {
+                    // TODO: Move note
+
+                    if (GlobalData.Hidden != HiddenType.None)
+                    {
+                        var c = n.Image.color;
+                        var value = GlobalData.Hidden == HiddenType.Normal
+                            ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
+                            : (1f - (Screen.height - n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
+                        n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
+                    }
+                }
+
+                if (Notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
+                {
+                    HitNote(_info.MissInfo);
+                }
+            }
+
+            SpawnNotes();
+        }
+
+        public float YHitArea => _hitArea.anchoredPosition.y;
+
+        private void SpawnSingleNote(int stepCount)
+        {
+            _noteSpawnIndex += stepCount;
+
+            var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex);
+
+            if (y > Screen.height && _leftToSpawn == 0) return;
+
+            var n = Instantiate(_note, _noteContainer);
+
+            n.name = $"Note {_noteSpawnIndex}";
+
+            // DEBUG
+            // n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
+
+            var rTransform = (RectTransform)n.transform;
+            rTransform.anchorMin = new(.5f, 0f);
+            rTransform.anchorMax = new(.5f, 0f);
+            rTransform.anchoredPosition = Vector2.up * y;
+
+            var image = n.GetComponent<Image>();
+
+            // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
+            bool isHypnotic = _leftToSpawn > 1 && (GlobalData.Hypnotised || Music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
+
+            // If not hypnotised (effects don't stack), mines are enabled and chance check pass
+            bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
+            if (isHypnotic)
+            {
+                image.color = new(.5f, 0f, .5f);
+            }
+            else if (isTrap)
+            {
+                image.color = Color.red;
+            }
+
+            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex });
+
+            _leftToSpawn--;
+
+            if (isHypnotic)
+            {
+                SpawnSingleNote(_info.HypnotismNextNoteDelay);
+            }
+        }
+
+        private void SpawnNotes()
+        {
+            while (_leftToSpawn > 0)
+            {
+                SpawnSingleNote(1);
+            }
         }
 
         private void ShowGameOver()
