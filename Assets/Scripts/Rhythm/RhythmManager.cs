@@ -83,6 +83,7 @@ namespace NsfwMiniJam.Rhythm
         // When dead, slowly decrease the speed of all notes until we reach 0
         private float _deadSpeedTimer = 1f;
 
+        private float _waitBeforeStartRef = 3f;
         private float _waitBeforeStart = 3f;
 
         private float _basePitch = 1f;
@@ -98,7 +99,7 @@ namespace NsfwMiniJam.Rhythm
 
         private int _cumRequirementStoke;
 
-        private int _noteSpawnIndex;
+        private int _noteSpawnIndex = -1;
 
         private float _cumAchievementTimer = 20f;
 
@@ -116,8 +117,6 @@ namespace NsfwMiniJam.Rhythm
             _bgm.clip = _music.Music;
 
             _maxPossibleScore = _music.NoteCount * _info.HitInfo.Last().Score;
-
-            _noteSpawnIndex = (int)_waitBeforeStart - 1;
 
             if (GlobalData.Reversed)
             {
@@ -244,9 +243,8 @@ namespace NsfwMiniJam.Rhythm
         {
             _noteSpawnIndex += stepCount;
 
-            var step = _speedMultiplier * _bpm * (60f / _bpm);
-            //var spentTime = Time.unscaledTime - _refTime;
-            var y = _noteSpawnIndex * step;
+            var step = _speedMultiplier * 60f;
+            var y = (_waitBeforeStartRef * _bpm * _speedMultiplier) + (_noteSpawnIndex * step) + _hitArea.anchoredPosition.y;
 
 
             if (y > 2000f && _leftToSpawn == 0) return;
