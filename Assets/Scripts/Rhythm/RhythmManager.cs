@@ -120,6 +120,8 @@ namespace NsfwMiniJam.Rhythm
 
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
+
+            SpawnNotes();
         }
 
         private void Start()
@@ -128,7 +130,6 @@ namespace NsfwMiniJam.Rhythm
             {
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
-                SpawnNotes();
                 StartCoroutine(WaitAndStartBpm());
             });
         }

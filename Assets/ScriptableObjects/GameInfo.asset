@@ -17,7 +17,7 @@ MonoBehaviour:
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
     Intro: {fileID: 4900000, guid: 8b5929ac1be43f142836d6cab9b8542b, type: 3}
     Name: Tutorial
-    Music: {fileID: 8300000, guid: 9b8527a2b45fbbd4fbbfe2f0a0363d96, type: 3}
+    Music: {fileID: 8300000, guid: bca287fef7dfb0e4987d44c440c00147, type: 3}
     Bpm: 50
     NoteCount: 10
     NoFailOverrides: 1
