@@ -115,6 +115,8 @@ namespace NsfwMiniJam.Rhythm
 
             _maxPossibleScore = _music.NoteCount * _info.HitInfo.Last().Score;
 
+            _noteSpawnIndex = (int)_waitBeforeStart - 1;
+
             if (GlobalData.Reversed)
             {
                 _baseContainer.localScale = new(1f, -1f, 1f);
@@ -222,16 +224,20 @@ namespace NsfwMiniJam.Rhythm
             PersistencyManager.Instance.Save();
         }
 
-        private bool SpawnSingleNote(int stepCount)
+        private void SpawnSingleNote(int stepCount)
         {
+            _noteSpawnIndex += stepCount;
+
             var step = _speedMultiplier * _bpm * (60f / _bpm);
-            var spentTime = Time.unscaledTime - _refTime;
-            var y = (_waitBeforeStart * step) + (_noteSpawnIndex * step * stepCount) - spentTime;
+            //var spentTime = Time.unscaledTime - _refTime;
+            var y = _noteSpawnIndex * step;
 
 
-            if (y > 2000f && _leftToSpawn == 0) return false;
+            if (y > 2000f && _leftToSpawn == 0) return;
 
             var n = Instantiate(_note, _noteContainer);
+
+            n.name = $"Note {_noteSpawnIndex}";
 
             n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
 
@@ -259,20 +265,19 @@ namespace NsfwMiniJam.Rhythm
             _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex });
 
             _leftToSpawn--;
-            _noteSpawnIndex += stepCount;
 
             if (isHypnotic)
             {
-                return SpawnSingleNote(_info.HypnotismNextNoteDelay);
+                SpawnSingleNote(_info.HypnotismNextNoteDelay);
             }
-
-            return true;
         }
 
         private void SpawnNotes()
         {
-            while (SpawnSingleNote(1))
-            { }
+            while (_leftToSpawn > 0)
+            {
+                SpawnSingleNote(1);
+            }
         }
 
         private void HitNote(HitInfo data)
