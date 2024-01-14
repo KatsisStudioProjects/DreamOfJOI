@@ -347,7 +347,7 @@ namespace NsfwMiniJam.Rhythm
             // Check victory condition
             if (!_isAlive)
             {
-                _anim.SetInteger("GameOver", 2);
+                _anim.SetTrigger("Defeat");
             }
             else
             {
@@ -355,7 +355,7 @@ namespace NsfwMiniJam.Rhythm
                 if (_leftToTape == 0)
                 {
                     _volumeTimer = 1f;
-                    _anim.SetInteger("GameOver", 1);
+                    _anim.SetTrigger("Victory");
                 }
             }
 
