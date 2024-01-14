@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -68,10 +69,8 @@ namespace NsfwMiniJam.Rhythm
         private float _bpm;
         private float _speedMultiplier = 10f;
 
-        private const float _height = 2000f; // TODO: ewh
-
         // List of all notes
-        private readonly List<NoteInfo> _notes = new();
+        private List<NoteInfo> _notes = new();
 
         // Position where we are hitting notes
         private float _hitYPos;
@@ -223,16 +222,18 @@ namespace NsfwMiniJam.Rhythm
             PersistencyManager.Instance.Save();
         }
 
-        private bool SpawnSingleNote(int stepCost)
+        private bool SpawnSingleNote(int stepCount)
         {
             var step = _speedMultiplier * _bpm * (60f / _bpm);
             var spentTime = Time.unscaledTime - _refTime;
-            var y = (_waitBeforeStart * step * stepCost) + (_noteSpawnIndex * step * stepCost) - spentTime;
+            var y = (_waitBeforeStart * step) + (_noteSpawnIndex * step * stepCount) - spentTime;
 
 
             if (y > 2000f && _leftToSpawn == 0) return false;
 
             var n = Instantiate(_note, _noteContainer);
+
+            n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
 
             var rTransform = (RectTransform)n.transform;
             rTransform.anchorMin = new(.5f, 0f);
@@ -255,10 +256,10 @@ namespace NsfwMiniJam.Rhythm
                 image.color = Color.red;
             }
 
-            _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic });
+            _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex });
 
             _leftToSpawn--;
-            _noteSpawnIndex += stepCost;
+            _noteSpawnIndex += stepCount;
 
             if (isHypnotic)
             {
@@ -465,12 +466,14 @@ namespace NsfwMiniJam.Rhythm
             }
         }
 
+        [System.Serializable]
         public class NoteInfo
         {
             public RectTransform RT;
             public Image Image;
             public bool IsTrap;
             public bool IsHypnotic;
+            public int Id;
         }
     }
 }
