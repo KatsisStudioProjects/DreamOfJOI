@@ -1,4 +1,5 @@
-﻿using NsfwMiniJam.SO;
+﻿using NsfwMiniJam.Achievement;
+using NsfwMiniJam.SO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,8 +16,17 @@ namespace NsfwMiniJam.Menu
 
         public void Init(int score, int scoreMax, GameInfo info)
         {
+            if (score == 1f)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.Perfect);
+            }
+
             var finalScore = (score * 1_000_000f / scoreMax) * GlobalData.CalculateMultiplier();
             _scoreText.text = finalScore.ToString("0 000 000");
+            if (finalScore > 1_000_000f)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.MoreThanPerfectScore);
+            }
 
             var s = score / (float)scoreMax;
             foreach (var r in info.RankInfo)

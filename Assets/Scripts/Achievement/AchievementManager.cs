@@ -39,11 +39,15 @@ namespace NsfwMiniJam.Achievement
 
         public Dictionary<AchievementID, Achievement> Achievements { get; } = new()
         {
+            { AchievementID.Perfect, new() { Name = "Perfect control", Description = "Get a SSS rank" } },
+            { AchievementID.MoreThanPerfectScore, new() { Name = "Exceeded Expectations", Description = "Get a score superior to 1 000 000" } }
         };
     }
 
     public enum AchievementID
     {
+        Perfect,
+        MoreThanPerfectScore
     }
 
     public record Achievement
