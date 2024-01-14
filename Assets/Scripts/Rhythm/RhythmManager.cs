@@ -55,6 +55,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _cumText;
 
+        [SerializeField]
+        private TMP_Text _hypnotismCounter;
+
         private MusicInfo _music;
 
         private float _cumLevel;
@@ -331,9 +334,15 @@ namespace NsfwMiniJam.Rhythm
             UpdateCumBar();
 
             // We die if cum reach max level
-            if (_cumLevel == 1f && !GlobalData.NoFail && !_music.NoFailOverrides)
+            if (_cumLevel == 1f)
             {
                 _isAlive = false;
+            }
+
+            // Prevent failure
+            if (GlobalData.NoFail || _music.NoFailOverrides)
+            {
+                _isAlive = true;
             }
 
             // Check victory condition
@@ -363,6 +372,8 @@ namespace NsfwMiniJam.Rhythm
             {
                 _hitAreaImage.color = new(.5f, 0f, .5f);
                 _hypnotismHits = _info.HypnotismHitCount;
+                _hypnotismCounter.gameObject.SetActive(true);
+                _hypnotismCounter.text = _hypnotismHits.ToString();
             }
 
             // Destroy note
@@ -421,8 +432,10 @@ namespace NsfwMiniJam.Rhythm
                     if (_hypnotismHits > 0)
                     {
                         _hypnotismHits--;
+                        _hypnotismCounter.text = _hypnotismHits.ToString();
                         if (_hypnotismHits == 0)
                         {
+                            _hypnotismCounter.gameObject.SetActive(false);
                             _hitAreaImage.color = Color.white;
                         }
                         return;
