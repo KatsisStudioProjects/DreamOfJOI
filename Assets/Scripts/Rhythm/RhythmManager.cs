@@ -250,13 +250,13 @@ namespace NsfwMiniJam.Rhythm
 
             if (isHypnotic)
             {
-                SpawnSingleNote(y + (_bpm * _speedMultiplier * 5f));
+                SpawnSingleNote(y + (_bpm * (60f / _bpm) * _speedMultiplier * _info.HypnotismNextNoteDelay));
             }
         }
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
+            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * (60f / _bpm) * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
 
             for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
             {
