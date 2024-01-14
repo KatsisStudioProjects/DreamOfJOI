@@ -25,6 +25,24 @@ namespace NsfwMiniJam.Menu
             }
 
             _fullCombo.SetActive(isFullCombo);
+            if (isFullCombo)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.FullCombo);
+
+                if (GlobalData.Hidden == HiddenType.Reversed)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.ReverseHiddenFC);
+                }
+                else if (GlobalData.Hidden == HiddenType.Normal && GlobalData.Mines)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.MineHiddenFC);
+                }
+
+                if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.Mines)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.AllModifiersFC);
+                }
+            }
 
             var finalScore = (score * 1_000_000f / scoreMax) * GlobalData.CalculateMultiplier();
             _scoreText.text = finalScore.ToString("0 000 000");

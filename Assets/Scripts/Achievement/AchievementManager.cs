@@ -39,15 +39,29 @@ namespace NsfwMiniJam.Achievement
 
         public Dictionary<AchievementID, Achievement> Achievements { get; } = new()
         {
-            { AchievementID.Perfect, new() { Name = "Perfect control", Description = "Get a SSS rank" } },
-            { AchievementID.MoreThanPerfectScore, new() { Name = "Exceeded Expectations", Description = "Get a score superior to 1 000 000" } }
+            { AchievementID.FullCombo, new() { Name = "Following the Instructions", Description = "Get a full combo" } },
+            { AchievementID.Perfect, new() { Name = "Perfect Control", Description = "Get a SSS rank" } },
+            { AchievementID.MoreThanPerfectScore, new() { Name = "Exceeded Expectations", Description = "Get a score superior to 1 000 000" } },
+
+            { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on" } },
+            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden and mines modifiers on" } },
+            { AchievementID.AllModifiersFC, new() { Name = "Living on the Edge", Description = "Get a full combo with all the optional modifiers on" } },
+
+            { AchievementID.TutorialSD, new() { Name = "Bad student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } }
         };
     }
 
     public enum AchievementID
     {
+        FullCombo,
         Perfect,
-        MoreThanPerfectScore
+        MoreThanPerfectScore,
+
+        ReverseHiddenFC,
+        MineHiddenFC,
+        AllModifiersFC,
+
+        TutorialSD
     }
 
     public record Achievement

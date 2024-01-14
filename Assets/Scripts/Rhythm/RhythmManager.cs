@@ -1,3 +1,4 @@
+using NsfwMiniJam.Achievement;
 using NsfwMiniJam.Menu;
 using NsfwMiniJam.Persistency;
 using NsfwMiniJam.SO;
@@ -124,6 +125,12 @@ namespace NsfwMiniJam.Rhythm
                 _baseContainer.localScale = new(1f, -1f, 1f);
             }
 
+            if (GlobalData.LevelIndex == 0 && GlobalData.SuddenDeath != SuddenDeathType.None)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.TutorialSD);
+                GlobalData.SuddenDeath = SuddenDeathType.None;
+            }
+
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
 
@@ -203,7 +210,7 @@ namespace NsfwMiniJam.Rhythm
                         var c = n.Image.color;
                         var value = GlobalData.Hidden == HiddenType.Normal
                             ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
-                            : ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
+                            : (1f - (Screen.height - n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
                         n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
                     }
                 }
@@ -241,7 +248,8 @@ namespace NsfwMiniJam.Rhythm
 
             n.name = $"Note {_noteSpawnIndex}";
 
-            n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
+            // DEBUG
+            // n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
 
             var rTransform = (RectTransform)n.transform;
             rTransform.anchorMin = new(.5f, 0f);

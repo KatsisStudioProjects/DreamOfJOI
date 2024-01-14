@@ -22,7 +22,8 @@
             if (SuddenDeath == SuddenDeathType.Normal) mult += .05f;
             else if (SuddenDeath == SuddenDeathType.PerfectOnly) mult += .1f;
 
-            if (Hidden != HiddenType.None) mult += .25f;
+            if (Hidden == HiddenType.Normal) mult += .25f;
+            if (Hidden == HiddenType.Reversed) mult += .5f;
 
             if (Reversed) mult += .1f;
 
