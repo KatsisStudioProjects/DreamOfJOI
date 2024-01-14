@@ -27,7 +27,7 @@ MonoBehaviour:
     Name: Hypnotism
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
-    NoteCount: 10
+    NoteCount: 30
     NoFailOverrides: 0
     HypnotisedOverrides: 1
   HitInfo:
