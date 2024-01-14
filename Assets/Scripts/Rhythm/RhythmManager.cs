@@ -222,11 +222,11 @@ namespace NsfwMiniJam.Rhythm
 
         private void SpawnSingleNote(int stepCount)
         {
-            _noteSpawnIndex += stepCount;
-
-            var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex);
+            var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex + stepCount);
 
             if (y > Screen.height && _leftToSpawn == 0) return;
+
+            _noteSpawnIndex += stepCount;
 
             var n = Instantiate(_note, _noteContainer);
 
