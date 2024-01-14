@@ -7,7 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -17,6 +16,8 @@ namespace NsfwMiniJam.Rhythm
 {
     public class RhythmManager : MonoBehaviour
     {
+        public static RhythmManager Instance { private set; get; }
+
         [SerializeField]
         private GameInfo _info;
 
@@ -35,9 +36,6 @@ namespace NsfwMiniJam.Rhythm
 
         [SerializeField]
         private TMP_Text _comboText;
-
-        [SerializeField]
-        private AudioSource _bgm;
 
         [SerializeField]
         private GameOverPanel _victory;
@@ -60,7 +58,7 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _hypnotismCounter;
 
-        private MusicInfo _music;
+        public MusicInfo Music { private set; get; }
 
         private float _cumLevel;
 
@@ -69,9 +67,6 @@ namespace NsfwMiniJam.Rhythm
         // Speed data
         private float _bpm;
         private float _speedMultiplier = 10f;
-
-        // List of all notes
-        private List<NoteInfo> _notes = new();
 
         // Position where we are hitting notes
         private float _hitYPos;
@@ -83,7 +78,6 @@ namespace NsfwMiniJam.Rhythm
         // When dead, slowly decrease the speed of all notes until we reach 0
         private float _deadSpeedTimer = 1f;
 
-        private float _waitBeforeStartRef = 3f;
         private float _waitBeforeStart = 3f;
 
         private float _basePitch = 1f;
@@ -103,20 +97,24 @@ namespace NsfwMiniJam.Rhythm
 
         private float _cumAchievementTimer = 20f;
 
+        // List of all notes
+        private List<NoteInfo> Notes { get; } = new();
+
         private void Awake()
         {
+            Instance = this;
+
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
-            _music = _info.Music[GlobalData.LevelIndex];
+            Music = _info.Music[GlobalData.LevelIndex];
 
-            _anim.runtimeAnimatorController = _music.Controller;
+            _anim.runtimeAnimatorController = Music.Controller;
 
-            _leftToSpawn = _music.NoteCount;
-            _leftToTape = _music.NoteCount;
-            _bpm = _music.Bpm;
-            _bgm.clip = _music.Music;
+            _leftToSpawn = Music.NoteCount;
+            _leftToTape = Music.NoteCount;
+            _bpm = Music.Bpm;
 
-            _maxPossibleScore = _music.NoteCount * _info.HitInfo.Last().Score;
+            _maxPossibleScore = Music.NoteCount * _info.HitInfo.Last().Score;
 
             if (GlobalData.Reversed)
             {
@@ -131,24 +129,16 @@ namespace NsfwMiniJam.Rhythm
 
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
-
-            SpawnNotes();
         }
 
         private void Start()
         {
-            VNManager.Instance.ShowStory(_music.Intro, () =>
+            VNManager.Instance.ShowStory(Music.Intro, () =>
             {
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
-                StartCoroutine(WaitAndStartBpm());
+                StartCoroutine(BgmManager.Instance.WaitAndStartBpm());
             });
-        }
-
-        private IEnumerator WaitAndStartBpm()
-        {
-            yield return new WaitForSeconds(_waitBeforeStart);
-            _bgm.Play();
         }
 
         private void Update()
@@ -162,13 +152,14 @@ namespace NsfwMiniJam.Rhythm
                 if (_waitBeforeStart <= 0f)
                 {
                     _startCountdown.gameObject.SetActive(false);
+                    Debug.Break();
                 }
             }
 
             if (_volumeTimer > 0f && _leftToTape == 0)
             {
                 _volumeTimer -= Time.deltaTime;
-                _bgm.volume = _volumeTimer;
+                BgmManager.Instance.SetVolume(_volumeTimer);
                 if (_volumeTimer <= 0f)
                 {
                     _cumRequirementStoke = _info.CumStrokeCountRequirement;
@@ -188,7 +179,7 @@ namespace NsfwMiniJam.Rhythm
 
             if (!_isAlive && _deadSpeedTimer > 0f && _cumRequirementStoke == 0)
             {
-                _bgm.pitch = Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f);
+                BgmManager.Instance.SetPitch(Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f));
                 _deadSpeedTimer -= Time.deltaTime;
                 if (_deadSpeedTimer < 0f)
                 {
@@ -206,100 +197,23 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
-            if (_notes.Any())
-            {
-                foreach (var n in _notes)
-                {
-                    n.RT.Translate(Vector2.down * _bpm * Time.deltaTime * _deadSpeedTimer * _speedMultiplier);
-                    if (GlobalData.Hidden != HiddenType.None)
-                    {
-                        var c = n.Image.color;
-                        var value = GlobalData.Hidden == HiddenType.Normal
-                            ? (1f - ((n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance))
-                            : (1f - (Screen.height - n.RT.anchoredPosition.y - _hitYPos) / _info.HiddenDistance);
-                        n.Image.color = new(c.r, c.g, c.b, Mathf.Clamp01(value));
-                    }
-                }
-
-                if (_notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
-                {
-                    HitNote(_info.MissInfo);
-                }
-            }
-
-            SpawnNotes();
+            //SpawnNotes();
         }
 
         private void ShowGameOver()
         {
             _victory.gameObject.SetActive(true);
-            _victory.Init(_score, _maxPossibleScore, _info, _combo == _music.NoteCount);
+            _victory.Init(_score, _maxPossibleScore, _info, _combo == Music.NoteCount);
 
-            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == _music.NoteCount });
+            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == Music.NoteCount });
             PersistencyManager.Instance.Save();
-        }
-
-        private void SpawnSingleNote(int stepCount)
-        {
-            _noteSpawnIndex += stepCount;
-
-            var step = _speedMultiplier * 60f;
-            var y = (_waitBeforeStartRef * _bpm * _speedMultiplier) + (_noteSpawnIndex * step) + _hitArea.anchoredPosition.y;
-
-
-            if (y > 2000f && _leftToSpawn == 0) return;
-
-            var n = Instantiate(_note, _noteContainer);
-
-            n.name = $"Note {_noteSpawnIndex}";
-
-            // DEBUG
-            // n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
-
-            var rTransform = (RectTransform)n.transform;
-            rTransform.anchorMin = new(.5f, 0f);
-            rTransform.anchorMax = new(.5f, 0f);
-            rTransform.anchoredPosition = Vector2.up * y;
-
-            var image = n.GetComponent<Image>();
-
-            // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
-            bool isHypnotic = _leftToSpawn > 1 && (GlobalData.Hypnotised || _music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
-
-            // If not hypnotised (effects don't stack), mines are enabled and chance check pass
-            bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
-            if (isHypnotic)
-            {
-                image.color = new(.5f, 0f, .5f);
-            }
-            else if (isTrap)
-            {
-                image.color = Color.red;
-            }
-
-            _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex });
-
-            _leftToSpawn--;
-
-            if (isHypnotic)
-            {
-                SpawnSingleNote(_info.HypnotismNextNoteDelay);
-            }
-        }
-
-        private void SpawnNotes()
-        {
-            while (_leftToSpawn > 0)
-            {
-                SpawnSingleNote(1);
-            }
         }
 
         private void HitNote(HitInfo data)
         {
             if (!_isAlive) return;
 
-            var note = _notes[0];
+            var note = Notes[0];
 
             // Update hit if note is a trap
             if (note.IsTrap)
@@ -368,7 +282,7 @@ namespace NsfwMiniJam.Rhythm
             }
 
             // Prevent failure
-            if (GlobalData.NoFail || _music.NoFailOverrides)
+            if (GlobalData.NoFail || Music.NoFailOverrides)
             {
                 _isAlive = true;
             }
@@ -406,7 +320,7 @@ namespace NsfwMiniJam.Rhythm
 
             // Destroy note
             Destroy(note.RT.gameObject);
-            _notes.RemoveAt(0);
+            Notes.RemoveAt(0);
 
         }
 
@@ -469,12 +383,12 @@ namespace NsfwMiniJam.Rhythm
                         return;
                     }
 
-                    if (_notes.Any())
+                    if (Notes.Any())
                     {
                         for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                         {
                             var info = _info.HitInfo[i];
-                            if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
+                            if (Mathf.Abs(_hitYPos - Notes[0].RT.anchoredPosition.y) < info.Distance)
                             {
                                 HitNote(info);
                                 break;
@@ -493,15 +407,15 @@ namespace NsfwMiniJam.Rhythm
                 SceneManager.LoadScene("Main");
             }
         }
+    }
 
-        [System.Serializable]
-        public class NoteInfo
-        {
-            public RectTransform RT;
-            public Image Image;
-            public bool IsTrap;
-            public bool IsHypnotic;
-            public int Id;
-        }
+    [System.Serializable]
+    public class NoteInfo
+    {
+        public RectTransform RT;
+        public Image Image;
+        public bool IsTrap;
+        public bool IsHypnotic;
+        public int Id;
     }
 }
