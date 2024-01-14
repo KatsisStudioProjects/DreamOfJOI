@@ -227,7 +227,7 @@ namespace NsfwMiniJam.Rhythm
         {
             var step = _speedMultiplier * _bpm * (60f / _bpm);
             var spentTime = Time.unscaledTime - _refTime;
-            var y = (step * spentTime) + (_noteSpawnIndex * step * stepCost) - spentTime;
+            var y = (_waitBeforeStart * step * stepCost) + (_noteSpawnIndex * step * stepCost) - spentTime;
 
 
             if (y > 2000f && _leftToSpawn == 0) return false;
