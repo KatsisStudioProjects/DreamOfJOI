@@ -74,7 +74,7 @@ namespace NsfwMiniJam.Rhythm
         // When dead, slowly decrease the speed of all notes until we reach 0
         private float _deadSpeedTimer = 1f;
 
-        private float _waitBeforeStart = 3f;
+        public float WaitBeforeStart { private set; get; } = 3f;
 
         private float _basePitch = 1f;
 
@@ -132,7 +132,6 @@ namespace NsfwMiniJam.Rhythm
             {
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
-                StartCoroutine(BgmManager.Instance.WaitAndStartBpm());
             });
         }
 
@@ -140,14 +139,14 @@ namespace NsfwMiniJam.Rhythm
         {
             if (VNManager.Instance.IsPlayingStory) return;
 
-            if (_waitBeforeStart > 0f)
+            if (WaitBeforeStart > 0f)
             {
-                _waitBeforeStart -= Time.deltaTime;
-                _startCountdown.text = Mathf.CeilToInt(_waitBeforeStart).ToString();
-                if (_waitBeforeStart <= 0f)
+                WaitBeforeStart -= Time.deltaTime;
+                _startCountdown.text = Mathf.CeilToInt(WaitBeforeStart).ToString();
+                if (WaitBeforeStart <= 0f)
                 {
                     _startCountdown.gameObject.SetActive(false);
-                    Debug.Break();
+                    BgmManager.Instance.StartBgm();
                 }
             }
 
@@ -197,7 +196,7 @@ namespace NsfwMiniJam.Rhythm
             {
                 foreach (var n in Notes)
                 {
-                    // TODO: Move note
+                    BgmManager.Instance.MoveNote(n);
 
                     if (GlobalData.Hidden != HiddenType.None)
                     {
