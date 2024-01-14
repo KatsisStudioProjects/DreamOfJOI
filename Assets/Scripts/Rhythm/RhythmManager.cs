@@ -117,7 +117,10 @@ namespace NsfwMiniJam.Rhythm
 
             _hitAreaImage = _hitArea.GetComponent<Image>();
             _hitYPos = _hitArea.anchoredPosition.y;
+        }
 
+        private void Start()
+        {
             VNManager.Instance.ShowStory(_music.Intro, () =>
             {
                 _anim.SetTrigger("Start");
@@ -211,40 +214,50 @@ namespace NsfwMiniJam.Rhythm
             PersistencyManager.Instance.Save();
         }
 
-        private void SpawnNotes()
+        private void SpawnSingleNote(float y)
         {
             if (_leftToSpawn == 0) return;
 
+            var n = Instantiate(_note, _noteContainer);
+
+            var rTransform = (RectTransform)n.transform;
+            rTransform.anchorMin = new(.5f, 0f);
+            rTransform.anchorMax = new(.5f, 0f);
+            rTransform.anchoredPosition = Vector2.up * y;
+
+            var image = n.GetComponent<Image>();
+
+            // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
+            bool isHypnotic = _leftToSpawn > 1 && (GlobalData.Hypnotised || _music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
+
+            // If not hypnotised (effects don't stack), mines are enabled and chance check pass
+            bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
+            if (isHypnotic)
+            {
+                image.color = new(.5f, 0f, .5f);
+            }
+            else if (isTrap)
+            {
+                image.color = Color.red;
+            }
+
+            _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic });
+
+            _leftToSpawn--;
+
+            if (isHypnotic)
+            {
+                SpawnSingleNote(y + (_bpm * _speedMultiplier * 5f));
+            }
+        }
+
+        private void SpawnNotes()
+        {
             var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
 
             for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
             {
-                var n = Instantiate(_note, _noteContainer);
-
-                var rTransform = (RectTransform)n.transform;
-                rTransform.anchorMin = new(.5f, 0f);
-                rTransform.anchorMax = new(.5f, 0f);
-                rTransform.anchoredPosition = Vector2.up * i;
-
-                var image = n.GetComponent<Image>();
-
-                // If hypnotism is enabled, we are not already hypnotised and chance check pass
-                bool isHypnotic = (GlobalData.Hypnotised || _music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
-
-                // If not hypnotised (effects don't stack), mines are enabled and chance check pass
-                bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
-                if (isHypnotic)
-                {
-                    image.color = new(.5f, 0f, .5f);
-                }
-                else if (isTrap)
-                {
-                    image.color = Color.red;
-                }
-
-                _notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic });
-
-                _leftToSpawn--;
+                SpawnSingleNote(i);
             }
         }
 
@@ -349,6 +362,7 @@ namespace NsfwMiniJam.Rhythm
             if (note.IsHypnotic)
             {
                 _hitAreaImage.color = new(.5f, 0f, .5f);
+                _hypnotismHits = _info.HypnotismHitCount;
             }
 
             // Destroy note

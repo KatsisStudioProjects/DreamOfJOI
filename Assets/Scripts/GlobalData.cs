@@ -1,6 +1,4 @@
-﻿using NsfwMiniJam.LevelSelect;
-
-namespace NsfwMiniJam
+﻿namespace NsfwMiniJam
 {
     public static class GlobalData
     {

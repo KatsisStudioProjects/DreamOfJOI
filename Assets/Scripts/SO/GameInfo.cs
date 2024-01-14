@@ -27,6 +27,7 @@ namespace NsfwMiniJam.SO
         public float MineChancePercent;
         public float HypnotismChance;
         public int HypnotismHitCount;
+        public float HypnotismNextNoteDelay;
     }
 
     [System.Serializable]
