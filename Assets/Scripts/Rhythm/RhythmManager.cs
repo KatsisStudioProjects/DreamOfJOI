@@ -127,6 +127,7 @@ namespace NsfwMiniJam.Rhythm
             VNManager.Instance.ShowStory(_music.Intro, () =>
             {
                 _anim.SetTrigger("Start");
+                _startCountdown.gameObject.SetActive(true);
                 SpawnNotes();
                 StartCoroutine(WaitAndStartBpm());
             });
@@ -250,15 +251,15 @@ namespace NsfwMiniJam.Rhythm
 
             if (isHypnotic)
             {
-                SpawnSingleNote(y + (_bpm * (60f / _bpm) * _speedMultiplier * _info.HypnotismNextNoteDelay));
+                //SpawnSingleNote(y + (_bpm * (60f / _bpm) * _speedMultiplier * _info.HypnotismNextNoteDelay));
             }
         }
 
         private void SpawnNotes()
         {
-            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * (60f / _bpm) * _speedMultiplier)) : (_hitYPos + (_waitBeforeStart * _bpm * _speedMultiplier));
+            var lastYPos = _notes.Any() ? (_notes.Last().RT.anchoredPosition.y + (_bpm * (60f / _bpm) * _speedMultiplier)) : (_hitYPos);// + (_waitBeforeStart * _speedMultiplier * _bpm / (60f / _bpm)));
 
-            for (float i = lastYPos; i < _height; i += _bpm * _speedMultiplier)
+            for (float i = lastYPos; i < _height; i += _bpm * (60f / _bpm) * _speedMultiplier)
             {
                 SpawnSingleNote(i);
             }
@@ -441,13 +442,16 @@ namespace NsfwMiniJam.Rhythm
                         return;
                     }
 
-                    for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
+                    if (_notes.Any())
                     {
-                        var info = _info.HitInfo[i];
-                        if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
+                        for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                         {
-                            HitNote(info);
-                            break;
+                            var info = _info.HitInfo[i];
+                            if (Mathf.Abs(_hitYPos - _notes[0].RT.anchoredPosition.y) < info.Distance)
+                            {
+                                HitNote(info);
+                                break;
+                            }
                         }
                     }
                     StartCoroutine(HitEffect());
