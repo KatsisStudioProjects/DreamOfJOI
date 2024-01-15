@@ -1,4 +1,8 @@
-﻿namespace NsfwMiniJam
+﻿using Buttplug.Client;
+using System;
+using System.Collections.Generic;
+
+namespace NsfwMiniJam
 {
     public static class GlobalData
     {
@@ -11,6 +15,19 @@
 
         public static float[] BpmValues = new[] { 400f, 600f, 800f, 1000f };
         public static int TargetBpm = 1;
+
+        public static ButtplugClient ButtplugClient;
+        public static List<ButtplugClientDevice> Devices { get; } = new();
+
+        public static void AddDevice(object sender, DeviceAddedEventArgs e)
+        {
+            Devices.Add(e.Device);
+        }
+
+        public static void RemoveDevice(object sender, DeviceRemovedEventArgs e)
+        {
+            Devices.Remove(e.Device);
+        }
 
         public static float CalculateMultiplier()
         {

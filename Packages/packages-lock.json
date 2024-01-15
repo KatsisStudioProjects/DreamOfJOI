@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "f7a5ed16b93fe2d220d8833a82e0324276cd2d0e"
     },
+    "com.nonpolynomial.buttplug-unity": {
+      "version": "3.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.4",
       "depth": 1,
