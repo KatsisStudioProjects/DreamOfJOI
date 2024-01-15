@@ -12,7 +12,7 @@ namespace NsfwMiniJam.Rhythm
         private float _bpm;
         private float _yHitArea;
 
-        private float _speedMultiplier = 10f;
+        private float _speedMultiplier;
 
         private void Awake()
         {
@@ -24,6 +24,8 @@ namespace NsfwMiniJam.Rhythm
             _bpm = RhythmManager.Instance.Music.Bpm;
             _bgm.clip = RhythmManager.Instance.Music.Music;
             _yHitArea = RhythmManager.Instance.YHitArea;
+
+            _speedMultiplier = 600f / _bpm;
         }
 
         public void MoveNote(NoteInfo n)
