@@ -30,6 +30,8 @@ namespace NsfwMiniJam.SO
         public int HypnotismNextNoteDelay;
         public float BlindChance;
         public float BlindDurationSec;
+
+        public int SpeNoteMinInterval, SpeNoteMaxInterval;
     }
 
     [System.Serializable]

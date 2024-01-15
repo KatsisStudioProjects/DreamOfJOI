@@ -160,3 +160,5 @@ MonoBehaviour:
   HypnotismNextNoteDelay: 4
   BlindChance: 5
   BlindDurationSec: 5
+  SpeNoteMinInterval: 5
+  SpeNoteMaxInterval: 20

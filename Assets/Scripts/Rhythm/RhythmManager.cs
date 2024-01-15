@@ -111,6 +111,8 @@ namespace NsfwMiniJam.Rhythm
         private bool _blindDir;
         private float _blindDuration;
 
+        private int _speNoteInterval;
+
         private void Awake()
         {
             Instance = this;
@@ -297,7 +299,6 @@ namespace NsfwMiniJam.Rhythm
 
         public float YHitArea => _hitYPos;
 
-        private readonly char[] _reqKeys = new[] { 'S', 'D', 'K', 'L' };
         private void SpawnSingleNote(int stepCount)
         {
             var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex + stepCount);
@@ -329,25 +330,45 @@ namespace NsfwMiniJam.Rhythm
 
             var image = n.GetComponent<Image>();
 
-            // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
-            bool isHypnotic = _leftToSpawn > 1 && Music.HypnotisedOverrides && _hypnotismHits == 0 && Random.Range(0, 100) < _info.HypnotismChance;
+            bool isHypnotic = false, isTrap = false, isBlind = false;
 
-            // If not hypnotised (effects don't stack), mines are enabled and chance check pass
-            bool isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100) < _info.MineChancePercent;
+            if (_speNoteInterval < _info.SpeNoteMinInterval)
+            { }
+            else if (_speNoteInterval > _info.SpeNoteMaxInterval)
+            {
+                if (Music.HypnotisedOverrides) isHypnotic = true;
+                else if (Music.MinesOverrides) isTrap = true;
+                else if (Music.BlindOverrides) isBlind = true;
+            }
+            else
+            {
+                // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
+                isHypnotic = _leftToSpawn > 1 && Music.HypnotisedOverrides && _hypnotismHits == 0 && Random.Range(0, 100) < _info.HypnotismChance;
 
-            bool isBlind = Music.BlindOverrides && Random.Range(0, 100) < _info.BlindChance;
+                // If not hypnotised (effects don't stack), mines are enabled and chance check pass
+                isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100) < _info.MineChancePercent;
+
+                isBlind = Music.BlindOverrides && Random.Range(0, 100) < _info.BlindChance;
+            }
 
             if (isHypnotic)
             {
                 image.color = new(.5f, 0f, .5f);
+                _speNoteInterval = 0;
             }
             else if (isTrap)
             {
                 image.color = Color.red;
+                _speNoteInterval = 0;
             }
             else if (isBlind)
             {
                 image.color = Color.gray;
+                _speNoteInterval = 0;
+            }
+            else
+            {
+                _speNoteInterval++;
             }
 
             Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, IsBlind = isBlind, Id = _noteSpawnIndex, LineRequirement = req });
