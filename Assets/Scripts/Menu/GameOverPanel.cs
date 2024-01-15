@@ -1,5 +1,6 @@
 ﻿using NsfwMiniJam.Achievement;
 using NsfwMiniJam.SO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +61,10 @@ namespace NsfwMiniJam.Menu
             {
                 AchievementManager.Instance.Unlock(AchievementID.MoreThanPerfectScore);
             }
+
+            var last = info.RankInfo.Last();
+            _notation.text = last.Notation;
+            _notation.color = last.Color;
 
             var s = score / (float)scoreMax;
             foreach (var r in info.RankInfo)

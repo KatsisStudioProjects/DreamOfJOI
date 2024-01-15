@@ -42,7 +42,7 @@ namespace NsfwMiniJam.LevelSelect
 
                 if (savedData != null)
                 {
-                    rank = _info.RankInfo.First(x => savedData.Score >= x.ScoreRequirement);
+                    rank = _info.RankInfo.FirstOrDefault(x => savedData.Score >= x.ScoreRequirement) ?? _info.RankInfo.Last();
                 }
                 Instantiate(_levelPrefab, _levelsContainer).GetComponent<MenuLevelInfo>().Init(rank, music, savedData);
             }
