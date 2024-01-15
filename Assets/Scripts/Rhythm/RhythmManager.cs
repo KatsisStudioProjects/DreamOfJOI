@@ -150,12 +150,6 @@ namespace NsfwMiniJam.Rhythm
                 _baseContainer.localScale = new(1f, -1f, 1f);
             }
 
-            if (GlobalData.LevelIndex == 0 && GlobalData.SuddenDeath != SuddenDeathType.None)
-            {
-                AchievementManager.Instance.Unlock(AchievementID.TutorialSD);
-                GlobalData.SuddenDeath = SuddenDeathType.None;
-            }
-
             _hitAreaImage = _hitArea.Select(x => x.GetComponent<Image>()).ToArray();
             _targetColor = _hitAreaImage[0].color;
             _hitYPos = _hitArea[0].anchoredPosition.y;
@@ -163,6 +157,12 @@ namespace NsfwMiniJam.Rhythm
 
         private void Start()
         {
+            if (GlobalData.LevelIndex == 0 && GlobalData.SuddenDeath != SuddenDeathType.None)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.TutorialSD);
+                GlobalData.SuddenDeath = SuddenDeathType.None;
+            }
+
             BgmManager.Instance.SetPitch(BasePitch);
             VNManager.Instance.ShowStory(Music.Intro, () =>
             {
