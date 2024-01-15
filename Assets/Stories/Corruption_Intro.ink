@@ -1,2 +1,2 @@
-Sample intro story text for the corruption
+Sample intro story text for the church
 -> END
