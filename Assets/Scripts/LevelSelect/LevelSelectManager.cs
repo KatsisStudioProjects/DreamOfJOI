@@ -48,6 +48,11 @@ namespace NsfwMiniJam.LevelSelect
             }
         }
 
+        public void ToggleMenu(bool value)
+        {
+            _menu.SetActive(value);
+        }
+
         public void OnDisplayMenu(InputAction.CallbackContext value)
         {
             if (value.performed)
