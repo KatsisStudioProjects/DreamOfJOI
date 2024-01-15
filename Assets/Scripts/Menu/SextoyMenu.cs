@@ -23,6 +23,7 @@ namespace NsfwMiniJam.Menu
         private ButtplugWebsocketConnector _connector;
 
         private bool _canConnect = true;
+        private bool _canTest = true;
 
         private void Awake()
         {
@@ -49,9 +50,6 @@ namespace NsfwMiniJam.Menu
             _canConnect = false;
             GlobalData.ButtplugClient = new("Nsfw Mini Jam Client");
 
-            GlobalData.ButtplugClient.DeviceAdded += GlobalData.AddDevice;
-            GlobalData.ButtplugClient.DeviceRemoved += GlobalData.RemoveDevice;
-
             _connector = new ButtplugWebsocketConnector(
                 new Uri("ws://localhost:12345/buttplug"));
 
@@ -60,10 +58,38 @@ namespace NsfwMiniJam.Menu
 
         public void Test()
         {
-            if (GlobalData.ButtplugClient.Connected && GlobalData.ButtplugClient.Devices.Any())
-            {
+            if (!_canTest) return;
 
+            _canTest = true;
+
+            try
+            {
+                if (GlobalData.ButtplugClient.Connected && GlobalData.ButtplugClient.Devices.Any())
+                {
+                    StartCoroutine(TestCoroutine());
+                }
             }
+            finally
+            {
+                _canTest = false;
+            }
+        }
+
+        private IEnumerator TestCoroutine()
+        {
+            foreach (var device in GlobalData.ButtplugClient.Devices)
+            {
+                device.VibrateAsync(1f);
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            foreach (var device in GlobalData.ButtplugClient.Devices)
+            {
+                device.VibrateAsync(0f);
+            }
+
+            _canTest = false;
         }
 
         private IEnumerator ConnectingCheck()
@@ -76,7 +102,7 @@ namespace NsfwMiniJam.Menu
                 }
                 else
                 {
-                    _infoText.text = GlobalData.Devices.Any() ? ("Devices found:\n\n" + string.Join("\n", GlobalData.Devices.Select(x => x.Name))) : "No device found";
+                    _infoText.text = GlobalData.ButtplugClient.Devices.Any() ? ("Devices found:\n\n" + string.Join("\n", GlobalData.ButtplugClient.Devices.Select(x => x.Name))) : "No device found";
                 }
 
                 yield return new WaitForSeconds(.1f);

@@ -17,17 +17,6 @@ namespace NsfwMiniJam
         public static int TargetBpm = 1;
 
         public static ButtplugClient ButtplugClient;
-        public static List<ButtplugClientDevice> Devices { get; } = new();
-
-        public static void AddDevice(object sender, DeviceAddedEventArgs e)
-        {
-            Devices.Add(e.Device);
-        }
-
-        public static void RemoveDevice(object sender, DeviceRemovedEventArgs e)
-        {
-            Devices.Remove(e.Device);
-        }
 
         public static float CalculateMultiplier()
         {
