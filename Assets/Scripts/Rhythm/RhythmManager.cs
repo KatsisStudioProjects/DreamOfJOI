@@ -574,6 +574,14 @@ namespace NsfwMiniJam.Rhythm
                         _cumText.gameObject.SetActive(false);
                         _anim.SetTrigger("Cum");
                         StartCoroutine(WaitAndShowGameOver());
+
+                        UpdateVibrations(1f);
+                        _vibrationTimer = 2f;
+                    }
+                    else
+                    {
+                        UpdateVibrations(.5f);
+                        _vibrationTimer = _vibrationTimerRef;
                     }
                 }
                 else if (_isAlive)
