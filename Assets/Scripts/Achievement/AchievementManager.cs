@@ -27,7 +27,7 @@ namespace NsfwMiniJam.Achievement
                 return;
             }
 
-            if (GlobalData.LevelIndex == 0 && achievement != AchievementID.TutorialSD)
+            if (GlobalData.LevelIndex == 0 && achievement != AchievementID.TutorialSD && achievement != AchievementID.FCTutorial)
             {
                 return;
             }
@@ -45,7 +45,6 @@ namespace NsfwMiniJam.Achievement
 
         public Dictionary<AchievementID, Achievement> Achievements { get; } = new()
         {
-            { AchievementID.FullCombo, new() { Name = "Textbook gameplay", Description = "Get a full combo" } },
             { AchievementID.Perfect, new() { Name = "Sperm Bender", Description = "Get a SSS rank" } },
             { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation", Description = "Get a score superior to 1 000 000" } },
 
@@ -56,13 +55,16 @@ namespace NsfwMiniJam.Achievement
 
             { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
 
-            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game" } }
+            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game" } },
+
+            { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial" } },
+            { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level" } },
+            { AchievementID.FCDemon, new() { Name = "Purified", Description = "Get a full combo on the corruption level" } },
         };
     }
 
     public enum AchievementID
     {
-        FullCombo,
         Perfect,
         MoreThanPerfectScore,
 
@@ -74,7 +76,11 @@ namespace NsfwMiniJam.Achievement
 
         WaitCum,
 
-        SpeedHypnotismFC
+        SpeedHypnotismFC,
+
+        FCTutorial,
+        FCHypnotism,
+        FCDemon
     }
 
     public record Achievement

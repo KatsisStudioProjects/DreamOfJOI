@@ -27,7 +27,12 @@ namespace NsfwMiniJam.Menu
             _fullCombo.SetActive(isFullCombo);
             if (isFullCombo)
             {
-                AchievementManager.Instance.Unlock(AchievementID.FullCombo);
+                switch (GlobalData.LevelIndex)
+                {
+                    case 0: AchievementManager.Instance.Unlock(AchievementID.FCTutorial); break;
+                    case 1: AchievementManager.Instance.Unlock(AchievementID.FCHypnotism); break;
+                    case 2: AchievementManager.Instance.Unlock(AchievementID.FCDemon); break;
+                }
 
                 if (GlobalData.Hidden == HiddenType.Reversed)
                 {
