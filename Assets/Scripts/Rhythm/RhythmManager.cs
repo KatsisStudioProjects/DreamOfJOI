@@ -395,7 +395,7 @@ namespace NsfwMiniJam.Rhythm
             if (note.IsHypnotic)
             {
                 _hitAreaImage.color = new(.5f, 0f, .5f);
-                _hypnotismHits = _info.HypnotismHitCount;
+                _hypnotismHits = Mathf.CeilToInt(_info.HypnotismHitCount / BasePitch);
                 _hypnotismCounter.gameObject.SetActive(true);
                 _hypnotismCounter.text = _hypnotismHits.ToString();
             }
