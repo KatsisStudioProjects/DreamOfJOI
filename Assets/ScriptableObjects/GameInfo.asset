@@ -158,5 +158,5 @@ MonoBehaviour:
   HypnotismChance: 5
   HypnotismHitCount: 20
   HypnotismNextNoteDelay: 4
-  BlindChance: 0
-  BlindDurationSec: 0
+  BlindChance: 5
+  BlindDurationSec: 5

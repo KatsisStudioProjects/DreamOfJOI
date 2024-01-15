@@ -107,7 +107,8 @@ namespace NsfwMiniJam.Rhythm
         private float _vibrationTimer = -1f;
         private const float _vibrationTimerRef = .2f;
 
-        private float _blindTimer, _blindTimerRef;
+        private float _blindTimer;
+        private bool _blindDir;
         private float _blindDuration;
 
         private void Awake()
@@ -181,19 +182,18 @@ namespace NsfwMiniJam.Rhythm
         {
             if (VNManager.Instance.IsPlayingStory) return;
 
-            if (_blindTimer != _blindTimerRef)
-            {
-                if (_blindTimer < _blindTimerRef) _blindTimer += Time.deltaTime;
-                else _blindTimer -= Time.deltaTime;
+            if (_blindDir && _blindTimer < .1f) _blindTimer += Time.deltaTime;
+            else if (!_blindDir && _blindTimer > 0f) _blindTimer -= Time.deltaTime;
+            _blindTimer = Mathf.Clamp01(_blindTimer);
 
-                _blindScreen.color = new(0f, 0f, 0f, _blindTimer * .1f);
-            }
+            _blindScreen.color = new(0f, 0f, 0f, _blindTimer * 10f);
             if (_blindDuration > 0f)
             {
                 _blindDuration -= Time.deltaTime;
                 if (_blindDuration <= 0f)
                 {
-                    _blindTimerRef = 0f;
+                    _blindDuration = 0f;
+                    _blindDir = false;
                 }
             }
 
@@ -330,10 +330,10 @@ namespace NsfwMiniJam.Rhythm
             var image = n.GetComponent<Image>();
 
             // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
-            bool isHypnotic = _leftToSpawn > 1 && Music.HypnotisedOverrides && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
+            bool isHypnotic = _leftToSpawn > 1 && Music.HypnotisedOverrides && _hypnotismHits == 0 && Random.Range(0, 100) < _info.HypnotismChance;
 
             // If not hypnotised (effects don't stack), mines are enabled and chance check pass
-            bool isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100f) < _info.MineChancePercent;
+            bool isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100) < _info.MineChancePercent;
 
             bool isBlind = Music.BlindOverrides && Random.Range(0, 100) < _info.BlindChance;
 
@@ -501,7 +501,7 @@ namespace NsfwMiniJam.Rhythm
             if (note.IsBlind)
             {
                 _blindDuration = _info.BlindDurationSec;
-                _blindTimerRef = .1f;
+                _blindDir = true;
             }
 
             // Destroy note
