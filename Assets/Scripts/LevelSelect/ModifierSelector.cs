@@ -52,11 +52,13 @@ namespace NsfwMiniJam.LevelSelect
             UpdateUI();
         }
 
+        /*
         public void UpdateMines()
         {
             GlobalData.Mines = !GlobalData.Mines;
             UpdateUI();
         }
+        */
 
         private void UpdateUI()
         {

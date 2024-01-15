@@ -24,6 +24,7 @@ MonoBehaviour:
     ModifierDescription: You can't fail the level
     NoFailOverrides: 1
     HypnotisedOverrides: 0
+    MinesOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
     Intro: {fileID: 4900000, guid: 8b5929ac1be43f142836d6cab9b8542b, type: 3}
     Name: Hypnotism
@@ -35,6 +36,19 @@ MonoBehaviour:
       can't hit any note, repetitively press 'space' to break free
     NoFailOverrides: 0
     HypnotisedOverrides: 1
+    MinesOverrides: 0
+  - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
+    Intro: {fileID: 4900000, guid: 8b5929ac1be43f142836d6cab9b8542b, type: 3}
+    Name: Corruption
+    Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
+    Bpm: 70
+    NoteCount: 30
+    ModifierName: Corrupted Notes
+    ModifierDescription: Red note are corrupted, hitting them grant a miss and avoid
+      them a perfect
+    NoFailOverrides: 0
+    HypnotisedOverrides: 0
+    MinesOverrides: 1
   HitInfo:
   - DisplayText: Bad
     Distance: 100

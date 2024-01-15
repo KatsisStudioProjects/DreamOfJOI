@@ -33,12 +33,12 @@ namespace NsfwMiniJam.Menu
                 {
                     AchievementManager.Instance.Unlock(AchievementID.ReverseHiddenFC);
                 }
-                else if (GlobalData.Hidden == HiddenType.Normal && GlobalData.Mines)
+                else if (GlobalData.Hidden == HiddenType.Normal && m.MinesOverrides)
                 {
                     AchievementManager.Instance.Unlock(AchievementID.MineHiddenFC);
                 }
 
-                if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.Mines)
+                if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.PitchValue != PitchType.Normal)
                 {
                     AchievementManager.Instance.Unlock(AchievementID.AllModifiersFC);
                 }

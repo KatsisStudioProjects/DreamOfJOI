@@ -251,10 +251,10 @@ namespace NsfwMiniJam.Rhythm
             var image = n.GetComponent<Image>();
 
             // If we are not the last note, if hypnotism is enabled, we are not already hypnotised and chance check pass
-            bool isHypnotic = _leftToSpawn > 1 && (GlobalData.Hypnotised || Music.HypnotisedOverrides) && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
+            bool isHypnotic = _leftToSpawn > 1 && Music.HypnotisedOverrides && _hypnotismHits == 0 && Random.Range(0f, 100f) < _info.HypnotismChance;
 
             // If not hypnotised (effects don't stack), mines are enabled and chance check pass
-            bool isTrap = !isHypnotic && GlobalData.Mines && Random.Range(0, 100f) < _info.MineChancePercent;
+            bool isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100f) < _info.MineChancePercent;
             if (isHypnotic)
             {
                 image.color = new(.5f, 0f, .5f);
@@ -364,7 +364,7 @@ namespace NsfwMiniJam.Rhythm
             }
 
             // Prevent failure
-            if (GlobalData.NoFail || Music.NoFailOverrides)
+            if (Music.NoFailOverrides)
             {
                 _isAlive = true;
             }
