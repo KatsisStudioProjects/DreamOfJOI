@@ -17,7 +17,7 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private GameObject _fullCombo;
 
-        public void Init(int score, int scoreMax, GameInfo info, bool isFullCombo)
+        public void Init(MusicInfo m, int score, int scoreMax, GameInfo info, bool isFullCombo)
         {
             if (score == 1f)
             {
@@ -41,6 +41,11 @@ namespace NsfwMiniJam.Menu
                 if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.Mines)
                 {
                     AchievementManager.Instance.Unlock(AchievementID.AllModifiersFC);
+                }
+
+                if (GlobalData.PitchValue == PitchType.IncThree && m.HypnotisedOverrides)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.SpeedHypnotismFC);
                 }
             }
 

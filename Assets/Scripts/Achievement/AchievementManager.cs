@@ -46,6 +46,7 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on" } },
             { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden and mines modifiers on" } },
             { AchievementID.AllModifiersFC, new() { Name = "Perious Masturbation", Description = "Get a full combo with all the optional modifiers on" } },
+            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash Speedrun", Description = "Get a full combo with x3 speed modifier on the hypnotism stage" } },
 
             { AchievementID.TutorialSD, new() { Name = "Bad student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
 
@@ -65,7 +66,9 @@ namespace NsfwMiniJam.Achievement
 
         TutorialSD,
 
-        WaitCum
+        WaitCum,
+
+        SpeedHypnotismFC
     }
 
     public record Achievement

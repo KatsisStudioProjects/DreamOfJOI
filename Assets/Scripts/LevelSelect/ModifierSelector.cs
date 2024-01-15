@@ -78,7 +78,7 @@ namespace NsfwMiniJam.LevelSelect
             {
                 PitchType.Normal => "x1",
                 PitchType.IncTwo => "x2",
-                PitchType.IncThree => "x4",
+                PitchType.IncThree => "x3",
                 _ => throw new NotImplementedException()
             };
             _txtReversed.text = GlobalData.Reversed ? "Enabled" : "Disabled";
