@@ -99,6 +99,8 @@ namespace NsfwMiniJam.Rhythm
         // List of all notes
         private List<NoteInfo> Notes { get; } = new();
 
+        private Color _targetColor;
+
         private void Awake()
         {
             Instance = this;
@@ -152,6 +154,7 @@ namespace NsfwMiniJam.Rhythm
             }
 
             _hitAreaImage = _hitArea.Select(x => x.GetComponent<Image>()).ToArray();
+            _targetColor = _hitAreaImage[0].color;
             _hitYPos = _hitArea[0].anchoredPosition.y;
         }
 
@@ -429,6 +432,7 @@ namespace NsfwMiniJam.Rhythm
             // Update bar color for hypnotism mode
             if (note.IsHypnotic)
             {
+                _targetColor = new(.5f, 0f, .5f);
                 foreach (var a in _hitAreaImage) a.color = new(.5f, 0f, .5f);
                 _hypnotismHits = Mathf.CeilToInt(_info.HypnotismHitCount / BasePitch);
                 _hypnotismCounter.gameObject.SetActive(true);
@@ -450,10 +454,9 @@ namespace NsfwMiniJam.Rhythm
         {
             index = Music.KeyOverrides ? index : 0;
 
-            var baseColor = _hitAreaImage[index].color;
             _hitAreaImage[index].color = Color.black;
             yield return new WaitForSeconds(.1f);
-            _hitAreaImage[index].color = baseColor;
+            _hitAreaImage[index].color = _targetColor;
         }
 
         private IEnumerator WaitAndShowGameOver()
@@ -497,6 +500,7 @@ namespace NsfwMiniJam.Rhythm
                         if (_hypnotismHits == 0)
                         {
                             _hypnotismCounter.gameObject.SetActive(false);
+                            _targetColor = Color.white;
                             foreach (var a in _hitAreaImage) a.color = Color.white;
                         }
                         return;
