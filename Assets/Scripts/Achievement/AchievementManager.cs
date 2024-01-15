@@ -59,7 +59,9 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCDemon, new() { Name = "Purified", Description = "Get a full combo on the corruption level", Hint = "Get a full combo on a specific level" } },
-            { AchievementID.FCSecret, new() { Name = "Unstoppable", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } }
+            { AchievementID.FCSecret, new() { Name = "Unstoppable", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
+
+            { AchievementID.FCToy, new() { Name = "Feeling the Rhythm", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } }
         };
     }
 
@@ -81,7 +83,9 @@ namespace NsfwMiniJam.Achievement
         FCTutorial,
         FCHypnotism,
         FCDemon,
-        FCSecret
+        FCSecret,
+
+        FCToy
     }
 
     public record Achievement

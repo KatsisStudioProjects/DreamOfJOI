@@ -1,6 +1,4 @@
 ﻿using Buttplug.Client;
-using System;
-using System.Collections.Generic;
 
 namespace NsfwMiniJam
 {

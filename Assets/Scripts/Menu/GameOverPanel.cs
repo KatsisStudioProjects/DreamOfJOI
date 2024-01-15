@@ -28,6 +28,11 @@ namespace NsfwMiniJam.Menu
             _fullCombo.SetActive(isFullCombo);
             if (isFullCombo)
             {
+                if (GlobalData.ButtplugClient != null && GlobalData.ButtplugClient.Devices.Any())
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.FCToy);
+                }
+
                 switch (GlobalData.LevelIndex)
                 {
                     case 0: AchievementManager.Instance.Unlock(AchievementID.FCTutorial); break;
