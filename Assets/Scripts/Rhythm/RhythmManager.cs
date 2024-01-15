@@ -28,8 +28,8 @@ namespace NsfwMiniJam.Rhythm
         private GameObject _note;
 
         [SerializeField]
-        private RectTransform _hitArea;
-        private Image _hitAreaImage;
+        private RectTransform[] _hitArea;
+        private Image[] _hitAreaImage;
 
         [SerializeField]
         private TMP_Text _hitText;
@@ -57,6 +57,9 @@ namespace NsfwMiniJam.Rhythm
 
         [SerializeField]
         private TMP_Text _hypnotismCounter;
+
+        [SerializeField]
+        private GameObject _containerSingleHit, _containerMultHit; 
 
         public MusicInfo Music { private set; get; }
 
@@ -113,6 +116,17 @@ namespace NsfwMiniJam.Rhythm
                 _anim.runtimeAnimatorController = Music.Controller;
             }
 
+            if (Music.KeyOverrides)
+            {
+                _containerMultHit.SetActive(true);
+                _containerSingleHit.SetActive(false);
+            }
+            else
+            {
+                _containerMultHit.SetActive(false);
+                _containerSingleHit.SetActive(true);
+            }
+
             _leftToSpawn = Music.NoteCount;
             _leftToTape = Music.NoteCount;
 
@@ -137,8 +151,8 @@ namespace NsfwMiniJam.Rhythm
                 GlobalData.SuddenDeath = SuddenDeathType.None;
             }
 
-            _hitAreaImage = _hitArea.GetComponent<Image>();
-            _hitYPos = _hitArea.anchoredPosition.y;
+            _hitAreaImage = _hitArea.Select(x => x.GetComponent<Image>()).ToArray();
+            _hitYPos = _hitArea[0].anchoredPosition.y;
         }
 
         private void Start()
@@ -169,7 +183,7 @@ namespace NsfwMiniJam.Rhythm
             if (_volumeTimer > 0f && _leftToTape == 0)
             {
                 _volumeTimer -= Time.deltaTime;
-                BgmManager.Instance.SetVolume(_volumeTimer);
+                BgmManager.Instance.SetVolume(_volumeTimer * .4f);
                 if (_volumeTimer <= 0f)
                 {
                     _cumRequirementStoke = _info.CumStrokeCountRequirement;
@@ -233,7 +247,7 @@ namespace NsfwMiniJam.Rhythm
             SpawnNotes();
         }
 
-        public float YHitArea => _hitArea.anchoredPosition.y;
+        public float YHitArea => _hitYPos;
 
         private readonly char[] _reqKeys = new[] { 'S', 'D', 'K', 'L' };
         private void SpawnSingleNote(int stepCount)
@@ -249,16 +263,21 @@ namespace NsfwMiniJam.Rhythm
             n.name = $"Note {_noteSpawnIndex}";
 
             var req = Music.KeyOverrides ? Random.Range(1, 5) : 0;
+            var rPos = (RectTransform)_hitArea[req].transform;
 
             if (req != 0)
             {
-                n.GetComponentInChildren<TMP_Text>().text = _reqKeys[req - 1].ToString();
+                //n.GetComponentInChildren<TMP_Text>().text = _reqKeys[req - 1].ToString();
             }
 
             var rTransform = (RectTransform)n.transform;
             rTransform.anchorMin = new(.5f, 0f);
             rTransform.anchorMax = new(.5f, 0f);
+
+            // Too lazy to do proper maths
             rTransform.anchoredPosition = Vector2.up * y;
+            rTransform.position = new(rPos.position.x, rTransform.position.y);
+            rTransform.sizeDelta = new(rPos.sizeDelta.x, rTransform.sizeDelta.y);
 
             var image = n.GetComponent<Image>();
 
@@ -410,7 +429,7 @@ namespace NsfwMiniJam.Rhythm
             // Update bar color for hypnotism mode
             if (note.IsHypnotic)
             {
-                _hitAreaImage.color = new(.5f, 0f, .5f);
+                foreach (var a in _hitAreaImage) a.color = new(.5f, 0f, .5f);
                 _hypnotismHits = Mathf.CeilToInt(_info.HypnotismHitCount / BasePitch);
                 _hypnotismCounter.gameObject.SetActive(true);
                 _hypnotismCounter.text = _hypnotismHits.ToString();
@@ -427,12 +446,14 @@ namespace NsfwMiniJam.Rhythm
             _cumFill.localScale = new(1f, _cumLevel, 1f);
         }
 
-        private IEnumerator HitEffect()
+        private IEnumerator HitEffect(int index)
         {
-            var baseColor = _hitAreaImage.color;
-            _hitAreaImage.color = Color.black;
+            index = Music.KeyOverrides ? index : 0;
+
+            var baseColor = _hitAreaImage[index].color;
+            _hitAreaImage[index].color = Color.black;
             yield return new WaitForSeconds(.1f);
-            _hitAreaImage.color = baseColor;
+            _hitAreaImage[index].color = baseColor;
         }
 
         private IEnumerator WaitAndShowGameOver()
@@ -476,7 +497,7 @@ namespace NsfwMiniJam.Rhythm
                         if (_hypnotismHits == 0)
                         {
                             _hypnotismCounter.gameObject.SetActive(false);
-                            _hitAreaImage.color = Color.white;
+                            foreach (var a in _hitAreaImage) a.color = Color.white;
                         }
                         return;
                     }
@@ -493,7 +514,7 @@ namespace NsfwMiniJam.Rhythm
                             }
                         }
                     }
-                    StartCoroutine(HitEffect());
+                    StartCoroutine(HitEffect(line));
                 }
             }
         }
