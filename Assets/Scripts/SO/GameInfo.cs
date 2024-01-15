@@ -61,6 +61,9 @@ namespace NsfwMiniJam.SO
         public bool DoesBreakCombo;
 
         public int Score;
+
+        [Range(0f, 1f)]
+        public float VibrationForce;
     }
 
     [System.Serializable]

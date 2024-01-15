@@ -101,6 +101,9 @@ namespace NsfwMiniJam.Rhythm
 
         private Color _targetColor;
 
+        private float _vibrationTimer = -1f;
+        private const float _vibrationTimerRef = .2f;
+
         private void Awake()
         {
             Instance = this;
@@ -171,6 +174,15 @@ namespace NsfwMiniJam.Rhythm
         private void Update()
         {
             if (VNManager.Instance.IsPlayingStory) return;
+
+            if (_vibrationTimer > 0f)
+            {
+                _vibrationTimer -= Time.deltaTime;
+                if (_vibrationTimer <= 0f)
+                {
+                    UpdateVibrations(0f);
+                }
+            }
 
             if (WaitBeforeStart > 0f)
             {
@@ -248,6 +260,17 @@ namespace NsfwMiniJam.Rhythm
             }
 
             SpawnNotes();
+        }
+
+        public void UpdateVibrations(float value)
+        {
+            if (GlobalData.ButtplugClient != null && GlobalData.ButtplugClient.Devices.Any())
+            {
+                foreach (var device in  GlobalData.ButtplugClient.Devices)
+                {
+                    device.VibrateAsync(value);
+                }
+            }
         }
 
         public float YHitArea => _hitYPos;
@@ -383,6 +406,13 @@ namespace NsfwMiniJam.Rhythm
 
                     _cumLevel -= _info.DecreaseOnHit;
                 }
+            }
+
+            // buttplug.io
+            if (data.VibrationForce > 0f)
+            {
+                UpdateVibrations(data.VibrationForce);
+                _vibrationTimer = _vibrationTimerRef;
             }
 
             // Update hit display
