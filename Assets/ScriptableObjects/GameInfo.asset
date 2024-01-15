@@ -73,9 +73,9 @@ MonoBehaviour:
   - Controller: {fileID: 0}
     Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
     Name: Secret
-    Music: {fileID: 8300000, guid: b41209ed691a19743b457dc6b29e3c24, type: 3}
-    Bpm: 300
-    NoteCount: 50
+    Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
+    Bpm: 360
+    NoteCount: 100
     ModifierName: Frenzy Time
     ModifierDescription: Notes now drop on 4 separate lines that you must control
       with S, D, K and L
