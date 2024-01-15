@@ -20,6 +20,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: bca287fef7dfb0e4987d44c440c00147, type: 3}
     Bpm: 50
     NoteCount: 30
+    ModifierName: Teacher Guidance
+    ModifierDescription: You can't fail the level
     NoFailOverrides: 1
     HypnotisedOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
@@ -28,6 +30,9 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
+    ModifierName: Do what I say
+    ModifierDescription: Purple note will hypnotise you, while in that state you
+      can't hit any note, repetitively press 'space' to break free
     NoFailOverrides: 0
     HypnotisedOverrides: 1
   HitInfo:

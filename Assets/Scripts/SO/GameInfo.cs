@@ -40,6 +40,11 @@ namespace NsfwMiniJam.SO
         public float Bpm;
         public int NoteCount;
 
+        [Header("Modifier")]
+        public string ModifierName;
+        [TextArea]
+        public string ModifierDescription;
+
         [Header("Overrides")]
         public bool NoFailOverrides;
         public bool HypnotisedOverrides;
