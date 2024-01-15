@@ -44,21 +44,21 @@ namespace NsfwMiniJam.Achievement
 
         public Dictionary<AchievementID, Achievement> Achievements { get; } = new()
         {
-            { AchievementID.Perfect, new() { Name = "Sperm Bender", Description = "Get a SSS rank" } },
-            { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation", Description = "Get a score superior to 1 000 000" } },
+            { AchievementID.Perfect, new() { Name = "Sperm Bender", Description = "Get a SSS rank", Hint = "Once getting that you know there is no point click 'Replay' anymore at the end of the level" } },
+            { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation", Description = "Get a score superior to 1 000 000", Hint = "Get a score even better than you possibly could" } },
 
-            { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on" } },
-            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden and mines modifiers on" } },
-            { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on" } },
-            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage" } },
+            { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on", Hint = null } },
+            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the corruption level", Hint = null } },
+            { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on", Hint = null } },
+            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage", Hint = null } },
 
-            { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
+            { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on", Hint = "The tutorial wasn't made for this modifier, it will be ignored!" } },
 
-            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game" } },
+            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game", Hint = "Resist the urge to cum" } },
 
-            { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial" } },
-            { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level" } },
-            { AchievementID.FCDemon, new() { Name = "Purified", Description = "Get a full combo on the corruption level" } },
+            { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FCDemon, new() { Name = "Purified", Description = "Get a full combo on the corruption level", Hint = "Get a full combo on a specific level" } },
         };
     }
 
@@ -86,5 +86,6 @@ namespace NsfwMiniJam.Achievement
     {
         public string Name;
         public string Description;
+        public string Hint;
     }
 }

@@ -34,7 +34,7 @@ namespace NsfwMiniJam.Menu
 
                     var unlocked = PersistencyManager.Instance.SaveData.UnlockedAchievements.Contains(key);
                     _sideTitle.text = unlocked ? ta.Name : "???";
-                    _sideDesc.text = unlocked ? ta.Description : "???";
+                    _sideDesc.text = unlocked ? ta.Description : (ta.Hint ?? ta.Description);
                 }));
                 ach.OnPointerExitEvt.AddListener(new(() =>
                 {
