@@ -27,6 +27,7 @@ MonoBehaviour:
     HypnotisedOverrides: 0
     MinesOverrides: 0
     KeyOverrides: 0
+    BlindOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
     Intro: {fileID: 4900000, guid: 6b1de68fb7d8cb441800ff83d137df75, type: 3}
     Name: Hypnotism
@@ -40,6 +41,7 @@ MonoBehaviour:
     HypnotisedOverrides: 1
     MinesOverrides: 0
     KeyOverrides: 0
+    BlindOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
     Intro: {fileID: 4900000, guid: b8f1825525c5d5848b4a012c935ea9a4, type: 3}
     Name: Church
@@ -53,18 +55,21 @@ MonoBehaviour:
     HypnotisedOverrides: 0
     MinesOverrides: 1
     KeyOverrides: 0
+    BlindOverrides: 0
   - Controller: {fileID: 22100000, guid: 0474fab73c2efa44eaf414eb67287566, type: 2}
     Intro: {fileID: 4900000, guid: 79562ae05b4b11149bdb0e11adf865aa, type: 3}
     Name: Lamia
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
-    ModifierName: TODO
-    ModifierDescription: TODO
+    ModifierName: Blinded
+    ModifierDescription: Grey note cover your vision for a bit, keep the rhythm in
+      mind to tape at the right time
     NoFailOverrides: 0
     HypnotisedOverrides: 0
     MinesOverrides: 0
     KeyOverrides: 0
+    BlindOverrides: 1
   - Controller: {fileID: 0}
     Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
     Name: Secret
@@ -78,6 +83,7 @@ MonoBehaviour:
     HypnotisedOverrides: 0
     MinesOverrides: 0
     KeyOverrides: 1
+    BlindOverrides: 0
   HitInfo:
   - DisplayText: Bad
     Distance: 100
@@ -152,3 +158,5 @@ MonoBehaviour:
   HypnotismChance: 5
   HypnotismHitCount: 20
   HypnotismNextNoteDelay: 4
+  BlindChance: 0
+  BlindDurationSec: 0

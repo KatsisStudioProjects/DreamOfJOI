@@ -28,6 +28,8 @@ namespace NsfwMiniJam.SO
         public float HypnotismChance;
         public int HypnotismHitCount;
         public int HypnotismNextNoteDelay;
+        public float BlindChance;
+        public float BlindDurationSec;
     }
 
     [System.Serializable]
@@ -50,6 +52,7 @@ namespace NsfwMiniJam.SO
         public bool HypnotisedOverrides;
         public bool MinesOverrides;
         public bool KeyOverrides;
+        public bool BlindOverrides;
     }
 
     [System.Serializable]

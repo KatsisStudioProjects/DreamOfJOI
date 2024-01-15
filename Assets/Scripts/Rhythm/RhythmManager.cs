@@ -59,7 +59,10 @@ namespace NsfwMiniJam.Rhythm
         private TMP_Text _hypnotismCounter;
 
         [SerializeField]
-        private GameObject _containerSingleHit, _containerMultHit; 
+        private GameObject _containerSingleHit, _containerMultHit;
+
+        [SerializeField]
+        private Image _blindScreen;
 
         public MusicInfo Music { private set; get; }
 
@@ -103,6 +106,9 @@ namespace NsfwMiniJam.Rhythm
 
         private float _vibrationTimer = -1f;
         private const float _vibrationTimerRef = .2f;
+
+        private float _blindTimer, _blindTimerRef;
+        private float _blindDuration;
 
         private void Awake()
         {
@@ -174,6 +180,22 @@ namespace NsfwMiniJam.Rhythm
         private void Update()
         {
             if (VNManager.Instance.IsPlayingStory) return;
+
+            if (_blindTimer != _blindTimerRef)
+            {
+                if (_blindTimer < _blindTimerRef) _blindTimer += Time.deltaTime;
+                else _blindTimer -= Time.deltaTime;
+
+                _blindScreen.color = new(0f, 0f, 0f, _blindTimer * .1f);
+            }
+            if (_blindDuration > 0f)
+            {
+                _blindDuration -= Time.deltaTime;
+                if (_blindDuration <= 0f)
+                {
+                    _blindTimerRef = 0f;
+                }
+            }
 
             if (_vibrationTimer > 0f)
             {
@@ -312,6 +334,9 @@ namespace NsfwMiniJam.Rhythm
 
             // If not hypnotised (effects don't stack), mines are enabled and chance check pass
             bool isTrap = !isHypnotic && Music.MinesOverrides && Random.Range(0, 100f) < _info.MineChancePercent;
+
+            bool isBlind = Music.BlindOverrides && Random.Range(0, 100) < _info.BlindChance;
+
             if (isHypnotic)
             {
                 image.color = new(.5f, 0f, .5f);
@@ -320,8 +345,12 @@ namespace NsfwMiniJam.Rhythm
             {
                 image.color = Color.red;
             }
+            else if (isBlind)
+            {
+                image.color = Color.gray;
+            }
 
-            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex, LineRequirement = req });
+            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, IsBlind = isBlind, Id = _noteSpawnIndex, LineRequirement = req });
 
             _leftToSpawn--;
 
@@ -469,6 +498,12 @@ namespace NsfwMiniJam.Rhythm
                 _hypnotismCounter.text = _hypnotismHits.ToString();
             }
 
+            if (note.IsBlind)
+            {
+                _blindDuration = _info.BlindDurationSec;
+                _blindTimerRef = .1f;
+            }
+
             // Destroy note
             Destroy(note.RT.gameObject);
             Notes.RemoveAt(0);
@@ -583,6 +618,7 @@ namespace NsfwMiniJam.Rhythm
         public Image Image;
         public bool IsTrap;
         public bool IsHypnotic;
+        public bool IsBlind;
         public int Id;
 
         public int LineRequirement;
