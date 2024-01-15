@@ -21,7 +21,8 @@ MonoBehaviour:
     Bpm: 50
     NoteCount: 30
     ModifierName: Teacher Guidance
-    ModifierDescription: You can't fail the level
+    ModifierDescription: You can't fail the level but can't unlock any achievement
+      (except tutorial specific ones)
     NoFailOverrides: 1
     HypnotisedOverrides: 0
     MinesOverrides: 0

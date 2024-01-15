@@ -26,6 +26,12 @@ namespace NsfwMiniJam.Achievement
             {
                 return;
             }
+
+            if (GlobalData.LevelIndex == 0 && achievement != AchievementID.TutorialSD)
+            {
+                return;
+            }
+
             var instance = Instantiate(_prefab, _container);
 
             var data = Achievements[achievement];
@@ -39,16 +45,16 @@ namespace NsfwMiniJam.Achievement
 
         public Dictionary<AchievementID, Achievement> Achievements { get; } = new()
         {
-            { AchievementID.FullCombo, new() { Name = "Following the Instructions", Description = "Get a full combo" } },
-            { AchievementID.Perfect, new() { Name = "Perfect Control", Description = "Get a SSS rank" } },
-            { AchievementID.MoreThanPerfectScore, new() { Name = "Exceeded Expectations", Description = "Get a score superior to 1 000 000" } },
+            { AchievementID.FullCombo, new() { Name = "Textbook gameplay", Description = "Get a full combo" } },
+            { AchievementID.Perfect, new() { Name = "Sperm Bender", Description = "Get a SSS rank" } },
+            { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation", Description = "Get a score superior to 1 000 000" } },
 
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on" } },
             { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden and mines modifiers on" } },
-            { AchievementID.AllModifiersFC, new() { Name = "Perious Masturbation", Description = "Get a full combo with all the optional modifiers on" } },
-            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash Speedrun", Description = "Get a full combo with x3 speed modifier on the hypnotism stage" } },
+            { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on" } },
+            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage" } },
 
-            { AchievementID.TutorialSD, new() { Name = "Bad student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
+            { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on" } },
 
             { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game" } }
         };
