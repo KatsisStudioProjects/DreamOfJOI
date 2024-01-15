@@ -17,9 +17,6 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private TMP_Text _infoText;
 
-        [SerializeField]
-        private Button _enableBtn;
-
         private ButtplugWebsocketConnector _connector;
 
         private bool _canConnect = true;
@@ -60,18 +57,18 @@ namespace NsfwMiniJam.Menu
         {
             if (!_canTest) return;
 
-            _canTest = true;
+            _canTest = false;
 
             try
             {
-                if (GlobalData.ButtplugClient.Connected && GlobalData.ButtplugClient.Devices.Any())
+                if (GlobalData.ButtplugClient != null && GlobalData.ButtplugClient.Connected && GlobalData.ButtplugClient.Devices.Any())
                 {
                     StartCoroutine(TestCoroutine());
                 }
             }
             finally
             {
-                _canTest = false;
+                _canTest = true;
             }
         }
 
@@ -89,7 +86,7 @@ namespace NsfwMiniJam.Menu
                 device.VibrateAsync(0f);
             }
 
-            _canTest = false;
+            _canTest = true;    
         }
 
         private IEnumerator ConnectingCheck()
@@ -114,7 +111,6 @@ namespace NsfwMiniJam.Menu
             Debug.Log("[BUT] Connecting...");
             try
             {
-                if (_connector.Connected) await _connector.DisconnectAsync();
                 await GlobalData.ButtplugClient.ConnectAsync(_connector);
             }
             catch (Exception ex)
