@@ -76,7 +76,7 @@ namespace NsfwMiniJam.Rhythm
 
         public float WaitBeforeStart { private set; get; } = 3f;
 
-        private float _basePitch = 1f;
+        public float BasePitch { private set; get; }
 
         // Manage the end of the game
         private int _leftToSpawn, _leftToTape;
@@ -111,6 +111,14 @@ namespace NsfwMiniJam.Rhythm
 
             _maxPossibleScore = Music.NoteCount * _info.HitInfo.Last().Score;
 
+            BasePitch = GlobalData.PitchValue switch
+            {
+                PitchType.Normal => 1f,
+                PitchType.IncTwo => 2f,
+                PitchType.IncThree => 3f,
+                _ => throw new System.NotImplementedException()
+            };
+
             if (GlobalData.Reversed)
             {
                 _baseContainer.localScale = new(1f, -1f, 1f);
@@ -128,6 +136,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void Start()
         {
+            BgmManager.Instance.SetPitch(BasePitch);
             VNManager.Instance.ShowStory(Music.Intro, () =>
             {
                 _anim.SetTrigger("Start");
@@ -173,7 +182,7 @@ namespace NsfwMiniJam.Rhythm
 
             if (!_isAlive && _deadSpeedTimer > 0f && _cumRequirementStoke == 0)
             {
-                BgmManager.Instance.SetPitch(Mathf.Lerp(_deadSpeedTimer, _basePitch, 0f));
+                BgmManager.Instance.SetPitch(Mathf.Lerp(_deadSpeedTimer, BasePitch, 0f));
                 _deadSpeedTimer -= Time.deltaTime;
                 if (_deadSpeedTimer < 0f)
                 {

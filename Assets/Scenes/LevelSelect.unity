@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Disabled
+  m_text: x1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
   m_sharedMaterial: {fileID: -1360628206493973521, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
@@ -1351,7 +1351,7 @@ MonoBehaviour:
   _txtSuddenDeath: {fileID: 100286202}
   _txtHidden: {fileID: 686862750}
   _txtReversed: {fileID: 1528875446}
-  _txtMines: {fileID: 31246428}
+  _txtPitch: {fileID: 31246428}
   _multText: {fileID: 1072439884}
 --- !u!1 &412463853
 GameObject:
@@ -3225,7 +3225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020876910}
   m_Layer: 5
-  m_Name: Mines
+  m_Name: Pitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4831,7 +4831,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 381674684}
         m_TargetAssemblyTypeName: NsfwMiniJam.LevelSelect.ModifierSelector, Assembly-CSharp
-        m_MethodName: UpdateMines
+        m_MethodName: UpdatePitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6333,7 +6333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mines
+  m_text: Speed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
   m_sharedMaterial: {fileID: -1360628206493973521, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}

@@ -8,6 +8,7 @@
         public static HiddenType Hidden;
         public static bool Reversed;
         public static bool Mines;
+        public static PitchType PitchValue;
 
         // TODO: Unlock it only after level played
         public static bool NoFail;
@@ -29,9 +30,20 @@
 
             if (Mines) mult += .15f;
 
+            if (PitchValue == PitchType.IncTwo) mult += .2f;
+            else if (PitchValue == PitchType.IncThree) mult += .3f;
+
             return mult;
         }
     }
+
+    public enum PitchType
+    {
+        Normal,
+        IncTwo,
+        IncThree
+    }
+
     public enum HiddenType
     {
         None,

@@ -30,12 +30,12 @@ namespace NsfwMiniJam.Rhythm
 
         public void MoveNote(NoteInfo n)
         {
-            n.RT.Translate(Vector3.down *  _speedMultiplier * _bpm * Time.deltaTime);
+            n.RT.Translate(Vector3.down *  _speedMultiplier * _bpm * Time.deltaTime * RhythmManager.Instance.BasePitch);
         }
 
         public float GetNoteNextPos(int index)
         {
-            var elapsed = RhythmManager.Instance.WaitBeforeStart > 0f ? RhythmManager.Instance.WaitBeforeStart * _bpm : _bgm.time * (120f - _bpm);
+            var elapsed = RhythmManager.Instance.WaitBeforeStart > 0f ? RhythmManager.Instance.WaitBeforeStart * _bpm * RhythmManager.Instance.BasePitch : _bgm.time * (120f - _bpm);
 
             return elapsed * _speedMultiplier + _speedMultiplier * 60f * index + _yHitArea;
         }
