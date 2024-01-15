@@ -9,6 +9,9 @@
         public static bool Reversed;
         public static PitchType PitchValue;
 
+        public static float[] BpmValues = new[] { 400f, 600f, 800f, 1000f };
+        public static int TargetBpm = 1;
+
         public static float CalculateMultiplier()
         {
             float mult = 1f;

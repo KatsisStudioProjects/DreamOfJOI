@@ -8,7 +8,7 @@ namespace NsfwMiniJam.LevelSelect
     public class ModifierSelector : MonoBehaviour
     {
         [SerializeField]
-        private TMP_Text _txtSuddenDeath, _txtHidden, _txtReversed, _txtPitch;
+        private TMP_Text _txtSuddenDeath, _txtHidden, _txtReversed, _txtPitch, _txtBpm;
 
         [SerializeField]
         private TMP_Text _multText;
@@ -52,6 +52,16 @@ namespace NsfwMiniJam.LevelSelect
             UpdateUI();
         }
 
+        public void UpdateBpm()
+        {
+            GlobalData.TargetBpm++;
+            if (GlobalData.TargetBpm == GlobalData.BpmValues.Length)
+            {
+                GlobalData.TargetBpm = 0;
+            }
+            UpdateUI();
+        }
+
         /*
         public void UpdateMines()
         {
@@ -87,6 +97,8 @@ namespace NsfwMiniJam.LevelSelect
             //_txtMines.text = GlobalData.Mines ? "Enabled" : "Disabled";
 
             _multText.text = $"x{GlobalData.CalculateMultiplier():0.00}";
+
+            _txtBpm.text = $"{GlobalData.BpmValues[GlobalData.TargetBpm]} BPM";
         }
 
         private void OnEnable()
