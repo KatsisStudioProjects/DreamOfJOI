@@ -25,7 +25,7 @@ namespace NsfwMiniJam.Rhythm
             _bgm.clip = RhythmManager.Instance.Music.Music;
             _yHitArea = RhythmManager.Instance.YHitArea;
 
-            _speedMultiplier = GlobalData.BpmValues[GlobalData.TargetBpm] / _bpm;
+            _speedMultiplier = GlobalData.BpmValues[GlobalData.TargetBpm] / (_bpm * RhythmManager.Instance.BasePitch);
         }
 
         public void MoveNote(NoteInfo n)

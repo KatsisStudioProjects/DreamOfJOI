@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace NsfwMiniJam.Menu
 {
