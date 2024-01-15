@@ -38,7 +38,6 @@ namespace NsfwMiniJam.Achievement
             instance.GetComponentInChildren<TMP_Text>().text = data.Name;
 
             PersistencyManager.Instance.SaveData.Unlock(achievement);
-            PersistencyManager.Instance.Save();
 
             Destroy(instance, 5f);
         }

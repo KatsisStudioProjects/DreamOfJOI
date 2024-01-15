@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-using static Unity.VisualScripting.Member;
+﻿using UnityEngine;
 
 namespace NsfwMiniJam.Rhythm
 {
