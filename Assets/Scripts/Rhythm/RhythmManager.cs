@@ -443,7 +443,6 @@ namespace NsfwMiniJam.Rhythm
                     _anim.SetTrigger("FailCombo");
 
                     _combo = 0;
-                    _cumLevel += _info.IncreaseOnMiss;
                 }
                 else
                 {
@@ -453,9 +452,9 @@ namespace NsfwMiniJam.Rhythm
                     {
                         _anim.SetTrigger("SuccessCombo");
                     }
-
-                    _cumLevel -= _info.DecreaseOnHit;
                 }
+
+                _cumLevel -= data.IncreaseOnHit;
             }
 
             // buttplug.io

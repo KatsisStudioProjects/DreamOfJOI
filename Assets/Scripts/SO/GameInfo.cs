@@ -16,9 +16,6 @@ namespace NsfwMiniJam.SO
         public HitInfo MissInfo;
         public HitInfo WrongInfo;
 
-        [Range(0f, 1f)]
-        public float DecreaseOnHit, IncreaseOnMiss;
-
         [Header("Rank info")]
         public RankInfo[] RankInfo;
 
@@ -69,6 +66,9 @@ namespace NsfwMiniJam.SO
 
         [Range(0f, 1f)]
         public float VibrationForce;
+
+        [Range(-1f, 1f)]
+        public float IncreaseOnHit;
     }
 
     [System.Serializable]
