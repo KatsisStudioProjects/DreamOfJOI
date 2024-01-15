@@ -566,6 +566,14 @@ namespace NsfwMiniJam.Rhythm
                 SceneManager.LoadScene("Main");
             }
         }
+
+        public void OnQuit(InputAction.CallbackContext value)
+        {
+            if (value.performed)
+            {
+                SceneManager.LoadScene("LevelSelect");
+            }
+        }
     }
 
     [System.Serializable]

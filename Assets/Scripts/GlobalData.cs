@@ -1,4 +1,5 @@
 ﻿using Buttplug.Client;
+using System;
 
 namespace NsfwMiniJam
 {
@@ -15,6 +16,17 @@ namespace NsfwMiniJam
         public static int TargetBpm = 1;
 
         public static ButtplugClient ButtplugClient;
+
+        static GlobalData()
+        {
+            AppDomain.CurrentDomain.DomainUnload += (sender, e) =>
+            {
+                if (ButtplugClient.Connected)
+                {
+                    ButtplugClient.DisconnectAsync().GetAwaiter().GetResult();
+                }
+            };
+        }
 
         public static float CalculateMultiplier()
         {

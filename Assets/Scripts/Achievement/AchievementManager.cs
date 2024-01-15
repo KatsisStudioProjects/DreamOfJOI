@@ -61,7 +61,7 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.FCDemon, new() { Name = "Purified", Description = "Get a full combo on the corruption level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCSecret, new() { Name = "Unstoppable", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
 
-            { AchievementID.FCToy, new() { Name = "Feeling the Rhythm", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } }
+            { AchievementID.FCToy, new() { Name = "Welcome to the Rodeo", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } }
         };
     }
 
