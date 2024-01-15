@@ -42,13 +42,13 @@ MonoBehaviour:
     KeyOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
     Intro: {fileID: 4900000, guid: b8f1825525c5d5848b4a012c935ea9a4, type: 3}
-    Name: Corruption
+    Name: Church
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
-    ModifierName: Corrupted Notes
-    ModifierDescription: Red note are corrupted, hitting them grant a miss and avoid
-      them a perfect
+    ModifierName: Hidden Sin
+    ModifierDescription: When a note is red, the church staff is looking at you,
+      hitting them grant a miss and avoid them a perfect
     NoFailOverrides: 0
     HypnotisedOverrides: 0
     MinesOverrides: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     Bpm: 300
     NoteCount: 50
     ModifierName: Frenzy Time
-    ModifierDescription: Keys now drop on 4 separate lines that you must control
+    ModifierDescription: Notes now drop on 4 separate lines that you must control
       with S, D, K and L
     NoFailOverrides: 0
     HypnotisedOverrides: 0

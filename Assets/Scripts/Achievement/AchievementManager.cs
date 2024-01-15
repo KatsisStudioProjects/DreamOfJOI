@@ -48,7 +48,7 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation", Description = "Get a score superior to 1 000 000", Hint = "Get a score even better than you possibly could" } },
 
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on", Hint = null } },
-            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the corruption level", Hint = null } },
+            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the church level", Hint = null } },
             { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on", Hint = null } },
             { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage", Hint = null } },
 
