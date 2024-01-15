@@ -57,10 +57,11 @@ MonoBehaviour:
     Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
     Name: Secret
     Music: {fileID: 8300000, guid: b41209ed691a19743b457dc6b29e3c24, type: 3}
-    Bpm: 200
+    Bpm: 300
     NoteCount: 50
-    ModifierName: TODO
-    ModifierDescription: TODO
+    ModifierName: Frenzy Time
+    ModifierDescription: Keys now drop on 4 separate lines that you must control
+      with S, D, K and L
     NoFailOverrides: 0
     HypnotisedOverrides: 0
     MinesOverrides: 0
