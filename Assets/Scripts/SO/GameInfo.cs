@@ -49,6 +49,7 @@ namespace NsfwMiniJam.SO
         public bool NoFailOverrides;
         public bool HypnotisedOverrides;
         public bool MinesOverrides;
+        public bool KeyOverrides;
     }
 
     [System.Serializable]

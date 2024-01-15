@@ -487,6 +487,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ffeb8614-5e8b-448c-bc93-f2aea1f65d7e
     m_ActionName: Player/Restart[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 500333087}
+        m_TargetAssemblyTypeName: NsfwMiniJam.Rhythm.RhythmManager, Assembly-CSharp
+        m_MethodName: OnHitS
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 999678ac-c1e8-4054-a492-e128744007e6
+    m_ActionName: Player/Line1[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 500333087}
+        m_TargetAssemblyTypeName: NsfwMiniJam.Rhythm.RhythmManager, Assembly-CSharp
+        m_MethodName: OnHitD
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cc8ad3df-85cd-4d4c-b9ea-56a403eaad88
+    m_ActionName: Player/Line2[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 500333087}
+        m_TargetAssemblyTypeName: NsfwMiniJam.Rhythm.RhythmManager, Assembly-CSharp
+        m_MethodName: OnHitK
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6ceb9070-ea92-45d7-9ee9-d24451c82c7b
+    m_ActionName: Player/Line3[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 500333087}
+        m_TargetAssemblyTypeName: NsfwMiniJam.Rhythm.RhythmManager, Assembly-CSharp
+        m_MethodName: OnHitL
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6b46fefa-e625-449f-83b0-8541486db987
+    m_ActionName: Player/Line4[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -676,7 +740,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

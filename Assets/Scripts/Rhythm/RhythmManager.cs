@@ -104,7 +104,14 @@ namespace NsfwMiniJam.Rhythm
 
             Music = _info.Music[GlobalData.LevelIndex];
 
-            _anim.runtimeAnimatorController = Music.Controller;
+            if (Music.Controller == null)
+            {
+                _anim.gameObject.SetActive(false);
+            }
+            else
+            {
+                _anim.runtimeAnimatorController = Music.Controller;
+            }
 
             _leftToSpawn = Music.NoteCount;
             _leftToTape = Music.NoteCount;
@@ -219,7 +226,7 @@ namespace NsfwMiniJam.Rhythm
 
                 if (Notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
                 {
-                    HitNote(_info.MissInfo);
+                    HitNote(_info.MissInfo, Notes[0].LineRequirement);
                 }
             }
 
@@ -228,6 +235,7 @@ namespace NsfwMiniJam.Rhythm
 
         public float YHitArea => _hitArea.anchoredPosition.y;
 
+        private readonly char[] _reqKeys = new[] { 'S', 'D', 'K', 'L' };
         private void SpawnSingleNote(int stepCount)
         {
             var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex + stepCount);
@@ -240,8 +248,12 @@ namespace NsfwMiniJam.Rhythm
 
             n.name = $"Note {_noteSpawnIndex}";
 
-            // DEBUG
-            // n.GetComponentInChildren<TMP_Text>().text = _noteSpawnIndex.ToString();
+            var req = Music.KeyOverrides ? Random.Range(1, 5) : 0;
+
+            if (req != 0)
+            {
+                n.GetComponentInChildren<TMP_Text>().text = _reqKeys[req - 1].ToString();
+            }
 
             var rTransform = (RectTransform)n.transform;
             rTransform.anchorMin = new(.5f, 0f);
@@ -264,7 +276,7 @@ namespace NsfwMiniJam.Rhythm
                 image.color = Color.red;
             }
 
-            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex });
+            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, Id = _noteSpawnIndex, LineRequirement = req });
 
             _leftToSpawn--;
 
@@ -291,7 +303,7 @@ namespace NsfwMiniJam.Rhythm
             PersistencyManager.Instance.Save();
         }
 
-        private void HitNote(HitInfo data)
+        private void HitNote(HitInfo data, int line)
         {
             if (!_isAlive) return;
 
@@ -308,6 +320,10 @@ namespace NsfwMiniJam.Rhythm
                 {
                     data = _info.HitInfo.Last();
                 }
+            }
+            else if (note.LineRequirement != 0 && note.LineRequirement != line)
+            {
+                data = _info.WrongInfo;
             }
 
             // Update combo
@@ -432,7 +448,7 @@ namespace NsfwMiniJam.Rhythm
             _cumText.color = Color.black;
         }
 
-        public void OnHit(InputAction.CallbackContext value)
+        public void HitNoteCallback(InputAction.CallbackContext value, int line)
         {
             if (value.performed)
             {
@@ -472,7 +488,7 @@ namespace NsfwMiniJam.Rhythm
                             var info = _info.HitInfo[i];
                             if (Mathf.Abs(_hitYPos - Notes[0].RT.anchoredPosition.y) < info.Distance)
                             {
-                                HitNote(info);
+                                HitNote(info, line);
                                 break;
                             }
                         }
@@ -481,6 +497,12 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
         }
+
+        public void OnHit(InputAction.CallbackContext value) => HitNoteCallback(value, 0);
+        public void OnHitS(InputAction.CallbackContext value) => HitNoteCallback(value, 1);
+        public void OnHitD(InputAction.CallbackContext value) => HitNoteCallback(value, 2);
+        public void OnHitK(InputAction.CallbackContext value) => HitNoteCallback(value, 3);
+        public void OnHitL(InputAction.CallbackContext value) => HitNoteCallback(value, 4);
 
         public void OnRestart(InputAction.CallbackContext value)
         {
@@ -499,5 +521,7 @@ namespace NsfwMiniJam.Rhythm
         public bool IsTrap;
         public bool IsHypnotic;
         public int Id;
+
+        public int LineRequirement;
     }
 }

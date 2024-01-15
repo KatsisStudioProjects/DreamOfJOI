@@ -26,8 +26,9 @@ MonoBehaviour:
     NoFailOverrides: 1
     HypnotisedOverrides: 0
     MinesOverrides: 0
+    KeyOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
-    Intro: {fileID: 4900000, guid: 8b5929ac1be43f142836d6cab9b8542b, type: 3}
+    Intro: {fileID: 4900000, guid: 6b1de68fb7d8cb441800ff83d137df75, type: 3}
     Name: Hypnotism
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
@@ -38,8 +39,9 @@ MonoBehaviour:
     NoFailOverrides: 0
     HypnotisedOverrides: 1
     MinesOverrides: 0
+    KeyOverrides: 0
   - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
-    Intro: {fileID: 4900000, guid: 8b5929ac1be43f142836d6cab9b8542b, type: 3}
+    Intro: {fileID: 4900000, guid: b8f1825525c5d5848b4a012c935ea9a4, type: 3}
     Name: Corruption
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
@@ -50,6 +52,19 @@ MonoBehaviour:
     NoFailOverrides: 0
     HypnotisedOverrides: 0
     MinesOverrides: 1
+    KeyOverrides: 0
+  - Controller: {fileID: 0}
+    Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
+    Name: Secret
+    Music: {fileID: 8300000, guid: b41209ed691a19743b457dc6b29e3c24, type: 3}
+    Bpm: 100
+    NoteCount: 50
+    ModifierName: TODO
+    ModifierDescription: TODO
+    NoFailOverrides: 0
+    HypnotisedOverrides: 0
+    MinesOverrides: 0
+    KeyOverrides: 1
   HitInfo:
   - DisplayText: Bad
     Distance: 100
