@@ -33,6 +33,7 @@ namespace NsfwMiniJam.Menu
                     case 0: AchievementManager.Instance.Unlock(AchievementID.FCTutorial); break;
                     case 1: AchievementManager.Instance.Unlock(AchievementID.FCHypnotism); break;
                     case 2: AchievementManager.Instance.Unlock(AchievementID.FCDemon); break;
+                    case 3: AchievementManager.Instance.Unlock(AchievementID.FCSecret); break;
                 }
 
                 if (GlobalData.Hidden == HiddenType.Reversed)
