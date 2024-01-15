@@ -576,7 +576,7 @@ namespace NsfwMiniJam.Rhythm
                         StartCoroutine(WaitAndShowGameOver());
 
                         UpdateVibrations(1f);
-                        _vibrationTimer = 2f;
+                        _vibrationTimer = 1f;
                     }
                     else
                     {
