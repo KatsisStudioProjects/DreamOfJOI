@@ -1,2 +1,3 @@
-Sample intro story text for the church
+Welcome weary traveller to our church. Have you come to pray, or...
+...Confess your sins?
 -> END
