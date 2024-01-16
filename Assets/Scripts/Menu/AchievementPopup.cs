@@ -2,6 +2,7 @@
 using NsfwMiniJam.Persistency;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NsfwMiniJam.Menu
 {
@@ -19,6 +20,9 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private TMP_Text _sideTitle, _sideDesc;
 
+        [SerializeField]
+        private Sprite _unlocked;
+
         private void Awake()
         {
             foreach (var c in AchievementManager.Instance.Achievements)
@@ -27,6 +31,10 @@ namespace NsfwMiniJam.Menu
                 var ta = c.Value;
 
                 var ach = Instantiate(_achievementPrefab, _achievementContainer).GetComponent<AchievementIcon>();
+                if (PersistencyManager.Instance.SaveData.UnlockedAchievements.Contains(key))
+                {
+                    ach.GetComponent<Image>().sprite = _unlocked;
+                }
                 ach.OnPointerEnterEvt.AddListener(new(() =>
                 {
                     _sidePanel.gameObject.SetActive(true);
