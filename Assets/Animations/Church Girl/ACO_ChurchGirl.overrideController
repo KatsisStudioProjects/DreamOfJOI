@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ACO_ChurchGirl
+  m_Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 528d9a1a1ca207941aba635160c37788, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 02804b4d0a7194646a55255cb23150b7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c0432aacdce13ac42a4f62b252f35e86, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 03397899c84baf44fb2e0d17d120582b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 900e95e66b7928e4ba52dd0fac2bbc15, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ca32709060a582245870d1825bcde22c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 76e3dfbc24f98c74786c0decdabdf702, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6c8b980001562804299b8e220bdd1ce8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5f238457b92fa5342b30d28b5dc38f48, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5c91988b214810c418c584e7860ebfa2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 13e9cdce4adff8248ad4c5ed71d98933, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a09ea8602cc61a54285d60138d72bb79, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 19f6baa0988b65e43b057730b9678d7d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f52bd71d399abf341a47bd3456cedc5b, type: 2}
