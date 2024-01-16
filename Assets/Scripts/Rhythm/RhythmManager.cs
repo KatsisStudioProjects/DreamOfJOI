@@ -47,7 +47,7 @@ namespace NsfwMiniJam.Rhythm
         private TMP_Text _startCountdown;
 
         [SerializeField]
-        private RectTransform _cumFill;
+        private RectTransform _errorFill, _cumFill;
 
         [SerializeField]
         private Animator _anim;
@@ -66,7 +66,7 @@ namespace NsfwMiniJam.Rhythm
 
         public MusicInfo Music { private set; get; }
 
-        private float _cumLevel;
+        private float _errorLevel;
 
         private int _combo;
 
@@ -219,6 +219,7 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
+            _cumFill.transform.localScale = new(1f, 1f - (_leftToTape / (float)Music.NoteCount));
             if (_volumeTimer > 0f && _leftToTape == 0)
             {
                 _volumeTimer -= Time.deltaTime;
@@ -427,14 +428,14 @@ namespace NsfwMiniJam.Rhythm
                 data = _info.MissInfo;
                 _isAlive = false;
                 _combo = 0;
-                _cumLevel = 1f;
+                _errorLevel = 1f;
             }
             else if (GlobalData.SuddenDeath == SuddenDeathType.Normal && data.DoesBreakCombo)
             {
                 data = _info.MissInfo;
                 _isAlive = false;
                 _combo = 0;
-                _cumLevel = 1f;
+                _errorLevel = 1f;
             }
             else
             {
@@ -454,7 +455,7 @@ namespace NsfwMiniJam.Rhythm
                     }
                 }
 
-                _cumLevel -= data.IncreaseOnHit;
+                _errorLevel -= data.IncreaseOnHit;
             }
 
             // buttplug.io
@@ -471,11 +472,11 @@ namespace NsfwMiniJam.Rhythm
             _timerDisplayText = 1f;
 
             // Update cum level
-            _cumLevel = Mathf.Clamp01(_cumLevel);
+            _errorLevel = Mathf.Clamp01(_errorLevel);
             UpdateCumBar();
 
             // We die if cum reach max level
-            if (_cumLevel == 1f)
+            if (_errorLevel == 1f)
             {
                 _isAlive = false;
             }
@@ -532,7 +533,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void UpdateCumBar()
         {
-            _cumFill.localScale = new(1f, _cumLevel, 1f);
+            _errorFill.localScale = new(1f, _errorLevel, 1f);
         }
 
         private IEnumerator HitEffect(int index)
