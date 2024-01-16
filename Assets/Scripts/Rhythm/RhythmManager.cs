@@ -341,7 +341,7 @@ namespace NsfwMiniJam.Rhythm
 
             bool isHypnotic = false, isTrap = false, isBlind = false;
 
-            if (_speNoteInterval < _info.SpeNoteMinInterval)
+            if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
             { }
             else if (_speNoteInterval > _info.SpeNoteMaxInterval)
             {
