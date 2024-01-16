@@ -179,7 +179,10 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _anim.SetTrigger("ReadyUp");
                 }
-                _anim.SetTrigger("Start");
+                else
+                {
+                    _anim.SetTrigger("Start");
+                }
                 _startCountdown.gameObject.SetActive(true);
             });
         }
@@ -220,6 +223,7 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _startCountdown.gameObject.SetActive(false);
                     BgmManager.Instance.StartBgm();
+                    _anim.SetTrigger("Start");
                 }
             }
 
