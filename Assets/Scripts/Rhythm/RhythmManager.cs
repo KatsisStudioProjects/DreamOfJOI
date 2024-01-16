@@ -50,7 +50,7 @@ namespace NsfwMiniJam.Rhythm
         private RectTransform _errorFill, _cumFill;
 
         [SerializeField]
-        private Animator _anim;
+        private Animator _anim, _penisAnim;
 
         [SerializeField]
         private TMP_Text _cumText;
@@ -175,6 +175,7 @@ namespace NsfwMiniJam.Rhythm
             BgmManager.Instance.SetPitch(BasePitch);
             VNManager.Instance.ShowStory(Music.Intro, () =>
             {
+                _penisAnim.SetTrigger("Grow");
                 if (Music.HaveReadyUpAnim)
                 {
                     _anim.SetTrigger("ReadyUp");
