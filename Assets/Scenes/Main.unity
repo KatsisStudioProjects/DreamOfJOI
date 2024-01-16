@@ -678,8 +678,8 @@ MonoBehaviour:
   _victory: {fileID: 1375410870}
   _baseContainer: {fileID: 2094938096}
   _startCountdown: {fileID: 2073191417}
-  _errorFill: {fileID: 914161205}
-  _cumFill: {fileID: 689570018}
+  _errorFill: {fileID: 689570018}
+  _cumFill: {fileID: 914161205}
   _anim: {fileID: 209662405}
   _cumText: {fileID: 850355815}
   _hypnotismCounter: {fileID: 1679171382}
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 914161207}
   - component: {fileID: 914161206}
   m_Layer: 5
-  m_Name: BadFill
+  m_Name: ProgressFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2285,7 +2285,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &914161206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3378,7 +3378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.105882354, g: 0.10980392, b: 0.105882354, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
