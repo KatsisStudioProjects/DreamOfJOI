@@ -20,6 +20,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: bca287fef7dfb0e4987d44c440c00147, type: 3}
     Bpm: 50
     NoteCount: 30
+    HaveReadyUpAnim: 0
+    HaveSpeNoteAnim: 0
     ModifierName: Teacher Guidance
     ModifierDescription: You can't fail the level but can't unlock any achievement
       (except tutorial specific ones)
@@ -34,6 +36,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
+    HaveReadyUpAnim: 0
+    HaveSpeNoteAnim: 0
     ModifierName: Do what I say
     ModifierDescription: Purple note will hypnotise you, while in that state you
       can't hit any note, repetitively press 'space' to break free
@@ -42,12 +46,14 @@ MonoBehaviour:
     MinesOverrides: 0
     KeyOverrides: 0
     BlindOverrides: 0
-  - Controller: {fileID: 9100000, guid: a51379e11dac48d45a8c6cf8734679a6, type: 2}
+  - Controller: {fileID: 22100000, guid: d50e0f02662377242b5dc0cdf8a8dca8, type: 2}
     Intro: {fileID: 4900000, guid: b8f1825525c5d5848b4a012c935ea9a4, type: 3}
     Name: Church
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
+    HaveReadyUpAnim: 1
+    HaveSpeNoteAnim: 1
     ModifierName: Hidden Sin
     ModifierDescription: When a note is red, the church staff is looking at you,
       hitting them grant a miss and avoid them a perfect
@@ -62,6 +68,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
+    HaveReadyUpAnim: 0
+    HaveSpeNoteAnim: 0
     ModifierName: Blinded
     ModifierDescription: Grey note cover your vision for a bit, keep the rhythm in
       mind to tape at the right time
@@ -76,6 +84,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
     Bpm: 360
     NoteCount: 100
+    HaveReadyUpAnim: 0
+    HaveSpeNoteAnim: 0
     ModifierName: Frenzy Time
     ModifierDescription: Notes now drop on 4 separate lines that you must control
       with S, D, K and L

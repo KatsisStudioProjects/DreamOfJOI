@@ -175,6 +175,10 @@ namespace NsfwMiniJam.Rhythm
             BgmManager.Instance.SetPitch(BasePitch);
             VNManager.Instance.ShowStory(Music.Intro, () =>
             {
+                if (Music.HaveReadyUpAnim)
+                {
+                    _anim.SetTrigger("ReadyUp");
+                }
                 _anim.SetTrigger("Start");
                 _startCountdown.gameObject.SetActive(true);
             });
@@ -523,6 +527,11 @@ namespace NsfwMiniJam.Rhythm
             {
                 _blindDuration = _info.BlindDurationSec;
                 _blindDir = true;
+            }
+
+            if ((note.IsHypnotic || note.IsTrap || note.IsBlind) && Music.HaveSpeNoteAnim)
+            {
+                _anim.SetTrigger("SpeNote");
             }
 
             // Destroy note

@@ -41,6 +41,10 @@ namespace NsfwMiniJam.SO
         public float Bpm;
         public int NoteCount;
 
+        [Header("Animations")]
+        public bool HaveReadyUpAnim;
+        public bool HaveSpeNoteAnim;
+
         [Header("Modifier")]
         public string ModifierName;
         [TextArea]

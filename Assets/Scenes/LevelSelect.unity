@@ -12074,7 +12074,6 @@ MonoBehaviour:
   _sidePanel: {fileID: 1905304946}
   _sideTitle: {fileID: 1701815389}
   _sideDesc: {fileID: 1593648673}
-  _unlocked: {fileID: 21300000, guid: d4f69f4dc0973b340a72e42d2fef33d3, type: 3}
 --- !u!1 &2078292906
 GameObject:
   m_ObjectHideFlags: 0
