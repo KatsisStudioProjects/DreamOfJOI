@@ -1,5 +1,7 @@
 ﻿using NsfwMiniJam.Achievement;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NsfwMiniJam.Persistency
 {
@@ -23,6 +25,14 @@ namespace NsfwMiniJam.Persistency
                     Scores[level] = score;
                 }
             }
+
+            if (IsAllFC()) AchievementManager.Instance.Unlock(AchievementID.FullFC);
+            if (IsAllPerfect()) AchievementManager.Instance.Unlock(AchievementID.FullPerfect);
+
+            if (UnlockedAchievements.Count == Enum.GetValues(typeof(AchievementID)).Length - 1)
+            {
+                AchievementManager.Instance.Unlock(AchievementID.AllAchievements);
+            }
         }
 
         public ScoreData GetScore(int level)
@@ -36,6 +46,9 @@ namespace NsfwMiniJam.Persistency
             UnlockedAchievements.Add(id);
             PersistencyManager.Instance.Save();
         }
+
+        private bool IsAllFC() => Scores.Count == 5 && Scores.All(x => x.Value.IsFullCombo);
+        private bool IsAllPerfect() => Scores.Count == 5 && Scores.All(x => x.Value.Score == 1f);
     }
 
     public class ScoreData
