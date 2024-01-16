@@ -70,9 +70,14 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCChurch, new() { Name = "Purified", Description = "Get a full combo on the church level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCLamia, new() { Name = "Snake's Snack", Description = "Get a full combo on the lamia level", Hint = "Get a full combo on a specific level" } },
-            { AchievementID.FCSecret, new() { Name = "Unstoppable", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FCSecret, new() { Name = "Bad End Night", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
 
-            { AchievementID.FCToy, new() { Name = "Welcome to the Rodeo", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } }
+            { AchievementID.FCToy, new() { Name = "Welcome to the Rodeo", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } },
+
+            { AchievementID.FullFC, new() { Name = "Bringing Joy in JOI", Description = "Get a full combo on all levels", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FullPerfect, new() { Name = "Ecstacy", Description = "Get a SSS rank on all levels", Hint = "Get a full combo on a specific level" } },
+
+            { AchievementID.AllAchievements, new() { Name = "Midas's Touch", Description = "Get all the achievements", Hint = "Get a full combo on a specific level" } }
         };
     }
 
@@ -97,7 +102,12 @@ namespace NsfwMiniJam.Achievement
         FCLamia,
         FCSecret,
 
-        FCToy
+        FCToy,
+
+        FullFC,
+        FullPerfect,
+
+        AllAchievements
     }
 
     [System.Serializable]
