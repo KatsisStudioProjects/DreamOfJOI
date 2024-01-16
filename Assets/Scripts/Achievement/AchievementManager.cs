@@ -1,5 +1,6 @@
 ﻿using NsfwMiniJam.Persistency;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,15 @@ namespace NsfwMiniJam.Achievement
 
         [SerializeField]
         private GameObject _prefab;
+
+        [SerializeField]
+        private Icon[] _icons;
+
+        [SerializeField]
+        private Sprite _unlocked;
+
+        public Sprite GetIcon(AchievementID id)
+            => _icons.FirstOrDefault(x => x.Key == id)?.Sprite ?? _unlocked;
 
         public static AchievementManager Instance { get; private set; }
 
@@ -88,6 +98,13 @@ namespace NsfwMiniJam.Achievement
         FCSecret,
 
         FCToy
+    }
+
+    [System.Serializable]
+    public class Icon
+    {
+        public AchievementID Key;
+        public Sprite Sprite;
     }
 
     public record Achievement
