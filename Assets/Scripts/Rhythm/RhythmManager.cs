@@ -447,21 +447,27 @@ namespace NsfwMiniJam.Rhythm
             }
             else
             {
+                string targetAnim = null;
+                if ((note.IsHypnotic || note.IsTrap || note.IsBlind) && Music.HaveSpeNoteAnim)
+                {
+                    targetAnim = "SpeNote";
+                }
                 if (data.DoesBreakCombo)
                 {
-                    _anim.SetTrigger("FailCombo");
+                    targetAnim ??= "FailCombo";
 
                     _combo = 0;
                 }
                 else
                 {
                     _combo++;
-
-                    if (_combo == 5)
-                    {
-                        _anim.SetTrigger("SuccessCombo");
-                    }
                 }
+
+                if (targetAnim != null)
+                {
+                    _anim.SetTrigger(targetAnim);
+                }
+                _anim.SetInteger("Combo", _combo);
 
                 _errorLevel -= data.IncreaseOnHit;
             }
@@ -531,11 +537,6 @@ namespace NsfwMiniJam.Rhythm
             {
                 _blindDuration = _info.BlindDurationSec;
                 _blindDir = true;
-            }
-
-            if ((note.IsHypnotic || note.IsTrap || note.IsBlind) && Music.HaveSpeNoteAnim)
-            {
-                _anim.SetTrigger("SpeNote");
             }
 
             // Destroy note
