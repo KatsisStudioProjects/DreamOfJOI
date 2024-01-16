@@ -462,6 +462,7 @@ namespace NsfwMiniJam.Rhythm
                 else
                 {
                     _combo++;
+                    _penisAnim.SetTrigger("Pulse");
                 }
 
                 if (targetAnim != null)
