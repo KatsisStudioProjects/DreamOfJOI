@@ -59,12 +59,12 @@ namespace NsfwMiniJam.Achievement
 
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on", Hint = null } },
             { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the church level", Hint = null } },
-            { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on", Hint = null } },
             { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage", Hint = null } },
+            { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on", Hint = null } },
 
             { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on", Hint = "The tutorial wasn't made for this modifier, it will be ignored!" } },
 
-            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game", Hint = "Resist the urge to cum" } },
+            { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game", Hint = "Resist the urge to cum at the end of a level" } },
 
             { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
