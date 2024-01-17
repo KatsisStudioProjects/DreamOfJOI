@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e0d79ee379914ea324005eae73dc9, type: 3}
   m_Name: DialTutorial
   m_EditorClassIdentifier: 
-  ComboSmall: []
+  ComboSmall:
+  - Sample combo small
   ComboBig: []
   ComboFail: []
+  FailAfterComboSmall:
+  - Sample FACS
   SpeNotes: []
+  Defeat: []
   Victory: []
   FullCombo: []
   Perfect: []
