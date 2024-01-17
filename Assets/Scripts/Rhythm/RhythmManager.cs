@@ -64,6 +64,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private Image _blindScreen;
 
+        [SerializeField]
+        private TMP_Text _midGameDialogues;
+
         public MusicInfo Music { private set; get; }
 
         private float _errorLevel;
@@ -112,6 +115,8 @@ namespace NsfwMiniJam.Rhythm
         private float _blindDuration;
 
         private int _speNoteInterval;
+
+        private float _midDialogueTimer;
 
         private void Awake()
         {
@@ -207,6 +212,16 @@ namespace NsfwMiniJam.Rhythm
                 }
             }
 
+            if (_midDialogueTimer > 0f)
+            {
+                _midDialogueTimer -= Time.deltaTime;
+
+                if (_midDialogueTimer <= 0f)
+                {
+                    _midGameDialogues.gameObject.SetActive(false);
+                }
+            }
+
             if (_vibrationTimer > 0f)
             {
                 _vibrationTimer -= Time.deltaTime;
@@ -294,6 +309,15 @@ namespace NsfwMiniJam.Rhythm
             }
 
             SpawnNotes();
+        }
+
+        private void DisplayMidDialogue(string[] lines)
+        {
+            if (!lines.Any()) return;
+
+            _midDialogueTimer = 3f;
+            _midGameDialogues.gameObject.SetActive(true);
+            _midGameDialogues.text = lines[Random.Range(0, lines.Length)];
         }
 
         public void UpdateVibrations(float value)
@@ -448,8 +472,9 @@ namespace NsfwMiniJam.Rhythm
             }
             else
             {
+                var isSpeNote = note.IsHypnotic || note.IsTrap || note.IsBlind;
                 string targetAnim = null;
-                if ((note.IsHypnotic || note.IsTrap || note.IsBlind) && Music.HaveSpeNoteAnim)
+                if (isSpeNote && Music.HaveSpeNoteAnim)
                 {
                     targetAnim = "SpeNote";
                 }
@@ -457,12 +482,35 @@ namespace NsfwMiniJam.Rhythm
                 {
                     targetAnim ??= "FailCombo";
 
+                    if (_combo == Music.NoteCount / 3)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.FailAfterComboSmall);
+                    }
+                    else if (_combo >= Music.NoteCount / 3)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.ComboFail);
+                    }
+
                     _combo = 0;
                 }
                 else
                 {
                     _combo++;
                     _penisAnim.SetTrigger("Pulse");
+
+                    if (_combo == Music.NoteCount / 3)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.ComboSmall);
+                    }
+                    else if (_combo == 2 * Music.NoteCount / 3)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.ComboBig);
+                    }
+                }
+
+                if (isSpeNote)
+                {
+                    DisplayMidDialogue(Music.DialogueInfo.SpeNotes);
                 }
 
                 if (targetAnim != null)
@@ -507,6 +555,7 @@ namespace NsfwMiniJam.Rhythm
             if (!_isAlive)
             {
                 _anim.SetTrigger("Defeat");
+                DisplayMidDialogue(Music.DialogueInfo.Defeat);
             }
             else
             {
@@ -515,6 +564,19 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _volumeTimer = 1f;
                     _anim.SetTrigger("Victory");
+
+                    if (_score == _maxPossibleScore)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.Perfect);
+                    }
+                    else if (_combo == Music.NoteCount)
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.FullCombo);
+                    }
+                    else
+                    {
+                        DisplayMidDialogue(Music.DialogueInfo.Victory);
+                    }
                 }
             }
 
