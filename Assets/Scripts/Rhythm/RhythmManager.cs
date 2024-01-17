@@ -118,6 +118,8 @@ namespace NsfwMiniJam.Rhythm
 
         private float _midDialogueTimer;
 
+        private bool _is6K;
+
         private void Awake()
         {
             Instance = this;
@@ -345,7 +347,22 @@ namespace NsfwMiniJam.Rhythm
 
             n.name = $"Note {_noteSpawnIndex}";
 
-            var req = Music.KeyOverrides ? Random.Range(1, 5) : 0;
+            int req;
+            if (Music.KeyOverrides)
+            {
+                if (_is6K)
+                {
+                    req = Random.Range(1, 7);
+                }
+                else
+                {
+                    req = Random.Range(1, 5);
+                }
+            }
+            else
+            {
+                req = 0;
+            }
             var rPos = (RectTransform)_hitArea[req].transform;
 
             if (req != 0)
@@ -364,9 +381,15 @@ namespace NsfwMiniJam.Rhythm
 
             var image = n.GetComponent<Image>();
 
-            bool isHypnotic = false, isTrap = false, isBlind = false;
+            bool isHypnotic = false, isTrap = false, isBlind = false, is6K = false;
 
-            if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
+            if (_leftToSpawn == Music.NoteCount / 2)
+            {
+                is6K = true;
+                _is6K = true;
+                _noteSpawnIndex += 15;
+            }
+            else if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
             { }
             else if (_speNoteInterval > _info.SpeNoteMaxInterval)
             {
@@ -400,12 +423,16 @@ namespace NsfwMiniJam.Rhythm
                 image.color = Color.gray;
                 _speNoteInterval = 0;
             }
+            else if (is6K)
+            {
+                image.color = Color.blue;
+            }
             else
             {
                 _speNoteInterval++;
             }
 
-            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, IsBlind = isBlind, Id = _noteSpawnIndex, LineRequirement = req });
+            Notes.Add(new() { RT = rTransform, Image = image, IsTrap = isTrap, IsHypnotic = isHypnotic, IsBlind = isBlind, Is6K = is6K, Id = _noteSpawnIndex, LineRequirement = req });
 
             _leftToSpawn--;
 
@@ -437,6 +464,12 @@ namespace NsfwMiniJam.Rhythm
             if (!_isAlive) return;
 
             var note = Notes[0];
+
+            if (note.Is6K)
+            {
+                _hitAreaImage[^1].enabled = true;
+                _hitAreaImage[^2].enabled = true;
+            }
 
             // Update hit if note is a trap
             if (note.IsTrap)
@@ -472,7 +505,7 @@ namespace NsfwMiniJam.Rhythm
             }
             else
             {
-                var isSpeNote = note.IsHypnotic || note.IsTrap || note.IsBlind;
+                var isSpeNote = note.IsHypnotic || note.IsTrap || note.IsBlind || note.Is6K;
                 string targetAnim = null;
                 if (isSpeNote && Music.HaveSpeNoteAnim)
                 {
@@ -700,6 +733,8 @@ namespace NsfwMiniJam.Rhythm
         public void OnHitD(InputAction.CallbackContext value) => HitNoteCallback(value, 2);
         public void OnHitK(InputAction.CallbackContext value) => HitNoteCallback(value, 3);
         public void OnHitL(InputAction.CallbackContext value) => HitNoteCallback(value, 4);
+        public void OnHitF(InputAction.CallbackContext value) => HitNoteCallback(value, 5);
+        public void OnHitJ(InputAction.CallbackContext value) => HitNoteCallback(value, 6);
 
         public void OnRestart(InputAction.CallbackContext value)
         {
@@ -726,6 +761,7 @@ namespace NsfwMiniJam.Rhythm
         public bool IsTrap;
         public bool IsHypnotic;
         public bool IsBlind;
+        public bool Is6K;
         public int Id;
 
         public int LineRequirement;
