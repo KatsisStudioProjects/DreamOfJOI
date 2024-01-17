@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: DialTutorial
   m_EditorClassIdentifier: 
   ComboSmall:
-  - Sample combo small
-  ComboBig: []
-  ComboFail: []
+  - Oh~ You're good~
+  ComboBig:
+  - Ahh~ Yess just like that!!
+  ComboFail:
+  - 'Pfft~ Is that all? '
   FailAfterComboSmall:
-  - Sample FACS
-  SpeNotes: []
-  Defeat: []
-  Victory: []
-  FullCombo: []
-  Perfect: []
+  - Don't worry~ Keep going~
+  SpeNotes:
+  - Get Ready~
+  Defeat:
+  - 'Come back when you''re ready... '
+  Victory:
+  - Ahh~ It's so thick... And warm
+  FullCombo:
+  - Mnghhh Yess!!! Keep going!!!
+  Perfect:
+  - Wow! So much cum! You're so good at this!
