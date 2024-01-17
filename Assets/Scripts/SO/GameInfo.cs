@@ -56,6 +56,9 @@ namespace NsfwMiniJam.SO
         public bool MinesOverrides;
         public bool KeyOverrides;
         public bool BlindOverrides;
+
+        [Header("Dialogues")]
+        public DialogueInfo DialogueInfo;
     }
 
     [System.Serializable]
