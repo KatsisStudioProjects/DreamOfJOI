@@ -39,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4206176847
+    locked: 0
+  - name: Island
+    uniqueID: 1976622149
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
