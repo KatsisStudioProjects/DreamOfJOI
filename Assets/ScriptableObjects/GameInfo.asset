@@ -106,28 +106,28 @@ MonoBehaviour:
     DialogueInfo: {fileID: 11400000, guid: 4b1177103c2aca64ca35c05a5e9c133f, type: 2}
   HitInfo:
   - DisplayText: Bad
-    Distance: 100
+    Distance: 125
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
     Score: 25
     VibrationForce: 0.25
     IncreaseOnHit: 0.0025
   - DisplayText: Good
-    Distance: 70
+    Distance: 100
     Color: {r: 0.7372549, g: 0.5889521, b: 0, a: 1}
     DoesBreakCombo: 0
     Score: 75
     VibrationForce: 0.5
     IncreaseOnHit: 0.005
   - DisplayText: Great
-    Distance: 40
+    Distance: 70
     Color: {r: 0.123694345, g: 0.8867924, b: 0, a: 1}
     DoesBreakCombo: 0
     Score: 150
     VibrationForce: 0.8
     IncreaseOnHit: 0.008
   - DisplayText: Perfect!
-    Distance: 20
+    Distance: 40
     Color: {r: 1, g: 1, b: 0, a: 1}
     DoesBreakCombo: 0
     Score: 300
