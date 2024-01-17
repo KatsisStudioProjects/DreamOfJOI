@@ -44,6 +44,7 @@ namespace NsfwMiniJam.SO
         [Header("Animations")]
         public bool HaveReadyUpAnim;
         public bool HaveSpeNoteAnim;
+        public bool HaveCumFC;
 
         [Header("Modifier")]
         public string ModifierName;

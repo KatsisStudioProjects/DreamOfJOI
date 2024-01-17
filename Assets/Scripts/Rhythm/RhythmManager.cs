@@ -202,7 +202,6 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _anim.SetTrigger("Start");
                 }
-                Debug.Log("start");
                 _startCountdown.gameObject.SetActive(true);
             }
 
@@ -732,7 +731,14 @@ namespace NsfwMiniJam.Rhythm
                     if (_cumRequirementStoke == 0)
                     {
                         _cumText.gameObject.SetActive(false);
-                        _anim.SetTrigger("Cum");
+                        if (_combo == Music.NoteCount && Music.HaveCumFC)
+                        {
+                            _anim.SetTrigger("CumFC");
+                        }
+                        else
+                        {
+                            _anim.SetTrigger("Cum");
+                        }
                         StartCoroutine(WaitAndShowGameOver());
 
                         UpdateVibrations(1f);

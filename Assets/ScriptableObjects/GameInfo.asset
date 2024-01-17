@@ -22,6 +22,7 @@ MonoBehaviour:
     NoteCount: 30
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
+    HaveCumFC: 1
     ModifierName: Teacher Guidance
     ModifierDescription: You can't fail the level but can't unlock any achievement
       (except tutorial specific ones)
@@ -39,6 +40,7 @@ MonoBehaviour:
     NoteCount: 30
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
+    HaveCumFC: 0
     ModifierName: Do what I say
     ModifierDescription: Purple note will hypnotise you, while in that state you
       can't hit any note, repetitively press 'space' to break free
@@ -56,6 +58,7 @@ MonoBehaviour:
     NoteCount: 30
     HaveReadyUpAnim: 1
     HaveSpeNoteAnim: 1
+    HaveCumFC: 0
     ModifierName: Hidden Sin
     ModifierDescription: When a note is red, the church staff is looking at you,
       hitting them grant a miss and avoid them a perfect
@@ -73,6 +76,7 @@ MonoBehaviour:
     NoteCount: 30
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
+    HaveCumFC: 0
     ModifierName: Blinded
     ModifierDescription: Grey note cover your vision for a bit, keep the rhythm in
       mind to tape at the right time
@@ -90,6 +94,7 @@ MonoBehaviour:
     NoteCount: 100
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
+    HaveCumFC: 0
     ModifierName: Frenzy Time
     ModifierDescription: Notes now drop on 4 separate lines that you must control
       with S, D, K and L
