@@ -393,7 +393,7 @@ namespace NsfwMiniJam.Rhythm
             {
                 is6K = true;
                 _is6K = true;
-                _noteSpawnIndex += 15;
+                _noteSpawnIndex += 10;
             }
             else if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
             { }

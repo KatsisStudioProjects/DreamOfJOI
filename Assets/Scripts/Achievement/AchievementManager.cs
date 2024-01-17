@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NsfwMiniJam.Achievement
 {
@@ -45,7 +46,8 @@ namespace NsfwMiniJam.Achievement
             var instance = Instantiate(_prefab, _container);
 
             var data = Achievements[achievement];
-            instance.GetComponentInChildren<TMP_Text>().text = data.Name;
+
+            instance.GetComponent<AchievementPrefab>().Init(GetIcon(achievement), data.Name);
 
             PersistencyManager.Instance.SaveData.Unlock(achievement);
 
