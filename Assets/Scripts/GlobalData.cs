@@ -1,11 +1,17 @@
 ﻿using Buttplug.Client;
+using NsfwMiniJam.SO;
 using System;
+using UnityEngine;
 
 namespace NsfwMiniJam
 {
     public static class GlobalData
     {
         public static int LevelIndex;
+
+        public static string CustomSongPath;
+        public static MusicInfo CustomMusic;
+        public static AudioType CustomMusicAudioType;
 
         public static SuddenDeathType SuddenDeath;
         public static HiddenType Hidden;

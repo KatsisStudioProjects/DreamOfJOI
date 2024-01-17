@@ -45,6 +45,11 @@ namespace NsfwMiniJam.Rhythm
             _bgm.Play();
         }
 
+        public void SetClip(AudioClip clip)
+        {
+            _bgm.clip = clip;
+        }
+
         public void SetVolume(float value)
         {
             _bgm.volume = value;

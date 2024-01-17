@@ -15,7 +15,7 @@ namespace NsfwMiniJam.VN
 
         private const float _displaySpeedRef = .02f;
 
-        private string _toDisplay;
+        private string _toDisplay = string.Empty;
         public string ToDisplay
         {
             set

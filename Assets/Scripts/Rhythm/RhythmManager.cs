@@ -3,14 +3,17 @@ using NsfwMiniJam.Menu;
 using NsfwMiniJam.Persistency;
 using NsfwMiniJam.SO;
 using NsfwMiniJam.VN;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace NsfwMiniJam.Rhythm
 {
@@ -126,13 +129,15 @@ namespace NsfwMiniJam.Rhythm
 
         private bool _is6K;
 
+        private bool _canStart;
+
         private void Awake()
         {
             Instance = this;
 
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
-            Music = _info.Music[GlobalData.LevelIndex];
+            Music = GlobalData.LevelIndex == -1 ? GlobalData.CustomMusic : _info.Music[GlobalData.LevelIndex];
 
             if (Music.Controller == null)
             {
@@ -185,9 +190,9 @@ namespace NsfwMiniJam.Rhythm
                 GlobalData.SuddenDeath = SuddenDeathType.None;
             }
 
-            BgmManager.Instance.SetPitch(BasePitch);
-            VNManager.Instance.ShowStory(Music.Intro, () =>
+            void onEnd()
             {
+                _canStart = true;
                 _penisAnim.SetTrigger("Grow");
                 if (Music.HaveReadyUpAnim)
                 {
@@ -197,13 +202,44 @@ namespace NsfwMiniJam.Rhythm
                 {
                     _anim.SetTrigger("Start");
                 }
+                Debug.Log("start");
                 _startCountdown.gameObject.SetActive(true);
-            });
+            }
+
+            BgmManager.Instance.SetPitch(BasePitch);
+            if (GlobalData.LevelIndex == -1)
+            {
+                VNManager.Instance.ForceStop();
+                _midGameDialogues.gameObject.SetActive(true);
+                _midGameDialogues.text = "Please wait while the song is loading";
+                StartCoroutine(LoadCustomSong(onEnd));
+            }
+            else
+            {
+                VNManager.Instance.ShowStory(Music.Intro, onEnd);
+            }
+        }
+
+        private IEnumerator LoadCustomSong(Action onEnd)
+        {
+            using UnityWebRequest req = UnityWebRequestMultimedia.GetAudioClip($"file://{GlobalData.CustomSongPath}", GlobalData.CustomMusicAudioType);
+            yield return req.SendWebRequest();
+            if (req.responseCode == 200)
+            {
+                _midGameDialogues.gameObject.SetActive(false);
+                BgmManager.Instance.SetClip(DownloadHandlerAudioClip.GetContent(req));
+                onEnd();
+            }
+            else
+            {
+                Debug.LogError($"Failed to fetch file: {req.responseCode}");
+                SceneManager.LoadScene("LevelSelect");
+            }
         }
 
         private void Update()
         {
-            if (VNManager.Instance.IsPlayingStory) return;
+            if (VNManager.Instance.IsPlayingStory || !_canStart) return;
 
             if (_blindDir && _blindTimer < .1f) _blindTimer += Time.deltaTime;
             else if (!_blindDir && _blindTimer > 0f) _blindTimer -= Time.deltaTime;
@@ -321,7 +357,7 @@ namespace NsfwMiniJam.Rhythm
 
         private void DisplayMidDialogue(string[] lines)
         {
-            if (!lines.Any()) return;
+            if (lines == null || !lines.Any()) return;
 
             _midDialogueTimer = 3f;
             _midGameDialogues.gameObject.SetActive(true);

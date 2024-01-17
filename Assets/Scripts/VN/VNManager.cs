@@ -63,7 +63,7 @@ namespace NsfwMiniJam.VN
 
         public void DisplayNextDialogue()
         {
-            if (!_container.activeInHierarchy)
+            if (!_container.activeInHierarchy || _story == null)
             {
                 return;
             }
@@ -82,6 +82,11 @@ namespace NsfwMiniJam.VN
                 _container.SetActive(false);
                 _onDone?.Invoke();
             }
+        }
+
+        public void ForceStop()
+        {
+            _container.SetActive(false);
         }
 
         public void ToggleSkip(bool value)
