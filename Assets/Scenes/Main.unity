@@ -1323,10 +1323,6 @@ MonoBehaviour:
   _containerMultHit: {fileID: 1511383915}
   _blindScreen: {fileID: 2099122023}
   _midGameDialogues: {fileID: 2047294220}
-  _6kImgs:
-  - {fileID: 1181294260}
-  - {fileID: 226638705}
-  - {fileID: 1565059689}
   _6kObjs:
   - {fileID: 1181294258}
   - {fileID: 541902096}
@@ -5421,7 +5417,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Don't think you can keep going forever!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f4c7dc27ab0c1c44b6ffc966929e471, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77ea51362f8ee0941a88e5809beb9798, type: 2}
   m_sharedMaterial: {fileID: -1360628206493973521, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
