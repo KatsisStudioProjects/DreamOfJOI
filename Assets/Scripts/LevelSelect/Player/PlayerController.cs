@@ -21,7 +21,7 @@ namespace NsfwMiniJam.LevelSelect.Player
 
         private void FixedUpdate()
         {
-            _rb.velocity = _mov * 10f;
+            _rb.velocity = _mov * 5f;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

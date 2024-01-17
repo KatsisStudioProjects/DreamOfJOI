@@ -68,6 +68,9 @@ namespace NsfwMiniJam.Rhythm
         private TMP_Text _midGameDialogues;
 
         [SerializeField]
+        private Image[] _6kImgs;
+
+        [SerializeField]
         private GameObject[] _6kObjs;
 
         public MusicInfo Music { private set; get; }
@@ -342,7 +345,7 @@ namespace NsfwMiniJam.Rhythm
         {
             var y = BgmManager.Instance.GetNoteNextPos(_noteSpawnIndex + stepCount);
 
-            if (y > Screen.height && _leftToSpawn == 0) return;
+            if (_leftToSpawn == 0) return;
 
             _noteSpawnIndex += stepCount;
 
@@ -386,13 +389,13 @@ namespace NsfwMiniJam.Rhythm
 
             bool isHypnotic = false, isTrap = false, isBlind = false, is6K = false;
 
-            if (Music.KeyOverrides && _leftToSpawn == Music.NoteCount / 2)
+            /*if (Music.KeyOverrides && _leftToSpawn == Music.NoteCount / 2)
             {
                 is6K = true;
                 _is6K = true;
                 _noteSpawnIndex += 10;
             }
-            else if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
+            else */if (_speNoteInterval < _info.SpeNoteMinInterval || _leftToSpawn == 1)
             { }
             else if (_speNoteInterval > _info.SpeNoteMaxInterval)
             {
@@ -470,6 +473,10 @@ namespace NsfwMiniJam.Rhythm
 
             if (note.Is6K)
             {
+                foreach (var o in _6kImgs)
+                {
+                    o.enabled = true;
+                }
                 foreach (var o in _6kObjs)
                 {
                     o.SetActive(true);

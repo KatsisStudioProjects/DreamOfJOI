@@ -7435,7 +7435,7 @@ Transform:
   m_GameObject: {fileID: 1379849080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8942,8 +8942,8 @@ Transform:
   m_GameObject: {fileID: 1603842388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9103,6 +9103,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 55381bf1-d613-4229-b40b-befba230504e
     m_ActionName: Player/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ffeb8614-5e8b-448c-bc93-f2aea1f65d7e
+    m_ActionName: Player/Restart[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 999678ac-c1e8-4054-a492-e128744007e6
+    m_ActionName: Player/Line1[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc8ad3df-85cd-4d4c-b9ea-56a403eaad88
+    m_ActionName: Player/Line2[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ceb9070-ea92-45d7-9ee9-d24451c82c7b
+    m_ActionName: Player/Line3[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6b46fefa-e625-449f-83b0-8541486db987
+    m_ActionName: Player/Line4[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4c42928-b578-4028-9039-b7381d9e1681
+    m_ActionName: Player/Line5 (R2)[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b117f20-a26d-40bf-8165-f194d14c99fa
+    m_ActionName: Player/Line6 (R2)[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -9343,7 +9371,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10529,7 +10557,7 @@ GameObject:
   - component: {fileID: 1817830080}
   - component: {fileID: 1817830082}
   - component: {fileID: 1817830081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11776,7 +11804,7 @@ Transform:
   m_GameObject: {fileID: 1964086917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

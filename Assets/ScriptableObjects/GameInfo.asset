@@ -86,7 +86,7 @@ MonoBehaviour:
     Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
     Name: Secret
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
-    Bpm: 180
+    Bpm: 360
     NoteCount: 100
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
