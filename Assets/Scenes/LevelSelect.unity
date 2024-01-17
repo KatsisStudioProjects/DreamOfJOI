@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Download https://intiface.com/central/ and start the engne, then press
+  m_text: Download https://intiface.com/central/ and start the engine, then press
     on 'Enable' here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
