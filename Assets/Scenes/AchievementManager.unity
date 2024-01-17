@@ -284,6 +284,24 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 357def5c66a242e4e8226dee3085693b, type: 3}
   - Key: 0
     Sprite: {fileID: 21300000, guid: db525b84d60610b40bf635af2fd1ee60, type: 3}
+  - Key: 12
+    Sprite: {fileID: 21300000, guid: 981f7d4e7a3ac1f43b10d33609634866, type: 3}
+  - Key: 5
+    Sprite: {fileID: 21300000, guid: cd6cba55f25999a4394fe729534ffad7, type: 3}
+  - Key: 14
+    Sprite: {fileID: 21300000, guid: e1d9024c00525404a902ca0691795bb5, type: 3}
+  - Key: 9
+    Sprite: {fileID: 21300000, guid: ea918423ae5955e4cb64502ef078386d, type: 3}
+  - Key: 11
+    Sprite: {fileID: 21300000, guid: c754a58fb04129748af5b223d72d4de8, type: 3}
+  - Key: 6
+    Sprite: {fileID: 21300000, guid: 274307098dfe4e342845d2bc48c161de, type: 3}
+  - Key: 3
+    Sprite: {fileID: 21300000, guid: c6f51bb05df3e054b806133e51c25d06, type: 3}
+  - Key: 8
+    Sprite: {fileID: 21300000, guid: 5979fc3d34e2c7346a9ad764f8384878, type: 3}
+  - Key: 13
+    Sprite: {fileID: 21300000, guid: eec60c8112de4e440a6095f8410fa395, type: 3}
   _unlocked: {fileID: 21300000, guid: d4f69f4dc0973b340a72e42d2fef33d3, type: 3}
 --- !u!1 &1965153390
 GameObject:
