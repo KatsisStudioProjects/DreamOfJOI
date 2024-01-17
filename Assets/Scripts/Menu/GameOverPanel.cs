@@ -35,6 +35,7 @@ namespace NsfwMiniJam.Menu
 
                 switch (GlobalData.LevelIndex)
                 {
+                    case -1: AchievementManager.Instance.Unlock(AchievementID.CustomFC); break;
                     case 0: AchievementManager.Instance.Unlock(AchievementID.FCTutorial); break;
                     case 1: AchievementManager.Instance.Unlock(AchievementID.FCHypnotism); break;
                     case 2: AchievementManager.Instance.Unlock(AchievementID.FCChurch); break;

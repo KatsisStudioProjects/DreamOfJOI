@@ -74,6 +74,8 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.FCLamia, new() { Name = "Snake's Snack", Description = "Get a full combo on the lamia level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCSecret, new() { Name = "Bad End Night", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
 
+            { AchievementID.CustomFC, new() { Name = "Bring Your Own JOI", Description = "Clear a custom song", Hint = "Not enough song? There is still a way..." } },
+
             { AchievementID.FCToy, new() { Name = "Welcome to the Rodeo", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } },
 
             { AchievementID.FullFC, new() { Name = "Bringing Joy in JOI", Description = "Get a full combo on all levels", Hint = "Get a full combo on a specific level" } },
@@ -109,7 +111,9 @@ namespace NsfwMiniJam.Achievement
         FullFC,
         FullPerfect,
 
-        AllAchievements
+        AllAchievements,
+
+        CustomFC
     }
 
     [System.Serializable]
