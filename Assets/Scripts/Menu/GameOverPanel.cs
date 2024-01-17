@@ -38,7 +38,7 @@ namespace NsfwMiniJam.Menu
                     case 0: AchievementManager.Instance.Unlock(AchievementID.FCTutorial); break;
                     case 1: AchievementManager.Instance.Unlock(AchievementID.FCHypnotism); break;
                     case 2: AchievementManager.Instance.Unlock(AchievementID.FCChurch); break;
-                    case 3: AchievementManager.Instance.Unlock(AchievementID.FCSecret); break;
+                    case 3: AchievementManager.Instance.Unlock(AchievementID.FCLamia); break;
                     case 4: AchievementManager.Instance.Unlock(AchievementID.FCSecret); break;
                 }
 
