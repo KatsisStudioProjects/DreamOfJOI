@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1038980452766554028}
   - component: {fileID: 6348619362972953919}
   - component: {fileID: 5696498850983443772}
+  - component: {fileID: 6395782335532179217}
   m_Layer: 5
   m_Name: Achievement
   m_TagString: Untagged
@@ -112,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6348619362972953919
 CanvasRenderer:
@@ -152,6 +153,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6395782335532179217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845731079364801604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db61de8bc4aec1468f7643e52d090a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 7969268851663101150}
+  _text: {fileID: 7464109853940982423}
 --- !u!1 &7080072530765236617
 GameObject:
   m_ObjectHideFlags: 0
