@@ -68,9 +68,6 @@ namespace NsfwMiniJam.Rhythm
         private TMP_Text _midGameDialogues;
 
         [SerializeField]
-        private Image[] _6kImgs;
-
-        [SerializeField]
         private GameObject[] _6kObjs;
 
         public MusicInfo Music { private set; get; }
@@ -473,10 +470,6 @@ namespace NsfwMiniJam.Rhythm
 
             if (note.Is6K)
             {
-                foreach (var o in _6kImgs)
-                {
-                    o.enabled = true;
-                }
                 foreach (var o in _6kObjs)
                 {
                     o.SetActive(true);
