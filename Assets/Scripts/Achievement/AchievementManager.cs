@@ -67,7 +67,7 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.WaitCum, new() { Name = "Staying on the Edge", Description = "Wait 20s without cumming at the end of a game", Hint = "Resist the urge to cum at the end of a level" } },
 
             { AchievementID.FCTutorial, new() { Name = "Textbook Gameplay", Description = "Get a full combo on the tutorial", Hint = "Get a full combo on a specific level" } },
-            { AchievementID.FCHypnotism, new() { Name = "Mind of Steal", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FCHypnotism, new() { Name = "Mind of Steel", Description = "Get a full combo on the hypnotism level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCChurch, new() { Name = "Purified", Description = "Get a full combo on the church level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCLamia, new() { Name = "Snake's Snack", Description = "Get a full combo on the lamia level", Hint = "Get a full combo on a specific level" } },
             { AchievementID.FCSecret, new() { Name = "Bad End Night", Description = "Get a full combo on the secret level", Hint = "Get a full combo on a specific level" } },
