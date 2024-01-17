@@ -67,6 +67,12 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private TMP_Text _midGameDialogues;
 
+        [SerializeField]
+        private Image[] _6kImgs;
+
+        [SerializeField]
+        private GameObject[] _6kObjs;
+
         public MusicInfo Music { private set; get; }
 
         private float _errorLevel;
@@ -383,7 +389,7 @@ namespace NsfwMiniJam.Rhythm
 
             bool isHypnotic = false, isTrap = false, isBlind = false, is6K = false;
 
-            if (_leftToSpawn == Music.NoteCount / 2)
+            if (Music.KeyOverrides && _leftToSpawn == Music.NoteCount / 2)
             {
                 is6K = true;
                 _is6K = true;
@@ -467,8 +473,14 @@ namespace NsfwMiniJam.Rhythm
 
             if (note.Is6K)
             {
-                _hitAreaImage[^1].enabled = true;
-                _hitAreaImage[^2].enabled = true;
+                foreach (var o in _6kImgs)
+                {
+                    o.enabled = true;
+                }
+                foreach (var o in _6kObjs)
+                {
+                    o.SetActive(true);
+                }
             }
 
             // Update hit if note is a trap
