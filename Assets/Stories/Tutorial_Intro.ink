@@ -9,7 +9,6 @@ Press [SPACEBAR] or click the [LEFT MOUSE BUTTON] to hit a note as it falls.
 Be sure to fap in time so you can increase your points and combos.
 If you miss too many notes, you'll cum too early...
 And we don't want that do we?~
-The blue notes represent a small break, use it wisely!
 Try to hold out until the end of the song for a proper reward.
 Are you ready?
 Oh! It appears you certainly are...
