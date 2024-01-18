@@ -12,10 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e0d79ee379914ea324005eae73dc9, type: 3}
   m_Name: DialLamia
   m_EditorClassIdentifier: 
-  ComboSmall: []
-  ComboBig: []
-  ComboFail: []
-  SpeNotes: []
-  Victory: []
-  FullCombo: []
-  Perfect: []
+  ComboSmall:
+  - You like that~?
+  ComboBig:
+  - Ah~ It got bigger~!
+  - Sssuch a large sssnake~
+  ComboFail:
+  - Hisss!
+  FailAfterComboSmall:
+  - Tsk!
+  SpeNotes:
+  - Lights out~
+  - Focusss on me~
+  Defeat:
+  - Hissss, how pathetic.
+  Victory:
+  - Ahh~ Ssso warm~
+  FullCombo:
+  - Wow, so much~
+  Perfect:
+  - Yess~! Ssso sssexy~!
