@@ -1333,6 +1333,7 @@ MonoBehaviour:
   - {fileID: 955220757}
   - {fileID: 319183342}
   _noteYPos: {fileID: 794562321}
+  _pulsingImage: {fileID: 1150197274}
 --- !u!82 &500333088
 AudioSource:
   m_ObjectHideFlags: 0
