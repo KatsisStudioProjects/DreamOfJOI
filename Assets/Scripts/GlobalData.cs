@@ -23,6 +23,8 @@ namespace NsfwMiniJam
         public static float[] BpmValues = new[] { 400f, 600f, 800f, 1000f, 1200f, 1400f };
         public static int TargetBpm = 1;
 
+        public static bool SkipDialogues;
+
 #if !UNITY_WEBGL
         public static ButtplugClient ButtplugClient;
 #endif

@@ -69,7 +69,7 @@ namespace NsfwMiniJam.LevelSelect
 
         public void HidePlayerLevelPopUp()
         {
-            if (_playLevelPopup.gameObject != null)
+            if (_playLevelPopup?.gameObject != null)
             {
                 _playLevelPopup.gameObject.SetActive(false);
             }
