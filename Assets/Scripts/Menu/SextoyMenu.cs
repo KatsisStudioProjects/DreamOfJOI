@@ -21,13 +21,11 @@ namespace NsfwMiniJam.Menu
 
         private bool _canConnect = true;
         private bool _canTest = true;
-#if !UNITY_WEBGL
 
-        private ButtplugWebsocketConnector _connector;
 
         private void Awake()
         {
-            if (false)//Application.platform == RuntimePlatform.WebGLPlayer)
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
             {
                 _webGLContainer.SetActive(true);
                 _desktopContainer.SetActive(false);
@@ -38,13 +36,16 @@ namespace NsfwMiniJam.Menu
                 _desktopContainer.SetActive(true);
             }
 
+#if !UNITY_WEBGL
             _infoText.text = "Not Connected";
 
             StartCoroutine(ConnectingCheck());
+#endif
         }
 
         public void Enable()
         {
+#if !UNITY_WEBGL
             if (!_canConnect) return;
 
             _canConnect = false;
@@ -54,10 +55,12 @@ namespace NsfwMiniJam.Menu
                 new Uri("ws://localhost:12345/buttplug"));
 
             Task.Run(LoadAsync);
+#endif
         }
 
         public void Test()
         {
+#if !UNITY_WEBGL
             if (!_canTest) return;
 
             _canTest = false;
@@ -73,7 +76,11 @@ namespace NsfwMiniJam.Menu
             {
                 _canTest = true;
             }
+#endif
         }
+
+#if !UNITY_WEBGL
+        private ButtplugWebsocketConnector _connector;
 
         private IEnumerator TestCoroutine()
         {
@@ -123,12 +130,6 @@ namespace NsfwMiniJam.Menu
             Debug.Log($"[BUT] Connected state: {GlobalData.ButtplugClient.Connected}");
 
             _canConnect = true;
-        }
-#else
-        private void Awake()
-        {
-            _webGLContainer.SetActive(true);
-            _desktopContainer.SetActive(false);
         }
 #endif
     }
