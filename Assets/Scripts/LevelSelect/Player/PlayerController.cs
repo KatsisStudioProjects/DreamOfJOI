@@ -13,10 +13,12 @@ namespace NsfwMiniJam.LevelSelect.Player
         private Vector2 _mov;
 
         private Rigidbody2D _rb;
+        private Animator _anim;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _anim = GetComponent<Animator>();
         }
 
         private void FixedUpdate()
@@ -46,6 +48,12 @@ namespace NsfwMiniJam.LevelSelect.Player
         public void OnMove(InputAction.CallbackContext value)
         {
             _mov = value.ReadValue<Vector2>();
+
+            if (_mov.magnitude != 0f)
+            {
+                _anim.SetFloat("X", _mov.x);
+                _anim.SetFloat("Y", _mov.y);
+            }
         }
 
         public void OnAction(InputAction.CallbackContext value)
