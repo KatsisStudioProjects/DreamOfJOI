@@ -177,7 +177,7 @@ MonoBehaviour:
   - Notation: F
     Color: {r: 1, g: 0, b: 0, a: 1}
     ScoreRequirement: 0
-  HiddenDistance: 150
+  HiddenDistance: 250
   MineChancePercent: 15
   HypnotismChance: 5
   HypnotismHitCount: 20
