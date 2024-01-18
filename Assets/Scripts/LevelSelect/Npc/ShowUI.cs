@@ -14,7 +14,10 @@ namespace NsfwMiniJam.LevelSelect.Npc
 
         public override void InteractionCancel()
         {
-            _go.SetActive(false);
+            if (_go != null)
+            {
+                _go.SetActive(false);
+            }
         }
     }
 }

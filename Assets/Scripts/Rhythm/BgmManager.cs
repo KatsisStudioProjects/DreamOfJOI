@@ -50,6 +50,11 @@ namespace NsfwMiniJam.Rhythm
             _bgm.clip = clip;
         }
 
+        public void DisableLoop()
+        {
+            _bgm.loop = false;
+        }
+
         public void SetVolume(float value)
         {
             _bgm.volume = value;

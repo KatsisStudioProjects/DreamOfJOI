@@ -226,7 +226,15 @@ namespace NsfwMiniJam.Rhythm
             if (req.responseCode == 200)
             {
                 _midGameDialogues.gameObject.SetActive(false);
-                BgmManager.Instance.SetClip(DownloadHandlerAudioClip.GetContent(req));
+                var clip = DownloadHandlerAudioClip.GetContent(req);
+                BgmManager.Instance.SetClip(clip);
+                BgmManager.Instance.DisableLoop();
+
+                Music.NoteCount = Mathf.FloorToInt((clip.length / 60f) * Music.Bpm);
+                _leftToSpawn = Music.NoteCount;
+                _leftToTape = Music.NoteCount;
+                _maxPossibleScore = Music.NoteCount * _info.HitInfo.Last().Score;
+
                 onEnd();
             }
             else
