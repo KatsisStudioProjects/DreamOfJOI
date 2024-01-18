@@ -53,8 +53,8 @@ MonoBehaviour:
   - Controller: {fileID: 22100000, guid: d50e0f02662377242b5dc0cdf8a8dca8, type: 2}
     Intro: {fileID: 4900000, guid: b8f1825525c5d5848b4a012c935ea9a4, type: 3}
     Name: Church
-    Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
-    Bpm: 70
+    Music: {fileID: 8300000, guid: 8a52fc121776175459df4b2a035b6a18, type: 3}
+    Bpm: 120
     NoteCount: 30
     HaveReadyUpAnim: 1
     HaveSpeNoteAnim: 1
