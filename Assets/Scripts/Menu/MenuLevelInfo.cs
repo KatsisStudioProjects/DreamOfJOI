@@ -18,15 +18,15 @@ namespace NsfwMiniJam.Menu
 
         public void Init(RankInfo rank, MusicInfo music, ScoreData savedData)
         {
-            _levelName.text = music.Name;
-
             if (savedData == null)
             {
+                _levelName.text = "???";
                 _notPlayed.SetActive(true);
                 _played.SetActive(false);
             }
             else
             {
+                _levelName.text = music.Name;
                 _played.SetActive(true);
                 _notPlayed.SetActive(false);
 
