@@ -509,8 +509,11 @@ namespace NsfwMiniJam.Rhythm
             _victory.gameObject.SetActive(true);
             _victory.Init(Music, _score, _maxPossibleScore, _info, _combo == Music.NoteCount);
 
-            PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == Music.NoteCount });
-            PersistencyManager.Instance.Save();
+            if (GlobalData.LevelIndex != -1)
+            {
+                PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == Music.NoteCount });
+                PersistencyManager.Instance.Save();
+            }
 
             if (_score == _maxPossibleScore)
             {
