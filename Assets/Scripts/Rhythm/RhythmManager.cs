@@ -740,6 +740,18 @@ namespace NsfwMiniJam.Rhythm
             _cumText.color = Color.black;
         }
 
+        public void TriggerCumWin()
+        {
+            if (_combo == Music.NoteCount && Music.HaveCumFC)
+            {
+                _anim.SetTrigger("CumFC");
+            }
+            else
+            {
+                _anim.SetTrigger("Cum");
+            }
+        }
+
         public void HitNoteCallback(InputAction.CallbackContext value, int line)
         {
             if (value.performed)
@@ -755,15 +767,6 @@ namespace NsfwMiniJam.Rhythm
                     if (_cumRequirementStoke == 0)
                     {
                         _cumText.gameObject.SetActive(false);
-                        if (_combo == Music.NoteCount && Music.HaveCumFC)
-                        {
-                            _anim.SetTrigger("CumFC");
-                        }
-                        else
-                        {
-                            _anim.SetTrigger("Cum");
-                        }
-
 
                         _penisAnim.SetTrigger("CumWin");
                         if (_score == _maxPossibleScore)
