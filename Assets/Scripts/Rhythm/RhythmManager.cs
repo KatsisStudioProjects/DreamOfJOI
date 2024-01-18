@@ -54,7 +54,8 @@ namespace NsfwMiniJam.Rhythm
 
         [SerializeField]
         private Animator _anim, _penisAnim;
-
+        private Image _bgImage;
+        
         [SerializeField]
         private TMP_Text _cumText;
 
@@ -78,6 +79,9 @@ namespace NsfwMiniJam.Rhythm
 
         [SerializeField]
         private RectTransform _noteYPos;
+
+        [SerializeField]
+        private Image _pulsingImage;
 
         public MusicInfo Music { private set; get; }
 
@@ -137,6 +141,8 @@ namespace NsfwMiniJam.Rhythm
         private void Awake()
         {
             Instance = this;
+
+            _bgImage = _anim.GetComponent<Image>();
 
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
@@ -613,9 +619,16 @@ namespace NsfwMiniJam.Rhythm
                     _combo++;
                     _penisAnim.SetTrigger("Pulse");
 
+                    if(_combo >= Music.NoteCount - Music.NoteCount / 4)
+                    {
+                        _pulsingImage.sprite = _bgImage.sprite;
+                        _pulsingImage.gameObject.GetComponent<Animator>().SetTrigger("pulse");
+                    }
+
                     if (_combo == Music.NoteCount / 3)
                     {
                         DisplayMidDialogue(Music.DialogueInfo.ComboSmall);
+                        
                     }
                     else if (_combo == 2 * Music.NoteCount / 3)
                     {
