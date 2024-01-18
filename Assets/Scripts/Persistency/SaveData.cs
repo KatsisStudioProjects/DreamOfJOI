@@ -15,6 +15,7 @@ namespace NsfwMiniJam.Persistency
         {
             if (!Scores.ContainsKey(level))
             {
+                UnityEngine.Debug.Log($"New best score for level {level}: {score}");
                 Scores.Add(level, score);
             }
             else
@@ -22,6 +23,7 @@ namespace NsfwMiniJam.Persistency
                 var stored = Scores[level];
                 if (stored.Score * stored.Multiplier < score.Score * score.Multiplier) // Beat best score
                 {
+                    UnityEngine.Debug.Log($"New best score for level {level}: replacing {Scores[level]} by {score}");
                     Scores[level] = score;
                 }
             }
@@ -56,5 +58,10 @@ namespace NsfwMiniJam.Persistency
         public float Score;
         public float Multiplier;
         public bool IsFullCombo;
+
+        public override string ToString()
+        {
+            return $"{Score} x {Multiplier} FullCombo: {IsFullCombo}";
+        }
     }
 }
