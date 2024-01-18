@@ -306,6 +306,8 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 83464a24c094df74fa19507ab20140dc, type: 3}
   - Key: 17
     Sprite: {fileID: 21300000, guid: 073961d3f48b8f64a9ffb3f9547f7c2f, type: 3}
+  - Key: 18
+    Sprite: {fileID: 21300000, guid: fa246f4d75c6cb7478c3255305679109, type: 3}
   _unlocked: {fileID: 21300000, guid: d4f69f4dc0973b340a72e42d2fef33d3, type: 3}
 --- !u!1 &1965153390
 GameObject:
