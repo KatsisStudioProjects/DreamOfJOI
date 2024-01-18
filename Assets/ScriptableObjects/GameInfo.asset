@@ -55,7 +55,7 @@ MonoBehaviour:
     Name: Church
     Music: {fileID: 8300000, guid: 8a52fc121776175459df4b2a035b6a18, type: 3}
     Bpm: 120
-    NoteCount: 30
+    NoteCount: 60
     HaveReadyUpAnim: 1
     HaveSpeNoteAnim: 1
     HaveCumFC: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     Name: Lamia
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
-    NoteCount: 30
+    NoteCount: 60
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     Name: Secret
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
     Bpm: 360
-    NoteCount: 100
+    NoteCount: 150
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
