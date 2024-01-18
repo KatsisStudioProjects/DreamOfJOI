@@ -20,7 +20,7 @@ namespace NsfwMiniJam.Menu
 
         public void Init(MusicInfo m, int score, int scoreMax, GameInfo info, bool isFullCombo)
         {
-            if (score == 1f)
+            if (score == scoreMax)
             {
                 if (GlobalData.LevelIndex == -1)
                 {
