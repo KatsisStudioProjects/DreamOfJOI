@@ -22,7 +22,14 @@ namespace NsfwMiniJam.Menu
         {
             if (score == 1f)
             {
-                AchievementManager.Instance.Unlock(AchievementID.Perfect);
+                if (GlobalData.LevelIndex == -1)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.CustomPerfect);
+                }
+                else
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.Perfect);
+                }
             }
 
             _fullCombo.SetActive(isFullCombo);
@@ -43,29 +50,32 @@ namespace NsfwMiniJam.Menu
                     case 4: AchievementManager.Instance.Unlock(AchievementID.FCSecret); break;
                 }
 
-                if (GlobalData.Hidden == HiddenType.Reversed)
+                if (GlobalData.LevelIndex != -1)
                 {
-                    AchievementManager.Instance.Unlock(AchievementID.ReverseHiddenFC);
-                }
-                else if (GlobalData.Hidden == HiddenType.Normal && m.MinesOverrides)
-                {
-                    AchievementManager.Instance.Unlock(AchievementID.MineHiddenFC);
-                }
+                    if (GlobalData.Hidden == HiddenType.Reversed)
+                    {
+                        AchievementManager.Instance.Unlock(AchievementID.ReverseHiddenFC);
+                    }
+                    else if (GlobalData.Hidden == HiddenType.Normal && m.MinesOverrides)
+                    {
+                        AchievementManager.Instance.Unlock(AchievementID.MineHiddenFC);
+                    }
 
-                if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.PitchValue != PitchType.Normal)
-                {
-                    AchievementManager.Instance.Unlock(AchievementID.AllModifiersFC);
-                }
+                    if (GlobalData.Hidden != HiddenType.None && GlobalData.SuddenDeath != SuddenDeathType.None && GlobalData.Reversed && GlobalData.PitchValue != PitchType.Normal)
+                    {
+                        AchievementManager.Instance.Unlock(AchievementID.AllModifiersFC);
+                    }
 
-                if (GlobalData.PitchValue == PitchType.IncThree && m.HypnotisedOverrides)
-                {
-                    AchievementManager.Instance.Unlock(AchievementID.SpeedHypnotismFC);
+                    if (GlobalData.PitchValue == PitchType.IncThree && m.HypnotisedOverrides)
+                    {
+                        AchievementManager.Instance.Unlock(AchievementID.SpeedHypnotismFC);
+                    }
                 }
             }
 
             var finalScore = (score * 1_000_000f / scoreMax) * GlobalData.CalculateMultiplier();
             _scoreText.text = finalScore.ToString("0 000 000");
-            if (finalScore > 1_000_000f)
+            if (finalScore > 1_000_000f && GlobalData.LevelIndex != -1)
             {
                 AchievementManager.Instance.Unlock(AchievementID.MoreThanPerfectScore);
             }
