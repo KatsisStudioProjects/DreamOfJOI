@@ -27,7 +27,7 @@ namespace NsfwMiniJam
         {
             AppDomain.CurrentDomain.DomainUnload += (sender, e) =>
             {
-                if (ButtplugClient.Connected)
+                if (ButtplugClient != null && ButtplugClient.Connected)
                 {
                     ButtplugClient.DisconnectAsync().GetAwaiter().GetResult();
                 }

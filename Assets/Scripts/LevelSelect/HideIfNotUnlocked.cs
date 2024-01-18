@@ -20,7 +20,7 @@ namespace NsfwMiniJam.LevelSelect
             }
             else if (savedData != null && _reverse)
             {
-
+                gameObject.SetActive(false);
             }
         }
     }
