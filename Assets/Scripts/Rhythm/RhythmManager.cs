@@ -76,6 +76,9 @@ namespace NsfwMiniJam.Rhythm
         [SerializeField]
         private GameObject[] _6kObjs;
 
+        [SerializeField]
+        private RectTransform _noteYPos;
+
         public MusicInfo Music { private set; get; }
 
         private float _errorLevel;
@@ -179,7 +182,7 @@ namespace NsfwMiniJam.Rhythm
 
             _hitAreaImage = _hitArea.Select(x => x.GetComponent<Image>()).ToArray();
             _targetColor = _hitAreaImage[0].color;
-            _hitYPos = _hitArea[0].anchoredPosition.y;
+            _hitYPos = _noteYPos.anchoredPosition.y;
         }
 
         private void Start()
