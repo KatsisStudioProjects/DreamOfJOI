@@ -60,8 +60,8 @@ namespace NsfwMiniJam.Achievement
             { AchievementID.MoreThanPerfectScore, new() { Name = "Modded Ejaculation (official songs only)", Description = "Get a score superior to 1 000 000", Hint = "Get a score even better than you possibly could" } },
 
             { AchievementID.ReverseHiddenFC, new() { Name = "Blindfolded", Description = "Get a full combo with reverse hidden modifier on (official songs only)", Hint = null } },
-            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the church level (official songs only)", Hint = null } },
-            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage (official songs only)", Hint = null } },
+            { AchievementID.MineHiddenFC, new() { Name = "Surprise Delivery", Description = "Get a full combo with normal hidden modifier on the church level", Hint = null } },
+            { AchievementID.SpeedHypnotismFC, new() { Name = "Brainwash, Heavy Duty Cycle", Description = "Get a full combo with x3 speed modifier on the hypnotism stage", Hint = null } },
             { AchievementID.AllModifiersFC, new() { Name = "Don't Fight The Music", Description = "Get a full combo with all the optional modifiers on (official songs only)", Hint = null } },
 
             { AchievementID.TutorialSD, new() { Name = "Bad Student", Description = "Attempt to play the tutorial with sudden death or perfect only modifier on", Hint = "The tutorial wasn't made for this modifier, it will be ignored!" } },
