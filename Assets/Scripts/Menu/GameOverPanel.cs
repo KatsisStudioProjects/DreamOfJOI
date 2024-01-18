@@ -35,10 +35,12 @@ namespace NsfwMiniJam.Menu
             _fullCombo.SetActive(isFullCombo);
             if (isFullCombo)
             {
+#if !UNITY_WEBGL
                 if (GlobalData.ButtplugClient != null && GlobalData.ButtplugClient.Devices.Any())
                 {
                     AchievementManager.Instance.Unlock(AchievementID.FCToy);
                 }
+#endif
 
                 switch (GlobalData.LevelIndex)
                 {

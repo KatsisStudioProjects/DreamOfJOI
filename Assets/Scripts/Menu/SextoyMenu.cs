@@ -1,4 +1,6 @@
-﻿using Buttplug.Client.Connectors.WebsocketConnector;
+﻿#if !UNITY_WEBGL
+using Buttplug.Client.Connectors.WebsocketConnector;
+#endif
 using System;
 using System.Collections;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private TMP_Text _infoText;
 
-        private ButtplugWebsocketConnector _connector;
 
         private bool _canConnect = true;
         private bool _canTest = true;
+#if !UNITY_WEBGL
+
+        private ButtplugWebsocketConnector _connector;
 
         private void Awake()
         {
@@ -120,5 +124,12 @@ namespace NsfwMiniJam.Menu
 
             _canConnect = true;
         }
+#else
+        private void Awake()
+        {
+            _webGLContainer.SetActive(true);
+            _desktopContainer.SetActive(false);
+        }
+#endif
     }
 }

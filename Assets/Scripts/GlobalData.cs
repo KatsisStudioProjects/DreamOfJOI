@@ -1,4 +1,6 @@
-﻿using Buttplug.Client;
+﻿#if !UNITY_WEBGL
+using Buttplug.Client;
+#endif
 using NsfwMiniJam.SO;
 using System;
 using UnityEngine;
@@ -21,16 +23,20 @@ namespace NsfwMiniJam
         public static float[] BpmValues = new[] { 400f, 600f, 800f, 1000f, 1200f, 1400f };
         public static int TargetBpm = 1;
 
+#if !UNITY_WEBGL
         public static ButtplugClient ButtplugClient;
+#endif
 
         static GlobalData()
         {
             AppDomain.CurrentDomain.DomainUnload += (sender, e) =>
             {
+#if !UNITY_WEBGL
                 if (ButtplugClient != null && ButtplugClient.Connected)
                 {
                     ButtplugClient.DisconnectAsync().GetAwaiter().GetResult();
                 }
+#endif
             };
         }
 

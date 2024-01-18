@@ -376,6 +376,7 @@ namespace NsfwMiniJam.Rhythm
 
         public void UpdateVibrations(float value)
         {
+#if !UNITY_WEBGL
             if (GlobalData.ButtplugClient != null && GlobalData.ButtplugClient.Devices.Any())
             {
                 foreach (var device in  GlobalData.ButtplugClient.Devices)
@@ -383,6 +384,7 @@ namespace NsfwMiniJam.Rhythm
                     device.VibrateAsync(value);
                 }
             }
+#endif
         }
 
         public float YHitArea => _hitYPos;
