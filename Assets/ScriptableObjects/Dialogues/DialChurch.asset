@@ -12,12 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e0d79ee379914ea324005eae73dc9, type: 3}
   m_Name: DialChurch
   m_EditorClassIdentifier: 
-  ComboSmall: []
-  ComboBig: []
-  ComboFail: []
-  FailAfterComboSmall: []
-  SpeNotes: []
-  Defeat: []
-  Victory: []
-  FullCombo: []
-  Perfect: []
+  ComboSmall:
+  - That's it...
+  ComboBig:
+  - Oh Heavens~
+  ComboFail:
+  - Stay the path
+  - Do not fall now
+  - All can be forgiven
+  FailAfterComboSmall:
+  - Ugh
+  - Do not falter
+  SpeNotes:
+  - Shh~
+  - Wait~
+  - Resist temptation~
+  Defeat:
+  - Such sin!
+  Victory:
+  - Empty yourself of sin~
+  FullCombo:
+  - Such a wonderful confession~
+  Perfect:
+  - Cum, all ye faithful~!

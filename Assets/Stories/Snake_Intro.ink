@@ -1,6 +1,5 @@
-A male? A male enters my layer?
-It has been some time since I've had company.
-Come here into my embrace so I may wrap you,
-and bind you,
-and wring you dry.
+As you got off the portal, your body is suddenly wrapped, bounded by some sort of snake.
+You struggle around your bind, then paused as a chuckle came to your side.
+You turn to see your assailant, a Lamia, giggling as she grins at you.
+You sweat, feeling like you got yourself in some serious trouble.
 -> END

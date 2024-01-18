@@ -1,1 +1,1 @@
-﻿{"inkVersion":21,"root":[["^Welcome weary traveller to our church. Have you come to pray, or...","\n","^...Confess your sins?","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":21,"root":[["^Welcome, weary traveller, to our church. Have you come to pray, or...","\n","^...Confess your sins?","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
