@@ -498,6 +498,19 @@ namespace NsfwMiniJam.Rhythm
 
             PersistencyManager.Instance.SaveData.AddScore(GlobalData.LevelIndex, new() { Score = _score / (float)_maxPossibleScore, Multiplier = GlobalData.CalculateMultiplier(), IsFullCombo = _combo == Music.NoteCount });
             PersistencyManager.Instance.Save();
+
+            if (_score == _maxPossibleScore)
+            {
+                DisplayMidDialogue(Music.DialogueInfo.Perfect);
+            }
+            else if (_combo == Music.NoteCount)
+            {
+                DisplayMidDialogue(Music.DialogueInfo.FullCombo);
+            }
+            else
+            {
+                DisplayMidDialogue(Music.DialogueInfo.Victory);
+            }
         }
 
         private void HitNote(HitInfo data, int line)
@@ -640,24 +653,6 @@ namespace NsfwMiniJam.Rhythm
             else
             {
                 _leftToTape--;
-                if (_leftToTape == 0)
-                {
-                    _volumeTimer = 1f;
-                    _anim.SetTrigger("Victory");
-
-                    if (_score == _maxPossibleScore)
-                    {
-                        DisplayMidDialogue(Music.DialogueInfo.Perfect);
-                    }
-                    else if (_combo == Music.NoteCount)
-                    {
-                        DisplayMidDialogue(Music.DialogueInfo.FullCombo);
-                    }
-                    else
-                    {
-                        DisplayMidDialogue(Music.DialogueInfo.Victory);
-                    }
-                }
             }
 
             // Update combo text
@@ -681,6 +676,12 @@ namespace NsfwMiniJam.Rhythm
             {
                 _blindDuration = _info.BlindDurationSec;
                 _blindDir = true;
+            }
+
+            if (_leftToTape == 0)
+            {
+                _volumeTimer = 1f;
+                _anim.SetTrigger("Victory");
             }
 
             // Destroy note
