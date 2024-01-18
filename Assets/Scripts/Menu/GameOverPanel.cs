@@ -105,6 +105,7 @@ namespace NsfwMiniJam.Menu
 
         public void Retry()
         {
+            GlobalData.SkipDialogues = true;
             SceneManager.LoadScene("Main");
         }
     }

@@ -216,6 +216,12 @@ namespace NsfwMiniJam.Rhythm
                 _midGameDialogues.text = "Please wait while the song is loading";
                 StartCoroutine(LoadCustomSong(onEnd));
             }
+            else if (GlobalData.SkipDialogues)
+            {
+                GlobalData.SkipDialogues = false;
+                VNManager.Instance.ForceStop();
+                onEnd();
+            }
             else
             {
                 VNManager.Instance.ShowStory(Music.Intro, onEnd);
@@ -811,6 +817,7 @@ namespace NsfwMiniJam.Rhythm
         {
             if (value.performed)
             {
+                GlobalData.SkipDialogues = true;
                 SceneManager.LoadScene("Main");
             }
         }
@@ -819,12 +826,13 @@ namespace NsfwMiniJam.Rhythm
         {
             if (value.performed)
             {
+                GlobalData.SkipDialogues = false;
                 SceneManager.LoadScene("LevelSelect");
             }
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class NoteInfo
     {
         public RectTransform RT;
