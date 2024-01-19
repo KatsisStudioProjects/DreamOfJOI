@@ -35,7 +35,7 @@ namespace NsfwMiniJam.Rhythm
         private Image[] _hitAreaImage;
 
         [SerializeField]
-        private TMP_Text _hitText;
+        private TMP_Text _hitText, _hitSecText;
 
         [SerializeField]
         private TMP_Text _comboText;
@@ -350,6 +350,7 @@ namespace NsfwMiniJam.Rhythm
                 if (_timerDisplayText <= 0f)
                 {
                     _hitText.gameObject.SetActive(false);
+                    _hitSecText.gameObject.SetActive(false);
                 }
             }
 
@@ -372,7 +373,7 @@ namespace NsfwMiniJam.Rhythm
 
                 if (Notes[0].RT.anchoredPosition.y - _hitYPos < -_info.HitInfo[0].Distance)
                 {
-                    HitNote(_info.MissInfo, Notes[0].LineRequirement);
+                    HitNote(_info.MissInfo, Notes[0].LineRequirement, 0f);
                 }
             }
 
@@ -530,7 +531,7 @@ namespace NsfwMiniJam.Rhythm
             }
         }
 
-        private void HitNote(HitInfo data, int line)
+        private void HitNote(HitInfo data, int line, float offset)
         {
             if (!_isAlive) return;
 
@@ -651,6 +652,14 @@ namespace NsfwMiniJam.Rhythm
             _hitText.gameObject.SetActive(true);
             _hitText.text = data.DisplayText;
             _hitText.color = data.Color;
+
+            if (data.DoesDisplayEarlyLate)
+            {
+                _hitSecText.gameObject.SetActive(true);
+                _hitSecText.text = offset > 0f ? "Late" : "Early";
+                _hitSecText.color = data.Color;
+            }
+
             _timerDisplayText = 1f;
 
             // Update cum level
@@ -812,12 +821,13 @@ namespace NsfwMiniJam.Rhythm
 
                     if (Notes.Any())
                     {
+                        var o = _hitYPos - Notes[0].RT.anchoredPosition.y;
                         for (int i = _info.HitInfo.Length - 1; i >= 0; i--)
                         {
                             var info = _info.HitInfo[i];
-                            if (Mathf.Abs(_hitYPos - Notes[0].RT.anchoredPosition.y) < info.Distance)
+                            if (Mathf.Abs(o) < info.Distance)
                             {
-                                HitNote(info, line);
+                                HitNote(info, line, o);
                                 break;
                             }
                         }
