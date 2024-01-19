@@ -75,8 +75,8 @@ MonoBehaviour:
     Intro: {fileID: 4900000, guid: 79562ae05b4b11149bdb0e11adf865aa, type: 3}
     Name: Lamia
     Music: {fileID: 8300000, guid: d9a08f37641e98540b1c78f3b96a78a6, type: 3}
-    Bpm: 80
-    NoteCount: 160
+    Bpm: 160
+    NoteCount: 80
     BGImage: {fileID: 21300000, guid: 0679992fad33a13478825e859473a91d, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
