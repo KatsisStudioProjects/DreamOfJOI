@@ -58,7 +58,7 @@ MonoBehaviour:
     NoteCount: 60
     HaveReadyUpAnim: 1
     HaveSpeNoteAnim: 1
-    HaveCumFC: 0
+    HaveCumFC: 1
     ModifierName: Hidden Sin
     ModifierDescription: When a note is red, the church staff is looking at you,
       hitting them grant a miss and avoid them a perfect
