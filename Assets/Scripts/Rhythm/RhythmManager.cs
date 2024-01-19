@@ -659,6 +659,10 @@ namespace NsfwMiniJam.Rhythm
                 _hitSecText.text = offset > 0f ? "Late" : "Early";
                 _hitSecText.color = data.Color;
             }
+            else
+            {
+                _hitSecText.gameObject.SetActive(false);
+            }
 
             _timerDisplayText = 1f;
 
