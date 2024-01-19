@@ -228,12 +228,18 @@ namespace NsfwMiniJam.Rhythm
             {
                 GlobalData.SkipDialogues = false;
                 VNManager.Instance.ForceStop();
-                onEnd();
+                StartCoroutine(SkipFrameAndStart(onEnd));
             }
             else
             {
                 VNManager.Instance.ShowStory(Music.Intro, onEnd);
             }
+        }
+
+        private IEnumerator SkipFrameAndStart(Action onEnd)
+        {
+            yield return new WaitForEndOfFrame();
+            onEnd();
         }
 
         private IEnumerator LoadCustomSong(Action onEnd)
