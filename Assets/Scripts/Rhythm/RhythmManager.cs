@@ -82,6 +82,7 @@ namespace NsfwMiniJam.Rhythm
 
         [SerializeField]
         private Image _pulsingImage;
+        private Animator _pulsingAnim;
 
         public MusicInfo Music { private set; get; }
 
@@ -143,6 +144,7 @@ namespace NsfwMiniJam.Rhythm
             Instance = this;
 
             _bgImage = _anim.GetComponent<Image>();
+            _pulsingAnim = _pulsingImage.GetComponent<Animator>();
 
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
 
@@ -609,7 +611,7 @@ namespace NsfwMiniJam.Rhythm
                     if(_combo >= Music.NoteCount - Music.NoteCount / 4)
                     {
                         _pulsingImage.sprite = _bgImage.sprite;
-                        _pulsingImage.gameObject.GetComponent<Animator>().SetTrigger("pulse");
+                        _pulsingAnim.SetTrigger("pulse");
                     }
 
                     if (_combo == Music.NoteCount / 3)
