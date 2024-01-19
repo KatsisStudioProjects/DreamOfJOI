@@ -19,7 +19,7 @@ MonoBehaviour:
     Name: Tutorial
     Music: {fileID: 8300000, guid: bca287fef7dfb0e4987d44c440c00147, type: 3}
     Bpm: 50
-    NoteCount: 30
+    NoteCount: 25
     BGImage: {fileID: 21300000, guid: ed113c7cfc092934983d9c0bfd44defa, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     Name: Hypnotism
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
-    NoteCount: 30
+    NoteCount: 35
     BGImage: {fileID: 0}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
@@ -74,9 +74,9 @@ MonoBehaviour:
   - Controller: {fileID: 22100000, guid: 0474fab73c2efa44eaf414eb67287566, type: 2}
     Intro: {fileID: 4900000, guid: 79562ae05b4b11149bdb0e11adf865aa, type: 3}
     Name: Lamia
-    Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
-    Bpm: 70
-    NoteCount: 10
+    Music: {fileID: 8300000, guid: d9a08f37641e98540b1c78f3b96a78a6, type: 3}
+    Bpm: 80
+    NoteCount: 160
     BGImage: {fileID: 21300000, guid: 0679992fad33a13478825e859473a91d, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     Name: Secret
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
     Bpm: 360
-    NoteCount: 150
+    NoteCount: 180
     BGImage: {fileID: 0}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
