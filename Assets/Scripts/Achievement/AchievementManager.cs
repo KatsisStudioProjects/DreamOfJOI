@@ -77,10 +77,10 @@ namespace NsfwMiniJam.Achievement
 
             { AchievementID.FCToy, new() { Name = "Welcome to the Rodeo", Description = "Get a full combo buttplug.io API and a device plugged-in", Hint = "You can use a controller if you don't have a sextoy" } },
 
-            { AchievementID.FullFC, new() { Name = "Bringing Joy in JOI", Description = "Get a full combo on all official levels", Hint = "Get a full combo on a specific level" } },
-            { AchievementID.FullPerfect, new() { Name = "Ecstacy", Description = "Get a SSS rank on all official levels", Hint = "Get a full combo on a specific level" } },
+            { AchievementID.FullFC, new() { Name = "Bringing Joy in JOI", Description = "Get a full combo on all official levels", Hint = null } },
+            { AchievementID.FullPerfect, new() { Name = "Ecstacy", Description = "Get a SSS rank on all official levels", Hint = null } },
 
-            { AchievementID.AllAchievements, new() { Name = "Midas's Touch", Description = "Get all the achievements", Hint = "Get a full combo on a specific level" } }
+            { AchievementID.AllAchievements, new() { Name = "Midas's Touch", Description = "Get all the achievements", Hint = null } }
         };
     }
 
