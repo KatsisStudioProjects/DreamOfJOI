@@ -39,7 +39,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 35
-    BGImage: {fileID: 0}
+    BGImage: {fileID: 21300000, guid: 0051245d97d95cc4ea2c7a02b257562c, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
@@ -90,13 +90,13 @@ MonoBehaviour:
     KeyOverrides: 0
     BlindOverrides: 1
     DialogueInfo: {fileID: 11400000, guid: d02a6ff46ab273e4d9cf564791f7b533, type: 2}
-  - Controller: {fileID: 0}
+  - Controller: {fileID: 22100000, guid: b4dc7e708a5b8f64faa06a6a27ed7e01, type: 2}
     Intro: {fileID: 4900000, guid: 2d7ae11d0ab18f848a3bbb9fd0103aeb, type: 3}
     Name: Secret
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
     Bpm: 360
     NoteCount: 180
-    BGImage: {fileID: 0}
+    BGImage: {fileID: 21300000, guid: ce35581603821a948a0b88c89ea90fa3, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
