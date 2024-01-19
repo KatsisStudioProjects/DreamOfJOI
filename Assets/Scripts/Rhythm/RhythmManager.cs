@@ -590,6 +590,7 @@ namespace NsfwMiniJam.Rhythm
                 }
                 if (data.DoesBreakCombo)
                 {
+                    _pulsingImage.gameObject.GetComponent<Animator>().SetBool("isCombo",false);
                     targetAnim ??= "FailCombo";
 
                     if (_combo == Music.NoteCount / 3)
@@ -611,7 +612,7 @@ namespace NsfwMiniJam.Rhythm
                     if(_combo >= Music.NoteCount - Music.NoteCount / 4)
                     {
                         _pulsingImage.sprite = _bgImage.sprite;
-                        _pulsingAnim.SetTrigger("pulse");
+                        _pulsingAnim.SetBool("isCombo",true);
                     }
 
                     if (_combo == Music.NoteCount / 3)
