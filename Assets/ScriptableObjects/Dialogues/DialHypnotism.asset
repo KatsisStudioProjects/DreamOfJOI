@@ -12,12 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e0d79ee379914ea324005eae73dc9, type: 3}
   m_Name: DialHypnotism
   m_EditorClassIdentifier: 
-  ComboSmall: []
-  ComboBig: []
-  ComboFail: []
-  FailAfterComboSmall: []
-  SpeNotes: []
-  Defeat: []
-  Victory: []
-  FullCombo: []
-  Perfect: []
+  ComboSmall:
+  - That's it, don't stop~
+  ComboBig:
+  - Good~ more, more!
+  ComboFail:
+  - Hey. eyes on me.
+  FailAfterComboSmall:
+  - Focus..
+  SpeNotes:
+  - 'Fuhuhu~ yes. yes! '
+  Defeat:
+  - Hmph... I was wrong, I need a new test subject.
+  Victory:
+  - 'Fuhuhu~ I''m keeping you <3 '
+  FullCombo:
+  - Oh my, that's a lot~ You are gonna be so useful for my research~
+  Perfect:
+  - Good boy~ You really know how to obey~
