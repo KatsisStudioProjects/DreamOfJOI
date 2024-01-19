@@ -22,6 +22,9 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         private TMP_InputField _bpm;
 
+        [SerializeField]
+        private RuntimeAnimatorController _controller;
+
         private List<MusicLoaderData> _music = new();
 
         private void Awake()
@@ -55,7 +58,7 @@ namespace NsfwMiniJam.Menu
                                 HaveSpeNoteAnim = false,
                                 BlindOverrides = false,
                                 Bpm = int.Parse(_bpm.text),
-                                Controller = null,
+                                Controller = _controller,
                                 DialogueInfo = new(),
                                 HypnotisedOverrides = false,
                                 Intro = null,

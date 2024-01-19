@@ -1451,6 +1451,7 @@ MonoBehaviour:
   _musicContainer: {fileID: 162456458}
   _musicPrefab: {fileID: 2561011673142369050, guid: b1c4e799e632fcf46adfbf2f564e6a3a, type: 3}
   _bpm: {fileID: 1359444374}
+  _controller: {fileID: 22100000, guid: ace4e7169b9abb348aa5d44103131df7, type: 2}
 --- !u!1 &154605121
 GameObject:
   m_ObjectHideFlags: 0
