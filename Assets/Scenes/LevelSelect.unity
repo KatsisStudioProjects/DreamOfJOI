@@ -15811,7 +15811,7 @@ GameObject:
   - component: {fileID: 1802319998}
   - component: {fileID: 1802319997}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: BPMInstruction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15834,7 +15834,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 12.2, y: -151}
-  m_SizeDelta: {x: 200, y: 30}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1802319997
 MonoBehaviour:
@@ -15856,7 +15856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BPM
+  m_text: 'Enter the song BPM:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
   m_sharedMaterial: {fileID: -1360628206493973521, guid: 756cffa8af376fd469a1f2fb56e5d7f9, type: 2}
