@@ -114,6 +114,7 @@ MonoBehaviour:
     Distance: 100
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
+    DoesDisplayEarlyLate: 0
     Score: 25
     VibrationForce: 0.25
     IncreaseOnHit: 0.0025
@@ -121,6 +122,7 @@ MonoBehaviour:
     Distance: 70
     Color: {r: 0.7372549, g: 0.5889521, b: 0, a: 1}
     DoesBreakCombo: 0
+    DoesDisplayEarlyLate: 1
     Score: 75
     VibrationForce: 0.5
     IncreaseOnHit: 0.005
@@ -128,6 +130,7 @@ MonoBehaviour:
     Distance: 40
     Color: {r: 0.123694345, g: 0.8867924, b: 0, a: 1}
     DoesBreakCombo: 0
+    DoesDisplayEarlyLate: 1
     Score: 150
     VibrationForce: 0.8
     IncreaseOnHit: 0.008
@@ -135,6 +138,7 @@ MonoBehaviour:
     Distance: 20
     Color: {r: 1, g: 1, b: 0, a: 1}
     DoesBreakCombo: 0
+    DoesDisplayEarlyLate: 0
     Score: 300
     VibrationForce: 1
     IncreaseOnHit: 0.01
@@ -143,6 +147,7 @@ MonoBehaviour:
     Distance: 0
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
+    DoesDisplayEarlyLate: 0
     Score: 0
     VibrationForce: 0
     IncreaseOnHit: -0.1
@@ -151,6 +156,7 @@ MonoBehaviour:
     Distance: 0
     Color: {r: 1, g: 0, b: 0, a: 1}
     DoesBreakCombo: 1
+    DoesDisplayEarlyLate: 0
     Score: -100
     VibrationForce: 0
     IncreaseOnHit: -0.1

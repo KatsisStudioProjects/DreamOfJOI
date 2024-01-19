@@ -71,6 +71,7 @@ namespace NsfwMiniJam.SO
         public float Distance;
         public Color Color;
         public bool DoesBreakCombo;
+        public bool DoesDisplayEarlyLate;
 
         public int Score;
 
