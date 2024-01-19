@@ -41,6 +41,8 @@ namespace NsfwMiniJam.SO
         public float Bpm;
         public int NoteCount;
 
+        public Sprite BGImage;
+
         [Header("Animations")]
         public bool HaveReadyUpAnim;
         public bool HaveSpeNoteAnim;

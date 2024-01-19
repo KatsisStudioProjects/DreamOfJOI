@@ -2,6 +2,7 @@
 using NsfwMiniJam.SO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NsfwMiniJam.Menu
 {
@@ -16,8 +17,12 @@ namespace NsfwMiniJam.Menu
         [SerializeField]
         public TMP_Text _notation, _score, _finalScore;
 
+        [SerializeField]
+        private Image _bg;
+
         public void Init(RankInfo rank, MusicInfo music, ScoreData savedData)
         {
+            _bg.sprite = music.BGImage;
             if (savedData == null)
             {
                 _levelName.text = "???";

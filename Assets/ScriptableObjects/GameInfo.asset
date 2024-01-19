@@ -20,6 +20,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: bca287fef7dfb0e4987d44c440c00147, type: 3}
     Bpm: 50
     NoteCount: 30
+    BGImage: {fileID: 21300000, guid: ed113c7cfc092934983d9c0bfd44defa, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 1
@@ -38,6 +39,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 30
+    BGImage: {fileID: 0}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 8a52fc121776175459df4b2a035b6a18, type: 3}
     Bpm: 120
     NoteCount: 60
+    BGImage: {fileID: 21300000, guid: c79bb0eb7b8a49745b39e12ace93710a, type: 3}
     HaveReadyUpAnim: 1
     HaveSpeNoteAnim: 1
     HaveCumFC: 1
@@ -74,6 +77,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 18d3d50a9cc7e904289ec6b8ddfe0d32, type: 3}
     Bpm: 70
     NoteCount: 60
+    BGImage: {fileID: 21300000, guid: 0679992fad33a13478825e859473a91d, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
@@ -92,6 +96,7 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 463cc2d04e9a1794fb30ec2af58b87ee, type: 3}
     Bpm: 360
     NoteCount: 150
+    BGImage: {fileID: 0}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
     HaveCumFC: 0
