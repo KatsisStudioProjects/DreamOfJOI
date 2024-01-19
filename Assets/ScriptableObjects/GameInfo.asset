@@ -42,7 +42,7 @@ MonoBehaviour:
     BGImage: {fileID: 21300000, guid: 0051245d97d95cc4ea2c7a02b257562c, type: 3}
     HaveReadyUpAnim: 0
     HaveSpeNoteAnim: 0
-    HaveCumFC: 0
+    HaveCumFC: 1
     ModifierName: Do what I say
     ModifierDescription: Purple note will hypnotise you, while in that state you
       can't hit any note, repetitively press 'space' to break free
